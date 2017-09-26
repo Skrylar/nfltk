@@ -1,3 +1,4 @@
+
 const
   flh = "FL/Fl.H"
 
@@ -10,7 +11,7 @@ const
   FL_ABI_VERSION* = (FL_MAJOR_VERSION*10000 + FL_MINOR_VERSION*100)
 
 type
-  Event* {.importcpp: "Fl_Event", header: flh.} = cint
+  Event* {.importc: "Fl_Event", header: flh.} = cint
 const
   FL_NO_EVENT*                     = 0
   FL_Event_PUSH*                         = 1
@@ -42,7 +43,7 @@ const
   FL_Event_ZOOM_GESTURE*                 = 26
 
 type
-  When* {.importcpp: "Fl_When", header: flh.} = cint
+  When* {.importc: "Fl_When", header: flh.} = cint
 const
   FL_WHEN_NEVER*             = 0
   FL_WHEN_CHANGED*           = 1
@@ -143,7 +144,7 @@ else:
     FL_CONTROL* = FL_META
 
 type
-  Boxtype* {.importcpp: "Fl_Boxtype", header: flh.} = cint
+  Boxtype* {.importc: "Fl_Boxtype", header: flh.} = cint
 const
   FL_NO_BOX*                  = 0
   FL_FLAT_BOX*                = 1
@@ -203,35 +204,35 @@ const
   XFL_GLEAM_ROUND_DOWN_BOX*   = 55
   FL_FREE_BOXTYPE*            = 56
 
-proc fl_define_FL_ROUND_UP_BOX*(): Boxtype {.importcpp, header: flh.}
+proc fl_define_FL_ROUND_UP_BOX*(): Boxtype {.importc, header: flh.}
 template FL_ROUND_UP_BOX*(): untyped = fl_define_FL_ROUND_UP_BOX()
 template FL_ROUND_DOWN_BOX*(): untyped = fl_define_FL_ROUND_UP_BOX()+1
 
-proc fl_define_FL_SHADOW_BOX*(): Boxtype {.importcpp, header: flh.}
+proc fl_define_FL_SHADOW_BOX*(): Boxtype {.importc, header: flh.}
 template FL_SHADOW_BOX*(): untyped = fl_define_FL_SHADOW_BOX()
 template FL_SHADOW_FRAME*(): untyped = fl_define_FL_SHADOW_BOX()+2
 
-proc fl_define_FL_ROUNDED_BOX*(): Boxtype {.importcpp, header: flh.}
+proc fl_define_FL_ROUNDED_BOX*(): Boxtype {.importc, header: flh.}
 template FL_ROUNDED_BOX*(): untyped = fl_define_FL_ROUNDED_BOX()
 template FL_ROUNDED_FRAME*(): untyped = fl_define_FL_ROUNDED_BOX()+2
 
-proc fl_define_FL_RFLAT_BOX*(): Boxtype {.importcpp, header: flh.}
+proc fl_define_FL_RFLAT_BOX*(): Boxtype {.importc, header: flh.}
 template FL_RFLAT_BOX*(): untyped = fl_define_FL_RFLAT_BOX()
 
-proc fl_define_FL_RSHADOW_BOX*(): Boxtype {.importcpp, header: flh.}
+proc fl_define_FL_RSHADOW_BOX*(): Boxtype {.importc, header: flh.}
 template FL_RSHADOW_BOX*(): untyped = fl_define_FL_RSHADOW_BOX()
 
-proc fl_define_FL_DIAMOND_BOX*(): Boxtype {.importcpp, header: flh.}
+proc fl_define_FL_DIAMOND_BOX*(): Boxtype {.importc, header: flh.}
 template FL_DIAMOND_UP_BOX*(): untyped = fl_define_FL_DIAMOND_BOX()
 template FL_DIAMOND_DOWN_BOX*(): untyped = fl_define_FL_DIAMOND_BOX()+1
 
-proc fl_define_FL_OVAL_BOX*(): Boxtype {.importcpp, header: flh.}
+proc fl_define_FL_OVAL_BOX*(): Boxtype {.importc, header: flh.}
 template FL_OVAL_BOX*(): untyped = fl_define_FL_OVAL_BOX()
 template FL_OSHADOW_BOX*(): untyped = fl_define_FL_OVAL_BOX()+1
 template FL_OVAL_FRAME*(): untyped = fl_define_FL_OVAL_BOX()+2
 template FL_OFLAT_BOX*(): untyped = fl_define_FL_OVAL_BOX()+3
 
-proc fl_define_FL_PLASTIC_UP_BOX*(): Boxtype {.importcpp, header: flh.}
+proc fl_define_FL_PLASTIC_UP_BOX*(): Boxtype {.importc, header: flh.}
 template FL_PLASTIC_UP_BOX*(): untyped = fl_define_FL_PLASTIC_UP_BOX()
 template FL_PLASTIC_DOWN_BOX*(): untyped = fl_define_FL_PLASTIC_UP_BOX()+1
 template FL_PLASTIC_UP_FRAME*(): untyped = fl_define_FL_PLASTIC_UP_BOX()+2
@@ -241,7 +242,7 @@ template FL_PLASTIC_THIN_DOWN_BOX*(): untyped = fl_define_FL_PLASTIC_UP_BOX()+5
 template FL_PLASTIC_ROUND_UP_BOX*(): untyped = fl_define_FL_PLASTIC_UP_BOX()+6
 template FL_PLASTIC_ROUND_DOWN_BOX*(): untyped = fl_define_FL_PLASTIC_UP_BOX()+7
 
-proc fl_define_FL_GTK_UP_BOX*(): Boxtype {.importcpp, header: flh.}
+proc fl_define_FL_GTK_UP_BOX*(): Boxtype {.importc, header: flh.}
 template FL_GTK_UP_BOX*(): untyped = fl_define_FL_GTK_UP_BOX()
 template FL_GTK_DOWN_BOX*(): untyped = fl_define_FL_GTK_UP_BOX()+1
 template FL_GTK_UP_FRAME*(): untyped = fl_define_FL_GTK_UP_BOX()+2
@@ -253,7 +254,7 @@ template FL_GTK_THIN_DOWN_FRAME*(): untyped = fl_define_FL_GTK_UP_BOX()+7
 template FL_GTK_ROUND_UP_BOX*(): untyped = fl_define_FL_GTK_UP_BOX()+8
 template FL_GTK_ROUND_DOWN_BOX*(): untyped = fl_define_FL_GTK_UP_BOX()+9
 
-proc fl_define_FL_GLEAM_UP_BOX*(): Boxtype {.importcpp, header: flh.}
+proc fl_define_FL_GLEAM_UP_BOX*(): Boxtype {.importc, header: flh.}
 template FL_GLEAM_UP_BOX*(): untyped = fl_define_FL_GLEAM_UP_BOX()
 template FL_GLEAM_DOWN_BOX*(): untyped = fl_define_FL_GLEAM_UP_BOX()+1
 template FL_GLEAM_UP_FRAME*(): untyped = fl_define_FL_GLEAM_UP_BOX()+2
@@ -263,9 +264,9 @@ template FL_GLEAM_THIN_DOWN_BOX*(): untyped = fl_define_FL_GLEAM_UP_BOX()+5
 template FL_GLEAM_ROUND_UP_BOX*(): untyped = fl_define_FL_GLEAM_UP_BOX()+6
 template FL_GLEAM_ROUND_DOWN_BOX*(): untyped = fl_define_FL_GLEAM_UP_BOX()+7
 
-proc box*(b: Boxtype): Boxtype {.importcpp: "fl_box", header: flh.}
-proc down*(b: Boxtype): Boxtype {.importcpp: "fl_down", header: flh.}
-proc frame*(b: Boxtype): Boxtype {.importcpp: "fl_frame", header: flh.}
+proc box*(b: Boxtype): Boxtype {.importc: "fl_box", header: flh.}
+proc down*(b: Boxtype): Boxtype {.importc: "fl_down", header: flh.}
+proc frame*(b: Boxtype): Boxtype {.importc: "fl_frame", header: flh.}
 
 #const
   #FL_FRAME*       = FL_ENGRAVED_FRAME
@@ -274,7 +275,7 @@ proc frame*(b: Boxtype): Boxtype {.importcpp: "fl_frame", header: flh.}
   #FL_DIAMOND_BOX* = FL_DIAMOND_DOWN_BOX
 
 type
-  Labeltype* {.importcpp: "Fl_Labeltype", header: flh.} = cint
+  Labeltype* {.importc: "Fl_Labeltype", header: flh.} = cint
 const
   FL_NORMAL_LABEL*    = 0
   FL_NO_LABEL*        = 1
@@ -289,16 +290,16 @@ const
 const
   FL_SYMBOL_LABEL* = FL_NORMAL_LABEL
 
-proc fl_define_FL_SHADOW_LABEL*(): Labeltype {.importcpp, header: flh.}
-proc fl_define_FL_ENGRAVED_LABEL*(): Labeltype {.importcpp, header: flh, header: flh.}
-proc fl_define_FL_EMBOSSED_LABEL*(): Labeltype {.importcpp, header: flh.}
+proc fl_define_FL_SHADOW_LABEL*(): Labeltype {.importc, header: flh.}
+proc fl_define_FL_ENGRAVED_LABEL*(): Labeltype {.importc, header: flh, header: flh.}
+proc fl_define_FL_EMBOSSED_LABEL*(): Labeltype {.importc, header: flh.}
 
 template FL_SHADOW_LABEL*(): untyped = fl_define_FL_SHADOW_LABEL()
 template FL_ENGRAVED_LABEL*(): untyped = fl_define_FL_ENGRAVED_LABEL()
 template FL_EMBOSSED_LABEL*(): untyped = fl_define_FL_EMBOSSED_LABEL()
 
 type
-  Align* {.importcpp: "Fl_Align", header: flh.} = cuint
+  Align* {.importc: "Fl_Align", header: flh.} = cuint
 const
   FL_ALIGN_CENTER*             = 0
   FL_ALIGN_TOP*                = 1
@@ -326,7 +327,7 @@ const
   FL_ALIGN_IMAGE_MASK*         = 0x0320
 
 type
-  Font* {.importcpp: "Fl_Font", header: flh.} = cint
+  Font* {.importc: "Fl_Font", header: flh.} = cint
 const
   FL_HELVETICA*              = 0
   FL_HELVETICA_BOLD*         = 1
@@ -350,12 +351,12 @@ const
   FL_BOLD_ITALIC*            = 3
 
 type
-  Fontsize* {.importcpp: "Fl_Fontsize", header: flh.} = cint
+  Fontsize* {.importc: "Fl_Fontsize", header: flh.} = cint
 
 var FL_NORMAL_SIZE* {.extern: "FL_NORMAL_SIZE".}: Fontsize
 
 type
-  Color* {.importcpp: "Fl_Color", header: flh.} = cint
+  Color* {.importc: "Fl_Color", header: flh.} = cint
 const
   FL_FOREGROUND_COLOR*  = 0
   FL_BACKGROUND2_COLOR* = 7
@@ -395,18 +396,18 @@ const
   FL_NUM_GREEN*      = 8
   FL_NUM_BLUE*       = 5
 
-proc fl_inactive*(c: Color): Color {.importcpp: "fl_inactive", header: flh.}
-proc fl_contrast*(fg, bg: Color): Color {.importcpp: "fl_contrast", header: flh.}
-proc fl_color_average*(c1, c2: Color; weight: cfloat): Color {.importcpp: "fl_color_average", header: flh.}
-proc fl_lighter*(c: Color): Color {.importcpp: "fl_lighter", header: flh.}
-proc fl_darker*(c: Color): Color {.importcpp: "fl_darker", header: flh.}
-proc fl_rgb_color*(r, g, b: cuchar): Color {.importcpp: "fl_rgb_color", header: flh.}
-proc fl_rgb_color*(g: cuchar): Color {.importcpp: "fl_rgb_color", header: flh.}
-proc fl_gray_ramp*(i: cint): Color {.importcpp: "fl_gray_ramp", header: flh.}
-proc fl_color_cube*(r, g, b: cint): Color {.importcpp: "fl_color_cube", header: flh.}
+proc fl_inactive*(c: Color): Color {.importc: "fl_inactive", header: flh.}
+proc fl_contrast*(fg, bg: Color): Color {.importc: "fl_contrast", header: flh.}
+proc fl_color_average*(c1, c2: Color; weight: cfloat): Color {.importc: "fl_color_average", header: flh.}
+proc fl_lighter*(c: Color): Color {.importc: "fl_lighter", header: flh.}
+proc fl_darker*(c: Color): Color {.importc: "fl_darker", header: flh.}
+proc fl_rgb_color*(r, g, b: cuchar): Color {.importc: "fl_rgb_color", header: flh.}
+proc fl_rgb_color*(g: cuchar): Color {.importc: "fl_rgb_color", header: flh.}
+proc fl_gray_ramp*(i: cint): Color {.importc: "fl_gray_ramp", header: flh.}
+proc fl_color_cube*(r, g, b: cint): Color {.importc: "fl_color_cube", header: flh.}
 
 type
-  Cursor* {.importcpp: "Fl_Cursor", header: flh.} = cint
+  Cursor* {.importc: "Fl_Cursor", header: flh.} = cint
 const
   FL_CURSOR_DEFAULT* = 0
   FL_CURSOR_ARROW*   = 35
@@ -436,7 +437,7 @@ const
   FL_EXCEPT* = 8
 
 type
-  Mode* {.importcpp: "Fl_Mode", header: flh.} = cint
+  Mode* {.importc: "Fl_Mode", header: flh.} = cint
 const
   FL_RGB*         = 0
   FL_INDEX*       = 1
@@ -453,7 +454,7 @@ const
   FL_OPENGL3*     = 1024
 
 type
-  Damage* {.importcpp: "Fl_Damage", header: flh.} = cint
+  Damage* {.importc: "Fl_Damage", header: flh.} = cint
 const
   FL_DAMAGE_CHILD*    = 0x01
   FL_DAMAGE_EXPOSE*   = 0x02
