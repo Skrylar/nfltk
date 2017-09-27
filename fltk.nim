@@ -3,8 +3,11 @@
 
 {.deadCodeElim: off.} # just for now
 
-import enumerations
+import private/enumerations
 export enumerations
+
+import private/window
+export window
 
 const
   flh = "FL/Fl.H"
@@ -23,8 +26,6 @@ else:
 
 type
   Label* {.importc: "Fl_Label*", header: flh.} = distinct pointer
-  Window* {.importc: "Fl_Window*", header: flh.} = distinct pointer
-  Widget* {.importc: "Fl_Widget*", header: flh.} = distinct pointer
   Shortcut* {.importc: "Fl_Shortcut*", header: flh.} = distinct pointer
   Font* {.importc: "Fl_Font*", header: flh.} = distinct pointer
 
