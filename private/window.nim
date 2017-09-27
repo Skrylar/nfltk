@@ -1,14 +1,12 @@
 
 import enumerations
+import group
 
 const
   flh = "FL/Fl_Window.H"
 type
   ImageObj* {.importc: "Fl_Image", header: flh.} = object
   Image* = ptr ImageObj
-
-  WidgetObj* {.importc: "Fl_Widget", header: flh.} = object
-  Widget* = ptr WidgetObj
 
   RGB_Image* {.importc: "Fl_RGB_Image*", header: flh.} = object
   Cursor* {.importc: "Cursor*", header: flh.} = object
@@ -18,7 +16,7 @@ const
   FL_DOUBLE_WINDOW* = 0xF1
 
 type
-  WindowObj* {.importc: "Fl_Window".} = object
+  WindowObj* {.importc: "Fl_Window".} = object of GroupObj
   Window* = ptr WindowObj
 
 # TODO
