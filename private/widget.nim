@@ -55,34 +55,34 @@ proc label*(self: Widget; a: Labeltype; b: cstring) {.importcpp: "#.label(@)", h
 proc copy_tooltip*(self: Widget; text: cstring) {.importcpp: "#.copy_tooltip(@)", header: flh.}
 
 proc type*(self: Widget): cuchar {.importcpp: "#.type(@)", header: flh, header: flh.}
-proc `type=`*(t: cuchar) {.importcpp: "#.type(@)", header: flh.}
+proc `type=`*(self: Widget; t: cuchar) {.importcpp: "#.type(@)", header: flh.}
 
 proc align*(self: Widget): Align {.importcpp: "#.align(@)", header: flh.}
-proc `align=`*(alignment: Align) {.importcpp: "#.align(@)", header: flh.}
+proc `align=`*(self: Widget; alignment: Align) {.importcpp: "#.align(@)", header: flh.}
 
 proc box*(self: Widget): Boxtype {.importcpp: "#.box(@)", header: flh.}
-proc `box=`*(new_box: Boxtype) {.importcpp: "#.box(@)", header: flh.}
+proc `box=`*(self: Widget; new_box: Boxtype) {.importcpp: "#.box(@)", header: flh.}
 
 proc color*(self: Widget): Color {.importcpp: "#.color(@)", header: flh.}
-proc `color=`*(bg: Color) {.importcpp: "#.color(@)", header: flh.}
+proc `color=`*(self: Widget; bg: Color) {.importcpp: "#.color(@)", header: flh.}
 
 proc selection_color*(self: Widget): Color {.importcpp: "#.selection_color(@)", header: flh.}
-proc `selection_color=`*(a: Color) {.importcpp: "#.selection_color(@)", header: flh.}
+proc `selection_color=`*(self: Widget; a: Color) {.importcpp: "#.selection_color(@)", header: flh.}
 
 proc label*(self: Widget): cstring {.importcpp: "#.label(@)", header: flh.}
-proc `label=`*(text: cstring) {.importcpp: "#.label(@)", header: flh.}
+proc `label=`*(self: Widget; text: cstring) {.importcpp: "#.label(@)", header: flh.}
 
 proc labeltype*(self: Widget): Labeltype {.importcpp: "#.labeltype(@)", header: flh.}
-proc `labeltype=`*(a: Labeltype) {.importcpp: "#.labeltype(@)", header: flh.}
+proc `labeltype=`*(self: Widget; a: Labeltype) {.importcpp: "#.labeltype(@)", header: flh.}
 
 proc labelcolor*(self: Widget): Color {.importcpp: "#.labelcolor(@)", header: flh.}
-proc `labelcolor=`*(c: Color) {.importcpp: "#.labelcolor(@)", header: flh.}
+proc `labelcolor=`*(self: Widget; c: Color) {.importcpp: "#.labelcolor(@)", header: flh.}
 
 proc labelfont*(self: Widget): Font {.importcpp: "#.labelfont(@)", header: flh.}
-proc `labelfont=`*(f: Font) {.importcpp: "#.labelfont(@)", header: flh.}
+proc `labelfont=`*(self: Widget; f: Font) {.importcpp: "#.labelfont(@)", header: flh.}
 
 proc labelsize*(self: Widget): Fontsize {.importcpp: "#.labelsize(@)", header: flh.}
-proc `labelsize=`*(size: Fontsize) {.importcpp: "#.labelsize(@)", header: flh.}
+proc `labelsize=`*(self: Widget; size: Fontsize) {.importcpp: "#.labelsize(@)", header: flh.}
 
 proc image*(self: Widget): Image {.importcpp: "#.image(@)", header: flh.}
 proc `image=`*(img: Image) {.importcpp: "#.image(@)", header: flh, header: flh.}
@@ -90,12 +90,12 @@ proc `image=`*(img: Image) {.importcpp: "#.image(@)", header: flh, header: flh.}
 #image(Image& img)
 
 proc deimage*(self: Widget): Image {.importcpp: "#.deimage(@)", header: flh.}
-proc `deimage=`*(img: Image) {.importcpp: "#.deimage(@)", header: flh.}
+proc `deimage=`*(self: Widget; img: Image) {.importcpp: "#.deimage(@)", header: flh.}
 
 #deimage(Image& img)
 
 proc tooltip*(self: Widget): cstring {.importcpp: "#.tooltip(@)", header: flh.}
-proc `tooltip=`*(text: cstring) {.importcpp: "#.tooltip(@)", header: flh.}
+proc `tooltip=`*(self: Widget; text: cstring) {.importcpp: "#.tooltip(@)", header: flh.}
 
 proc callback*(self: Widget): Callback {.importcpp: "#.callback(@)", header: flh.}
 proc callback*(self: Widget; cb: Callback; p: pointer) {.importcpp: "#.callback(@)", header: flh.}
@@ -104,16 +104,16 @@ proc callback*(self: Widget; cb: Callback0) {.importcpp: "#.callback(@)", header
 proc callback*(self: Widget; cb: Callback1; p: clong = 0) {.importcpp: "#.callback(@)", header: flh.}
 
 proc user_data*(self: Widget): pointer {.importcpp: "#.user_data(@)", header: flh.}
-proc `user_data=`*(v: pointer) {.importcpp: "#.user_data(@)", header: flh.}
+proc `user_data=`*(self: Widget; v: pointer) {.importcpp: "#.user_data(@)", header: flh.}
 
 proc argument*(self: Widget): clong {.importcpp: "#.argument(@)", header: flh.}
-proc `argument=`*(v: clong) {.importcpp: "#.argument(@)", header: flh.}
+proc `argument=`*(self: Widget; v: clong) {.importcpp: "#.argument(@)", header: flh.}
 
 proc whenn*(self: Widget): When {.importcpp: "#.when(@)", header: flh.}
-proc `whenn=`*(i: cuchar) {.importcpp: "#.when(@)", header: flh, header: flh.}
+proc `whenn=`*(self: Widget; i: cuchar) {.importcpp: "#.when(@)", header: flh, header: flh.}
 
 proc visible_focus*(self: Widget): cuint {.importcpp: "#.visible_focus(@)", header: flh.}
-proc `visible_focus=`*(v: cint) {.importcpp: "#.visible_focus(@)", header: flh.}
+proc `visible_focus=`*(self: Widget; v: cint) {.importcpp: "#.visible_focus(@)", header: flh.}
 
 proc visible*(self: Widget): cuint {.importcpp: "#.visible(@)", header: flh.}
 proc visible_r*(self: Widget): cint {.importcpp: "#.visible_r(@)", header: flh.}

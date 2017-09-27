@@ -146,123 +146,123 @@ else:
 type
   Boxtype* {.importc: "Fl_Boxtype", header: flh.} = cint
 const
-  FL_NO_BOX*                  = 0
-  FL_FLAT_BOX*                = 1
-  FL_UP_BOX*                  = 2
-  FL_DOWN_BOX*                = 3
-  FL_UP_FRAME*                = 4
-  FL_DOWN_FRAME*              = 5
-  FL_THIN_UP_BOX*             = 6
-  FL_THIN_DOWN_BOX*           = 7
-  FL_THIN_UP_FRAME*           = 8
-  FL_THIN_DOWN_FRAME*         = 9
-  FL_ENGRAVED_BOX*            = 10
-  FL_EMBOSSED_BOX*            = 11
-  FL_ENGRAVED_FRAME*          = 12
-  FL_EMBOSSED_FRAME*          = 13
-  FL_BORDER_BOX*              = 14
-  XFL_SHADOW_BOX*             = 15
-  FL_BORDER_FRAME*            = 16
-  XFL_SHADOW_FRAME*           = 17
-  XFL_ROUNDED_BOX*            = 18
-  XFL_RSHADOW_BOX*            = 19
-  XFL_ROUNDED_FRAME*          = 20
-  XFL_RFLAT_BOX*              = 21
-  XFL_ROUND_UP_BOX*           = 22
-  XFL_ROUND_DOWN_BOX*         = 23
-  XFL_DIAMOND_UP_BOX*         = 24
-  XFL_DIAMOND_DOWN_BOX*       = 25
-  XFL_OVAL_BOX*               = 26
-  XFL_OSHADOW_BOX*            = 27
-  XFL_OVAL_FRAME*             = 28
-  XFL_OFLAT_BOX*              = 29
-  XFL_PLASTIC_UP_BOX*         = 30
-  XFL_PLASTIC_DOWN_BOX*       = 31
-  XFL_PLASTIC_UP_FRAME*       = 32
-  XFL_PLASTIC_DOWN_FRAME*     = 33
-  XFL_PLASTIC_THIN_UP_BOX*    = 34
-  XFL_PLASTIC_THIN_DOWN_BOX*  = 35
-  XFL_PLASTIC_ROUND_UP_BOX*   = 36
-  XFL_PLASTIC_ROUND_DOWN_BOX* = 37
-  XFL_GTK_UP_BOX*             = 38
-  XFL_GTK_DOWN_BOX*           = 39
-  XFL_GTK_UP_FRAME*           = 40
-  XFL_GTK_DOWN_FRAME*         = 41
-  XFL_GTK_THIN_UP_BOX*        = 42
-  XFL_GTK_THIN_DOWN_BOX*      = 43
-  XFL_GTK_THIN_UP_FRAME*      = 44
-  XFL_GTK_THIN_DOWN_FRAME*    = 45
-  XFL_GTK_ROUND_UP_BOX*       = 46
-  XFL_GTK_ROUND_DOWN_BOX*     = 47
-  XFL_GLEAM_UP_BOX*           = 48
-  XFL_GLEAM_DOWN_BOX*         = 49
-  XFL_GLEAM_UP_FRAME*         = 50
-  XFL_GLEAM_DOWN_FRAME*       = 51
-  XFL_GLEAM_THIN_UP_BOX*      = 52
-  XFL_GLEAM_THIN_DOWN_BOX*    = 53
-  XFL_GLEAM_ROUND_UP_BOX*     = 54
-  XFL_GLEAM_ROUND_DOWN_BOX*   = 55
-  FL_FREE_BOXTYPE*            = 56
+  NO_BOX*                  = 0
+  FLAT_BOX*                = 1
+  UP_BOX*                  = 2
+  DOWN_BOX*                = 3
+  UP_FRAME*                = 4
+  DOWN_FRAME*              = 5
+  THIN_UP_BOX*             = 6
+  THIN_DOWN_BOX*           = 7
+  THIN_UP_FRAME*           = 8
+  THIN_DOWN_FRAME*         = 9
+  ENGRAVED_BOX*            = 10
+  EMBOSSED_BOX*            = 11
+  ENGRAVED_FRAME*          = 12
+  EMBOSSED_FRAME*          = 13
+  BORDER_BOX*              = 14
+  XSHADOW_BOX*             = 15
+  BORDER_FRAME*            = 16
+  XSHADOW_FRAME*           = 17
+  XROUNDED_BOX*            = 18
+  XRSHADOW_BOX*            = 19
+  XROUNDED_FRAME*          = 20
+  XRFLAT_BOX*              = 21
+  XROUND_UP_BOX*           = 22
+  XROUND_DOWN_BOX*         = 23
+  XDIAMOND_UP_BOX*         = 24
+  XDIAMOND_DOWN_BOX*       = 25
+  XOVAL_BOX*               = 26
+  XOSHADOW_BOX*            = 27
+  XOVAL_FRAME*             = 28
+  XOFLAT_BOX*              = 29
+  XPLASTIC_UP_BOX*         = 30
+  XPLASTIC_DOWN_BOX*       = 31
+  XPLASTIC_UP_FRAME*       = 32
+  XPLASTIC_DOWN_FRAME*     = 33
+  XPLASTIC_THIN_UP_BOX*    = 34
+  XPLASTIC_THIN_DOWN_BOX*  = 35
+  XPLASTIC_ROUND_UP_BOX*   = 36
+  XPLASTIC_ROUND_DOWN_BOX* = 37
+  XGTK_UP_BOX*             = 38
+  XGTK_DOWN_BOX*           = 39
+  XGTK_UP_FRAME*           = 40
+  XGTK_DOWN_FRAME*         = 41
+  XGTK_THIN_UP_BOX*        = 42
+  XGTK_THIN_DOWN_BOX*      = 43
+  XGTK_THIN_UP_FRAME*      = 44
+  XGTK_THIN_DOWN_FRAME*    = 45
+  XGTK_ROUND_UP_BOX*       = 46
+  XGTK_ROUND_DOWN_BOX*     = 47
+  XGLEAM_UP_BOX*           = 48
+  XGLEAM_DOWN_BOX*         = 49
+  XGLEAM_UP_FRAME*         = 50
+  XGLEAM_DOWN_FRAME*       = 51
+  XGLEAM_THIN_UP_BOX*      = 52
+  XGLEAM_THIN_DOWN_BOX*    = 53
+  XGLEAM_ROUND_UP_BOX*     = 54
+  XGLEAM_ROUND_DOWN_BOX*   = 55
+  FREE_BOXTYPE*            = 56
 
 proc fl_define_FL_ROUND_UP_BOX*(): Boxtype {.importc, header: flh.}
-template FL_ROUND_UP_BOX*(): untyped = fl_define_FL_ROUND_UP_BOX()
-template FL_ROUND_DOWN_BOX*(): untyped = fl_define_FL_ROUND_UP_BOX()+1
+template ROUND_UP_BOX*(): untyped = fl_define_FL_ROUND_UP_BOX()
+template ROUND_DOWN_BOX*(): untyped = fl_define_FL_ROUND_UP_BOX()+1
 
 proc fl_define_FL_SHADOW_BOX*(): Boxtype {.importc, header: flh.}
-template FL_SHADOW_BOX*(): untyped = fl_define_FL_SHADOW_BOX()
-template FL_SHADOW_FRAME*(): untyped = fl_define_FL_SHADOW_BOX()+2
+template SHADOW_BOX*(): untyped = fl_define_FL_SHADOW_BOX()
+template SHADOW_FRAME*(): untyped = fl_define_FL_SHADOW_BOX()+2
 
 proc fl_define_FL_ROUNDED_BOX*(): Boxtype {.importc, header: flh.}
-template FL_ROUNDED_BOX*(): untyped = fl_define_FL_ROUNDED_BOX()
-template FL_ROUNDED_FRAME*(): untyped = fl_define_FL_ROUNDED_BOX()+2
+template ROUNDED_BOX*(): untyped = fl_define_FL_ROUNDED_BOX()
+template ROUNDED_FRAME*(): untyped = fl_define_FL_ROUNDED_BOX()+2
 
 proc fl_define_FL_RFLAT_BOX*(): Boxtype {.importc, header: flh.}
-template FL_RFLAT_BOX*(): untyped = fl_define_FL_RFLAT_BOX()
+template RFLAT_BOX*(): untyped = fl_define_FL_RFLAT_BOX()
 
 proc fl_define_FL_RSHADOW_BOX*(): Boxtype {.importc, header: flh.}
-template FL_RSHADOW_BOX*(): untyped = fl_define_FL_RSHADOW_BOX()
+template RSHADOW_BOX*(): untyped = fl_define_FL_RSHADOW_BOX()
 
 proc fl_define_FL_DIAMOND_BOX*(): Boxtype {.importc, header: flh.}
-template FL_DIAMOND_UP_BOX*(): untyped = fl_define_FL_DIAMOND_BOX()
-template FL_DIAMOND_DOWN_BOX*(): untyped = fl_define_FL_DIAMOND_BOX()+1
+template DIAMOND_UP_BOX*(): untyped = fl_define_FL_DIAMOND_BOX()
+template DIAMOND_DOWN_BOX*(): untyped = fl_define_FL_DIAMOND_BOX()+1
 
 proc fl_define_FL_OVAL_BOX*(): Boxtype {.importc, header: flh.}
-template FL_OVAL_BOX*(): untyped = fl_define_FL_OVAL_BOX()
-template FL_OSHADOW_BOX*(): untyped = fl_define_FL_OVAL_BOX()+1
-template FL_OVAL_FRAME*(): untyped = fl_define_FL_OVAL_BOX()+2
-template FL_OFLAT_BOX*(): untyped = fl_define_FL_OVAL_BOX()+3
+template OVAL_BOX*(): untyped = fl_define_FL_OVAL_BOX()
+template OSHADOW_BOX*(): untyped = fl_define_FL_OVAL_BOX()+1
+template OVAL_FRAME*(): untyped = fl_define_FL_OVAL_BOX()+2
+template OFLAT_BOX*(): untyped = fl_define_FL_OVAL_BOX()+3
 
 proc fl_define_FL_PLASTIC_UP_BOX*(): Boxtype {.importc, header: flh.}
-template FL_PLASTIC_UP_BOX*(): untyped = fl_define_FL_PLASTIC_UP_BOX()
-template FL_PLASTIC_DOWN_BOX*(): untyped = fl_define_FL_PLASTIC_UP_BOX()+1
-template FL_PLASTIC_UP_FRAME*(): untyped = fl_define_FL_PLASTIC_UP_BOX()+2
-template FL_PLASTIC_DOWN_FRAME*(): untyped = fl_define_FL_PLASTIC_UP_BOX()+3
-template FL_PLASTIC_THIN_UP_BOX*(): untyped = fl_define_FL_PLASTIC_UP_BOX()+4
-template FL_PLASTIC_THIN_DOWN_BOX*(): untyped = fl_define_FL_PLASTIC_UP_BOX()+5
-template FL_PLASTIC_ROUND_UP_BOX*(): untyped = fl_define_FL_PLASTIC_UP_BOX()+6
-template FL_PLASTIC_ROUND_DOWN_BOX*(): untyped = fl_define_FL_PLASTIC_UP_BOX()+7
+template PLASTIC_UP_BOX*(): untyped = fl_define_FL_PLASTIC_UP_BOX()
+template PLASTIC_DOWN_BOX*(): untyped = fl_define_FL_PLASTIC_UP_BOX()+1
+template PLASTIC_UP_FRAME*(): untyped = fl_define_FL_PLASTIC_UP_BOX()+2
+template PLASTIC_DOWN_FRAME*(): untyped = fl_define_FL_PLASTIC_UP_BOX()+3
+template PLASTIC_THIN_UP_BOX*(): untyped = fl_define_FL_PLASTIC_UP_BOX()+4
+template PLASTIC_THIN_DOWN_BOX*(): untyped = fl_define_FL_PLASTIC_UP_BOX()+5
+template PLASTIC_ROUND_UP_BOX*(): untyped = fl_define_FL_PLASTIC_UP_BOX()+6
+template PLASTIC_ROUND_DOWN_BOX*(): untyped = fl_define_FL_PLASTIC_UP_BOX()+7
 
 proc fl_define_FL_GTK_UP_BOX*(): Boxtype {.importc, header: flh.}
-template FL_GTK_UP_BOX*(): untyped = fl_define_FL_GTK_UP_BOX()
-template FL_GTK_DOWN_BOX*(): untyped = fl_define_FL_GTK_UP_BOX()+1
-template FL_GTK_UP_FRAME*(): untyped = fl_define_FL_GTK_UP_BOX()+2
-template FL_GTK_DOWN_FRAME*(): untyped = fl_define_FL_GTK_UP_BOX()+3
-template FL_GTK_THIN_UP_BOX*(): untyped = fl_define_FL_GTK_UP_BOX()+4
-template FL_GTK_THIN_DOWN_BOX*(): untyped = fl_define_FL_GTK_UP_BOX()+5
-template FL_GTK_THIN_UP_FRAME*(): untyped = fl_define_FL_GTK_UP_BOX()+6
-template FL_GTK_THIN_DOWN_FRAME*(): untyped = fl_define_FL_GTK_UP_BOX()+7
-template FL_GTK_ROUND_UP_BOX*(): untyped = fl_define_FL_GTK_UP_BOX()+8
-template FL_GTK_ROUND_DOWN_BOX*(): untyped = fl_define_FL_GTK_UP_BOX()+9
+template GTK_UP_BOX*(): untyped = fl_define_FL_GTK_UP_BOX()
+template GTK_DOWN_BOX*(): untyped = fl_define_FL_GTK_UP_BOX()+1
+template GTK_UP_FRAME*(): untyped = fl_define_FL_GTK_UP_BOX()+2
+template GTK_DOWN_FRAME*(): untyped = fl_define_FL_GTK_UP_BOX()+3
+template GTK_THIN_UP_BOX*(): untyped = fl_define_FL_GTK_UP_BOX()+4
+template GTK_THIN_DOWN_BOX*(): untyped = fl_define_FL_GTK_UP_BOX()+5
+template GTK_THIN_UP_FRAME*(): untyped = fl_define_FL_GTK_UP_BOX()+6
+template GTK_THIN_DOWN_FRAME*(): untyped = fl_define_FL_GTK_UP_BOX()+7
+template GTK_ROUND_UP_BOX*(): untyped = fl_define_FL_GTK_UP_BOX()+8
+template GTK_ROUND_DOWN_BOX*(): untyped = fl_define_FL_GTK_UP_BOX()+9
 
 proc fl_define_FL_GLEAM_UP_BOX*(): Boxtype {.importc, header: flh.}
-template FL_GLEAM_UP_BOX*(): untyped = fl_define_FL_GLEAM_UP_BOX()
-template FL_GLEAM_DOWN_BOX*(): untyped = fl_define_FL_GLEAM_UP_BOX()+1
-template FL_GLEAM_UP_FRAME*(): untyped = fl_define_FL_GLEAM_UP_BOX()+2
-template FL_GLEAM_DOWN_FRAME*(): untyped = fl_define_FL_GLEAM_UP_BOX()+3
-template FL_GLEAM_THIN_UP_BOX*(): untyped = fl_define_FL_GLEAM_UP_BOX()+4
-template FL_GLEAM_THIN_DOWN_BOX*(): untyped = fl_define_FL_GLEAM_UP_BOX()+5
-template FL_GLEAM_ROUND_UP_BOX*(): untyped = fl_define_FL_GLEAM_UP_BOX()+6
-template FL_GLEAM_ROUND_DOWN_BOX*(): untyped = fl_define_FL_GLEAM_UP_BOX()+7
+template GLEAM_UP_BOX*(): untyped = fl_define_FL_GLEAM_UP_BOX()
+template GLEAM_DOWN_BOX*(): untyped = fl_define_FL_GLEAM_UP_BOX()+1
+template GLEAM_UP_FRAME*(): untyped = fl_define_FL_GLEAM_UP_BOX()+2
+template GLEAM_DOWN_FRAME*(): untyped = fl_define_FL_GLEAM_UP_BOX()+3
+template GLEAM_THIN_UP_BOX*(): untyped = fl_define_FL_GLEAM_UP_BOX()+4
+template GLEAM_THIN_DOWN_BOX*(): untyped = fl_define_FL_GLEAM_UP_BOX()+5
+template GLEAM_ROUND_UP_BOX*(): untyped = fl_define_FL_GLEAM_UP_BOX()+6
+template GLEAM_ROUND_DOWN_BOX*(): untyped = fl_define_FL_GLEAM_UP_BOX()+7
 
 proc box*(b: Boxtype): Boxtype {.importc: "fl_box", header: flh.}
 proc down*(b: Boxtype): Boxtype {.importc: "fl_down", header: flh.}
@@ -277,78 +277,78 @@ proc frame*(b: Boxtype): Boxtype {.importc: "fl_frame", header: flh.}
 type
   Labeltype* {.importc: "Fl_Labeltype", header: flh.} = cint
 const
-  FL_NORMAL_LABEL*    = 0
-  FL_NO_LABEL*        = 1
-  XFL_SHADOW_LABEL*   = 2
-  XFL_ENGRAVED_LABEL* = 3
-  XFL_EMBOSSED_LABEL* = 4
-  XFL_MULTI_LABEL*    = 5
-  XFL_ICON_LABEL*     = 6
-  XFL_IMAGE_LABEL*    = 7
-  FL_FREE_LABELTYPE*  = 8
+  NORMAL_LABEL*    = 0
+  NO_LABEL*        = 1
+  XSHADOW_LABEL*   = 2
+  XENGRAVED_LABEL* = 3
+  XEMBOSSED_LABEL* = 4
+  XMULTI_LABEL*    = 5
+  XICON_LABEL*     = 6
+  XIMAGE_LABEL*    = 7
+  FREE_LABELTYPE*  = 8
 
 const
-  FL_SYMBOL_LABEL* = FL_NORMAL_LABEL
+  SYMBOL_LABEL* = NORMAL_LABEL
 
 proc fl_define_FL_SHADOW_LABEL*(): Labeltype {.importc, header: flh.}
 proc fl_define_FL_ENGRAVED_LABEL*(): Labeltype {.importc, header: flh, header: flh.}
 proc fl_define_FL_EMBOSSED_LABEL*(): Labeltype {.importc, header: flh.}
 
-template FL_SHADOW_LABEL*(): untyped = fl_define_FL_SHADOW_LABEL()
-template FL_ENGRAVED_LABEL*(): untyped = fl_define_FL_ENGRAVED_LABEL()
-template FL_EMBOSSED_LABEL*(): untyped = fl_define_FL_EMBOSSED_LABEL()
+template SHADOW_LABEL*(): untyped = fl_define_FL_SHADOW_LABEL()
+template ENGRAVED_LABEL*(): untyped = fl_define_FL_ENGRAVED_LABEL()
+template EMBOSSED_LABEL*(): untyped = fl_define_FL_EMBOSSED_LABEL()
 
 type
   Align* {.importc: "Fl_Align", header: flh.} = cuint
 const
-  FL_ALIGN_CENTER*             = 0
-  FL_ALIGN_TOP*                = 1
-  FL_ALIGN_BOTTOM*             = 2
-  FL_ALIGN_LEFT*               = 4
-  FL_ALIGN_RIGHT*              = 8
-  FL_ALIGN_INSIDE*             = 16
-  FL_ALIGN_TEXT_OVER_IMAGE*    = 0x0020
-  FL_ALIGN_IMAGE_OVER_TEXT*    = 0x0000
-  FL_ALIGN_CLIP*               = 64
-  FL_ALIGN_WRAP*               = 128
-  FL_ALIGN_IMAGE_NEXT_TO_TEXT* = 0x0100
-  FL_ALIGN_TEXT_NEXT_TO_IMAGE* = 0x0120
-  FL_ALIGN_IMAGE_BACKDROP*     = 0x0200
-  FL_ALIGN_TOP_LEFT*           = FL_ALIGN_TOP or FL_ALIGN_LEFT
-  FL_ALIGN_TOP_RIGHT*          = FL_ALIGN_TOP or FL_ALIGN_RIGHT
-  FL_ALIGN_BOTTOM_LEFT*        = FL_ALIGN_BOTTOM or FL_ALIGN_LEFT
-  FL_ALIGN_BOTTOM_RIGHT*       = FL_ALIGN_BOTTOM or FL_ALIGN_RIGHT
-  FL_ALIGN_LEFT_TOP*           = 0x0007
-  FL_ALIGN_RIGHT_TOP*          = 0x000b
-  FL_ALIGN_LEFT_BOTTOM*        = 0x000d
-  FL_ALIGN_RIGHT_BOTTOM*       = 0x000e
-  FL_ALIGN_NOWRAP*             = 0
-  FL_ALIGN_POSITION_MASK*      = 0x000f
-  FL_ALIGN_IMAGE_MASK*         = 0x0320
+  ALIGN_CENTER*             = 0
+  ALIGN_TOP*                = 1
+  ALIGN_BOTTOM*             = 2
+  ALIGN_LEFT*               = 4
+  ALIGN_RIGHT*              = 8
+  ALIGN_INSIDE*             = 16
+  ALIGN_TEXT_OVER_IMAGE*    = 0x0020
+  ALIGN_IMAGE_OVER_TEXT*    = 0x0000
+  ALIGN_CLIP*               = 64
+  ALIGN_WRAP*               = 128
+  ALIGN_IMAGE_NEXT_TO_TEXT* = 0x0100
+  ALIGN_TEXT_NEXT_TO_IMAGE* = 0x0120
+  ALIGN_IMAGE_BACKDROP*     = 0x0200
+  ALIGN_TOP_LEFT*           = ALIGN_TOP or ALIGN_LEFT
+  ALIGN_TOP_RIGHT*          = ALIGN_TOP or ALIGN_RIGHT
+  ALIGN_BOTTOM_LEFT*        = ALIGN_BOTTOM or ALIGN_LEFT
+  ALIGN_BOTTOM_RIGHT*       = ALIGN_BOTTOM or ALIGN_RIGHT
+  ALIGN_LEFT_TOP*           = 0x0007
+  ALIGN_RIGHT_TOP*          = 0x000b
+  ALIGN_LEFT_BOTTOM*        = 0x000d
+  ALIGN_RIGHT_BOTTOM*       = 0x000e
+  ALIGN_NOWRAP*             = 0
+  ALIGN_POSITION_MASK*      = 0x000f
+  ALIGN_IMAGE_MASK*         = 0x0320
 
 type
   Font* {.importc: "Fl_Font", header: flh.} = cint
 const
-  FL_HELVETICA*              = 0
-  FL_HELVETICA_BOLD*         = 1
-  FL_HELVETICA_ITALIC*       = 2
-  FL_HELVETICA_BOLD_ITALIC*  = 3
-  FL_COURIER*                = 4
-  FL_COURIER_BOLD*           = 5
-  FL_COURIER_ITALIC*         = 6
-  FL_COURIER_BOLD_ITALIC*    = 7
-  FL_TIMES*                  = 8
-  FL_TIMES_BOLD*             = 9
-  FL_TIMES_ITALIC*           = 10
-  FL_TIMES_BOLD_ITALIC*      = 11
-  FL_SYMBOL*                 = 12
-  FL_SCREEN*                 = 13
-  FL_SCREEN_BOLD*            = 14
-  FL_ZAPF_DINGBATS*          = 15
-  FL_FREE_FONT*              = 16
-  FL_BOLD*                   = 1
-  FL_ITALIC*                 = 2
-  FL_BOLD_ITALIC*            = 3
+  HELVETICA*              = 0
+  HELVETICA_BOLD*         = 1
+  HELVETICA_ITALIC*       = 2
+  HELVETICA_BOLD_ITALIC*  = 3
+  COURIER*                = 4
+  COURIER_BOLD*           = 5
+  COURIER_ITALIC*         = 6
+  COURIER_BOLD_ITALIC*    = 7
+  TIMES*                  = 8
+  TIMES_BOLD*             = 9
+  TIMES_ITALIC*           = 10
+  TIMES_BOLD_ITALIC*      = 11
+  SYMBOL*                 = 12
+  SCREEN*                 = 13
+  SCREEN_BOLD*            = 14
+  ZAPF_DINGBATS*          = 15
+  FREE_FONT*              = 16
+  BOLD*                   = 1
+  ITALIC*                 = 2
+  BOLD_ITALIC*            = 3
 
 type
   Fontsize* {.importc: "Fl_Fontsize", header: flh.} = cint
@@ -358,78 +358,78 @@ var FL_NORMAL_SIZE* {.extern: "FL_NORMAL_SIZE".}: Fontsize
 type
   Color* {.importc: "Fl_Color", header: flh.} = cint
 const
-  FL_FOREGROUND_COLOR*  = 0
-  FL_BACKGROUND2_COLOR* = 7
-  FL_INACTIVE_COLOR*    = 8
-  FL_SELECTION_COLOR*   = 15
-  FL_GRAY0*             = 32
-  FL_DARK3*             = 39
-  FL_DARK2*             = 45
-  FL_DARK1*             = 47
-  FL_BACKGROUND_COLOR*  = 49
-  FL_LIGHT1*            = 50
-  FL_LIGHT2*            = 52
-  FL_LIGHT3*            = 54
-  FL_BLACK*             = 56
-  FL_RED*               = 88
-  FL_GREEN*             = 63
-  FL_YELLOW*            = 95
-  FL_BLUE*              = 216
-  FL_MAGENTA*           = 248
-  FL_CYAN*              = 223
-  FL_DARK_RED*          = 72
-  FL_DARK_GREEN*        = 60
-  FL_DARK_YELLOW*       = 76
-  FL_DARK_BLUE*         = 136
-  FL_DARK_MAGENTA*      = 152
-  FL_DARK_CYAN*         = 140
-  FL_WHITE*             = 255
+  FOREGROUND_COLOR*  = 0
+  BACKGROUND2_COLOR* = 7
+  INACTIVE_COLOR*    = 8
+  SELECTION_COLOR*   = 15
+  GRAY0*             = 32
+  DARK3*             = 39
+  DARK2*             = 45
+  DARK1*             = 47
+  BACKGROUND_COLOR*  = 49
+  LIGHT1*            = 50
+  LIGHT2*            = 52
+  LIGHT3*            = 54
+  BLACK*             = 56
+  RED*               = 88
+  GREEN*             = 63
+  YELLOW*            = 95
+  BLUE*              = 216
+  MAGENTA*           = 248
+  CYAN*              = 223
+  DARK_RED*          = 72
+  DARK_GREEN*        = 60
+  DARK_YELLOW*       = 76
+  DARK_BLUE*         = 136
+  DARK_MAGENTA*      = 152
+  DARK_CYAN*         = 140
+  WHITE*             = 255
 
 const
-  FL_FREE_COLOR*     = 16
-  FL_NUM_FREE_COLOR* = 16
-  FL_GRAY_RAMP*      = 32
-  FL_NUM_GRAY*       = 24
-  FL_GRAY*           = FL_BACKGROUND_COLOR
-  FL_COLOR_CUBE*     = 56
-  FL_NUM_RED*        = 5
-  FL_NUM_GREEN*      = 8
-  FL_NUM_BLUE*       = 5
+  FREE_COLOR*     = 16
+  NUM_FREE_COLOR* = 16
+  GRAY_RAMP*      = 32
+  NUM_GRAY*       = 24
+  GRAY*           = BACKGROUND_COLOR
+  COLOR_CUBE*     = 56
+  NUM_RED*        = 5
+  NUM_GREEN*      = 8
+  NUM_BLUE*       = 5
 
-proc fl_inactive*(c: Color): Color {.importc: "fl_inactive", header: flh.}
-proc fl_contrast*(fg, bg: Color): Color {.importc: "fl_contrast", header: flh.}
-proc fl_color_average*(c1, c2: Color; weight: cfloat): Color {.importc: "fl_color_average", header: flh.}
-proc fl_lighter*(c: Color): Color {.importc: "fl_lighter", header: flh.}
-proc fl_darker*(c: Color): Color {.importc: "fl_darker", header: flh.}
-proc fl_rgb_color*(r, g, b: cuchar): Color {.importc: "fl_rgb_color", header: flh.}
-proc fl_rgb_color*(g: cuchar): Color {.importc: "fl_rgb_color", header: flh.}
-proc fl_gray_ramp*(i: cint): Color {.importc: "fl_gray_ramp", header: flh.}
-proc fl_color_cube*(r, g, b: cint): Color {.importc: "fl_color_cube", header: flh.}
+proc inactive*(c: Color): Color {.importc: "fl_inactive", header: flh.}
+proc contrast*(fg, bg: Color): Color {.importc: "fl_contrast", header: flh.}
+proc color_average*(c1, c2: Color; weight: cfloat): Color {.importc: "fl_color_average", header: flh.}
+proc lighter*(c: Color): Color {.importc: "fl_lighter", header: flh.}
+proc darker*(c: Color): Color {.importc: "fl_darker", header: flh.}
+proc rgb_color*(r, g, b: cuchar): Color {.importc: "fl_rgb_color", header: flh.}
+proc rgb_color*(g: cuchar): Color {.importc: "fl_rgb_color", header: flh.}
+proc gray_ramp*(i: cint): Color {.importc: "fl_gray_ramp", header: flh.}
+proc color_cube*(r, g, b: cint): Color {.importc: "fl_color_cube", header: flh.}
 
 type
   Cursor* {.importc: "Fl_Cursor", header: flh.} = cint
 const
-  FL_CURSOR_DEFAULT* = 0
-  FL_CURSOR_ARROW*   = 35
-  FL_CURSOR_CROSS*   = 66
-  FL_CURSOR_WAIT*    = 76
-  FL_CURSOR_INSERT*  = 77
-  FL_CURSOR_HAND*    = 31
-  FL_CURSOR_HELP*    = 47
-  FL_CURSOR_MOVE*    = 27
-  FL_CURSOR_NS*      = 78
-  FL_CURSOR_WE*      = 79
-  FL_CURSOR_NWSE*    = 80
-  FL_CURSOR_NESW*    = 81
-  FL_CURSOR_N*       = 70
-  FL_CURSOR_NE*      = 69
-  FL_CURSOR_E*       = 49
-  FL_CURSOR_SE*      = 8
-  FL_CURSOR_S*       = 9
-  FL_CURSOR_SW*      = 7
-  FL_CURSOR_W*       = 36
-  FL_CURSOR_NW*      = 68
-  FL_CURSOR_NONE*    = 255
+  CURSOR_DEFAULT* = 0
+  CURSOR_ARROW*   = 35
+  CURSOR_CROSS*   = 66
+  CURSOR_WAIT*    = 76
+  CURSOR_INSERT*  = 77
+  CURSOR_HAND*    = 31
+  CURSOR_HELP*    = 47
+  CURSOR_MOVE*    = 27
+  CURSOR_NS*      = 78
+  CURSOR_WE*      = 79
+  CURSOR_NWSE*    = 80
+  CURSOR_NESW*    = 81
+  CURSOR_N*       = 70
+  CURSOR_NE*      = 69
+  CURSOR_E*       = 49
+  CURSOR_SE*      = 8
+  CURSOR_S*       = 9
+  CURSOR_SW*      = 7
+  CURSOR_W*       = 36
+  CURSOR_NW*      = 68
+  CURSOR_NONE*    = 255
 
 const
   FL_READ*   = 1
@@ -439,28 +439,28 @@ const
 type
   Mode* {.importc: "Fl_Mode", header: flh.} = cint
 const
-  FL_RGB*         = 0
-  FL_INDEX*       = 1
-  FL_SINGLE*      = 0
-  FL_DOUBLE*      = 2
-  FL_ACCUM*       = 4
-  FL_ALPHA*       = 8
-  FL_DEPTH*       = 16
-  FL_STENCIL*     = 32
-  FL_RGB8*        = 64
-  FL_MULTISAMPLE* = 128
-  FL_STEREO*      = 256
-  FL_FAKE_SINGLE* = 512
-  FL_OPENGL3*     = 1024
+  RGB*         = 0
+  INDEX*       = 1
+  SINGLE*      = 0
+  DOUBLE*      = 2
+  ACCUM*       = 4
+  ALPHA*       = 8
+  DEPTH*       = 16
+  STENCIL*     = 32
+  RGB8*        = 64
+  MULTISAMPLE* = 128
+  STEREO*      = 256
+  FAKE_SINGLE* = 512
+  OPENGL3*     = 1024
 
 type
   Damage* {.importc: "Fl_Damage", header: flh.} = cint
 const
-  FL_DAMAGE_CHILD*    = 0x01
-  FL_DAMAGE_EXPOSE*   = 0x02
-  FL_DAMAGE_SCROLL*   = 0x04
-  FL_DAMAGE_OVERLAY*  = 0x08
-  FL_DAMAGE_USER1*    = 0x10
-  FL_DAMAGE_USER2*    = 0x20
-  FL_DAMAGE_ALL*      = 0x80
+  DAMAGE_CHILD*    = 0x01
+  DAMAGE_EXPOSE*   = 0x02
+  DAMAGE_SCROLL*   = 0x04
+  DAMAGE_OVERLAY*  = 0x08
+  DAMAGE_USER1*    = 0x10
+  DAMAGE_USER2*    = 0x20
+  DAMAGE_ALL*      = 0x80
 

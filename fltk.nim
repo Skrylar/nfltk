@@ -15,6 +15,9 @@ export group
 import private/window
 export window
 
+import private/button
+export button
+
 const
   flh = "FL/Fl.H"
 
@@ -31,7 +34,6 @@ else:
     Socket* {.importc: "FL_SOCKET", header: flh.} = cint
 
 type
-  Label* {.importc: "Fl_Label*", header: flh.} = distinct pointer
   Shortcut* {.importc: "Fl_Shortcut*", header: flh.} = distinct pointer
   Font* {.importc: "Fl_Font*", header: flh.} = distinct pointer
 

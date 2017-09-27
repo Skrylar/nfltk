@@ -83,9 +83,9 @@ proc make_current*(self: Window) {.importcpp: "#->make_current(@)", header: flh.
 proc as_window*(self: Window): Window {.importcpp: "#->as_window(@)", header: flh.}
 proc cursor*(self: Window; c: Cursor) {.importcpp: "#->cursor(@)", header: flh.}
 proc cursor*(self: Window; img: RGB_Image; a, b: cint) {.importcpp: "#->cursor(@)", header: flh.}
-proc cursor*(self: Window; c: Cursor; a: Color; b: Color = FL_WHITE) {.importcpp: "#->cursor(@)", header: flh.}
+proc cursor*(self: Window; c: Cursor; a: Color; b: Color = WHITE) {.importcpp: "#->cursor(@)", header: flh.}
 proc default_cursor*(self: Window; c: Cursor) {.importcpp: "#->default_cursor(@)", header: flh.}
-proc default_cursor*(self: Window; c: Cursor; a: Color; b: Color = FL_WHITE) {.importcpp: "#->default_cursor(@)", header: flh.}
+proc default_cursor*(self: Window; c: Cursor; a: Color; b: Color = WHITE) {.importcpp: "#->default_cursor(@)", header: flh.}
 proc decorated_w*(self: Window): cint {.importcpp: "#->decorated_w(@)", header: flh.}
 proc decorated_h*(self: Window): cint {.importcpp: "#->decorated_h(@)", header: flh.}
 
