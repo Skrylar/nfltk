@@ -1,14 +1,12 @@
 
 import enumerations
+import widget
 import group
+import image
 
 const
   flh = "FL/Fl_Window.H"
 type
-  ImageObj* {.importc: "Fl_Image", header: flh.} = object
-  Image* = ptr ImageObj
-
-  RGB_Image* {.importc: "Fl_RGB_Image*", header: flh.} = object
   Cursor* {.importc: "Cursor*", header: flh.} = object
 
 const
@@ -53,17 +51,22 @@ proc hotspot*(self: Window; w: Widget; offscreen: cint = 0) {.importcpp: "#->hot
 proc hotspot*(self: Window; w: ref WidgetObj; offscreen: cint = 0) {.importcpp: "#->hotspot(@)", header: flh.}
 proc free_position*(self: Window) {.importcpp: "#->free_position(@)", header: flh.}
 proc size_range*(self: Window; minw, minh: cint; maxw, maxh, dw, dh, aspect: cint = 0) {.importcpp: "#->size_range(@)", header: flh.}
+
 proc label*(self: Window): cstring {.importcpp: "#->label(@)", header: flh.}
 proc `label=`*(self: Window; text: cstring) {.importcpp: "#->label(@)", header: flh.}
+
 proc iconlabel*(self: Window): cstring {.importcpp: "#->iconlabel(@)", header: flh.}
 proc `iconlabel=`*(self: Window; text: cstring) {.importcpp: "#->iconlabel(@)", header: flh.}
-proc label*(self: Window;label, iconlabel: cstring) {.importcpp: "#->label(@)", header: flh.}
+
+proc label*(self: Window; label, iconlabel: cstring) {.importcpp: "#->label(@)", header: flh.}
 proc copy_label*(self: Window; text: cstring) {.importcpp: "#->copy_label(@)", header: flh.}
 proc xclass*(self: Window): cstring {.importcpp: "#->xclass(@)", header: flh.}
 proc `xclass=`*(self: Window; c: cstring) {.importcpp: "#->xclass(@)", header: flh.}
-proc icon*(self: Window; img: RGB_Image) {.importcpp: "#->icon(@)", header: flh.}
-proc icons*(self: Window; img: ptr RGB_Image; count: cint) {.importcpp: "#->icons(@)", header: flh.}
+
 proc icon*(self: Window): pointer {.importcpp: "#->icon(@)", header: flh.}
+proc `icon=`*(self: Window; img: RGB_Image) {.importcpp: "#->icon(@)", header: flh.}
+
+proc icons*(self: Window; img: ptr RGB_Image; count: cint) {.importcpp: "#->icons(@)", header: flh.}
 proc `icon=`*(self: Window; ic: pointer) {.importcpp: "#->icon(@)", header: flh.}
 proc shown*(self: Window): cint {.importcpp: "#->shown(@)", header: flh.}
 proc show*(self: Window) {.importcpp: "#->show(@)", header: flh.}
@@ -90,6 +93,10 @@ proc decorated_h*(self: Window): cint {.importcpp: "#->decorated_h(@)", header: 
 #  static void default_icons(HICON big_icon, HICON small_icon)
 #  void icons(HICON big_icon, HICON small_icon)
 
+proc window*(self: Widget): Window {.importcpp: "#.window(@)".}
+proc top_window*(self: Widget): Window {.importcpp: "#.top_window(@)".}
+proc top_window_offset*(self: Widget; xoff, yoff: out cint): Window {.importcpp: "#.top_window_offset(@)".}
+
 # static values
 proc current*(): Window {.importcpp: "Fl_Window::current(@)", header: flh.}
 proc default_callback*(w: Window; v: pointer) {.importcpp: "Fl_Window::default_callback(@)", header: flh.}
@@ -97,4 +104,5 @@ proc `default_xclass=`*(c: cstring) {.importcpp: "Fl_Window::default_xclass(@)",
 proc default_xclass*(): cstring {.importcpp: "Fl_Window::default_xclass(@)", header: flh.}
 proc `default_icon=`*(img: RGB_Image) {.importcpp: "Fl_Window::default_icon(@)", header: flh.}
 proc default_icons*(img: ptr RGB_Image, count: cint) {.importcpp: "Fl_Window::default_icons(@)", header: flh.}
+
 

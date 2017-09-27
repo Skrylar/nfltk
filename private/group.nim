@@ -1,11 +1,10 @@
 
+import widget
+
 const
   flh = "FL/Fl_Group.H"
 
 type
-  WidgetObj* {.importc: "Fl_Widget", header: flh.} = object {.inheritable.}
-  Widget* = ptr WidgetObj
-
   GroupObj* {.importc: "Fl_Group", header: flh.} = object of WidgetObj
   Group* = ptr GroupObj
 
@@ -35,6 +34,8 @@ proc remove*(self: Group; o: Widget) {.importcpp: "#->remove(@)", header: flh.}
 proc resizable*(self: Group): Widget {.importcpp: "#->resizable(@)", header: flh.}
 proc resizable*(self: Group; o: Widget) {.importcpp: "#->resizable(@)", header: flh.}
 proc resize*(self: Group; X, Y, W, H: cint) {.importcpp: "#->resize(@)", header: flh.}
+
+proc parent*(self: Widget): Group {.importcpp: "#.parent(@)".}
 
 #add(Fl_Widget&)
 #add_resizable(Fl_Widget& o)

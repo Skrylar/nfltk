@@ -6,6 +6,9 @@
 import private/enumerations
 export enumerations
 
+import private/widget
+export widget
+
 import private/group
 export group
 
