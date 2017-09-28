@@ -1,7 +1,7 @@
 
 {.passL: "-lfltk".}
 
-{.deadCodeElim: on.}
+{.deadCodeElim: off.} # just for now
 
 import private/enumerations
 export enumerations
