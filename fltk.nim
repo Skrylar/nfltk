@@ -1,7 +1,7 @@
 
 {.passL: "-lfltk".}
 
-{.deadCodeElim: off.} # just for now
+{.deadCodeElim: on.}
 
 import private/enumerations
 export enumerations
@@ -17,6 +17,9 @@ export window
 
 import private/button
 export button
+
+import private/box
+export box
 
 const
   flh = "FL/Fl.H"
