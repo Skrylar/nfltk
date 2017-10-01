@@ -6,6 +6,8 @@ import image
 
 const
   flh = "FL/Fl_Window.H"
+  flh_singlewin = "FL/Fl_Single_Window.H"
+  flh_menuwin = "FL/Fl_Menu_Window.H"
 type
   Cursor* {.importc: "Cursor*", header: flh.} = object
 
@@ -105,4 +107,30 @@ proc default_xclass*(): cstring {.importcpp: "Fl_Window::default_xclass(@)", hea
 proc `default_icon=`*(img: RGB_Image) {.importcpp: "Fl_Window::default_icon(@)", header: flh.}
 proc default_icons*(img: ptr RGB_Image, count: cint) {.importcpp: "Fl_Window::default_icons(@)", header: flh.}
 
+type
+  SingleWindowObj* {.importc: "Fl_Single_Window".} = object of WidgetObj
+  SingleWindow* = ptr SingleWindowObj
+
+proc make_single_window*(W, H: cint; text: cstring = nil): SingleWindow {.importcpp: "new Fl_Single_Window(@)", header: flh_singlewin.}
+proc make_single_window*(X, Y, W, H: cint; text: cstring = nil): SingleWindow {.importcpp: "new Fl_Single_Window(@)", header: flh_singlewin.}
+
+proc show*(self: SingleWindow) {.importcpp: "#.show(@)", header: flh_singlewin.}
+proc show*(self: SingleWindow; a: cint; b: ptr ptr cchar) {.importcpp: "#.show(@)", header: flh_singlewin.}
+proc flush*(self: SingleWindow) {.importcpp: "#.flush(@)", header: flh_singlewin.}
+proc make_current*(self: SingleWindow): cint {.importcpp: "#.make_current(@)", header: flh_singlewin.}
+
+type
+  MenuWindowObj* {.importc: "Fl_Menu_Window", header: flh_menuwin.} = object of SingleWindowObj
+  MenuWindow* = ptr MenuWindowObj
+
+proc make_menu_window*(W, H: cint; text: cstring = nil): MenuWindow {.importcpp: "new Fl_Menu_Window(@)", header: flh_menuwin.}
+proc make_menu_window*(X, Y, W, H: cint; text: cstring = nil): MenuWindow {.importcpp: "new Fl_Menu_Window(@)", header: flh_menuwin.}
+
+proc show*(self: MenuWindow) {.importcpp: "#.show(@)", header: flh_menuwin.}
+proc erase*(self: MenuWindow) {.importcpp: "#.erase(@)", header: flh_menuwin.}
+proc flush*(self: MenuWindow) {.importcpp: "#.flush(@)", header: flh_menuwin.}
+proc hide*(self: MenuWindow) {.importcpp: "#.hide(@)", header: flh_menuwin.}
+proc overlay*(self: MenuWindow): cuint {.importcpp: "#.overlay(@)", header: flh_menuwin.}
+proc set_overlay*(self: MenuWindow) {.importcpp: "#.set_overlay(@)", header: flh_menuwin.}
+proc clear_overlay*(self: MenuWindow) {.importcpp: "#.clear_overlay(@)", header: flh_menuwin.}
 
