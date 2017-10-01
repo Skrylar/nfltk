@@ -4,6 +4,7 @@ const
 
 import enumerations
 import widget
+import input
 
 const
   FL_VERTICAL*   = 0
@@ -74,7 +75,7 @@ type
 
 proc make_valueinput*(x, y, w, h: cint; text: cstring = nil): ValueInput {.importcpp: "new Fl_Value_Input(@)", header: flh_valueinput.}
 
-#proc input*(self: ValueInput): Input {.importcpp: "(&#.input)", header: flh_valueinput.}
+proc input*(self: ValueInput): Input {.importcpp: "(&#.input)", header: flh_valueinput.}
 proc resize*(x, y, w, h: cint) {.importcpp: "#.resize(@)", header: flh_valueinput.}
 proc shortcut*(): cint {.importcpp: "#.shortcut(@)", header: flh_valueinput.}
 proc `shortcut=`*(s: cint) {.importcpp: "#.shortcut(@)", header: flh_valueinput.}
