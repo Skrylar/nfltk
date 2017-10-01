@@ -30,6 +30,9 @@ export adjuster
 import private/image
 export image
 
+import private/menu
+export menu
+
 const
   flh = "FL/Fl.H"
 
