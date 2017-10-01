@@ -32,7 +32,7 @@ type
   Callback0* = proc(w: Widget)
   Callback1* = proc(w: Widget; a: clong)
 
-proc free_widget*(self: Widget) {.importcpp: "delete @", header: flh.}
+proc free*(self: Widget) {.importcpp: "delete @", header: flh.}
 
 # static routines
 proc default_callback*(cb: Widget; d: pointer) {.importcpp: "Fl_Widget::default_callback(@)".}
@@ -157,4 +157,6 @@ proc color2*(self: Widget; a: cuint) {.importcpp: "#.color2(@)", header: flh.}
 #Group* as_group()
 #Window* as_window()
 #Gl_Window* as_gl_window()
+
+proc label*(self: Image; w: Widget) {.importcpp: "#.label(@)", header: flh.}
 
