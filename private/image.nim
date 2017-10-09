@@ -94,7 +94,7 @@ proc make_bmp_image(filename: cstring): BmpImage {.importcpp: "new Fl_BMP_Image(
 const
   flh_bitmap = "FL/Fl_Bitmap.H"
 type
-  BitmapObj* = object of Image
+  BitmapObj* = object of ImageObj
     `array`*: ptr cuchar
     alloc_array*: cint
   Bitmap* = ptr BitmapObj
@@ -107,3 +107,18 @@ proc draw*(self: Bitmap; X, Y, W, H: cint; cx, cy: cint = 0) {.importcpp: "#.dra
 proc draw*(self: Bitmap; X, Y: cint) {.importcpp: "#.draw(@)", header: flh_bitmap.}
 proc uncache*(self: Bitmap) {.importcpp: "#.uncache(@)", header: flh_bitmap.}
 
+const
+  flh_xbmimage = "FL/Fl_XBM_Image.H"
+type
+  XbmImageObj* {.importc: "Fl_XBM_Image", header: flh_xbmimage.} = object of BitmapObj
+  XbmImage* = ptr XbmImageObj
+
+proc make_xbm_image(filename: cstring): XbmImage {.importcpp: "new Fl_XBM_Image(@)", header: flh_xbmimage.}
+
+const
+  flh_xpmimage = "FL/Fl_XPM_Image.H"
+type
+  XpmImageObj* {.importc: "Fl_XPM_Image", header: flh_xpmimage.} = object of PixmapObj
+  XpmImage* = ptr XpmImageObj
+
+proc make_xpm_image(filename: cstring): XbmImage {.importcpp: "new Fl_XPM_Image(@)", header: flh_xpmimage.}
