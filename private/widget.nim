@@ -161,4 +161,5 @@ proc color2*(self: Widget; a: cuint) {.importcpp: "#.color2(@)", header: flh.}
 proc label*(self: Image; w: Widget) {.importcpp: "#.label(@)", header: "FL/Fl_Image.H".}
 proc label*(self: Pixmap; w: Widget) {.importcpp: "#.label(@)", header: "FL/Fl_Pixmap.H".}
 proc label*(self: RGB_Image; w: Widget) {.importcpp: "#.label(@)", header: "FL/Fl_RGB_Image.H".}
+proc label*(self: Bitmap; w: Widget) {.importcpp: "#.label(@)", header: "FL/Fl_Bitmap.H".}
 

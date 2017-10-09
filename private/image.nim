@@ -83,3 +83,27 @@ proc uncache*(self: RGB_Image) {.importcpp: "#.uncache(@)", header: flh.}
 proc max_size*(size: csize) {.importcpp: "Fl_RGB_Image::max_size(@)", header: flh.}
 proc max_size*(): csize {.importcpp: "Fl_RGB_Image::max_size(@)", header: flh.}
 
+const
+  flh_bmpimage = "FL/Fl_BMP_Image.H"
+type
+  BmpImageObj* {.importc: "Fl_BMP_Image", header: flh_bmpimage.} = object of RGB_Image_Obj
+  BmpImage* = ptr BmpImageObj
+
+proc make_bmp_image(filename: cstring): BmpImage {.importcpp: "new Fl_BMP_Image(@)", header: flh_bmpimage.}
+
+const
+  flh_bitmap = "FL/Fl_Bitmap.H"
+type
+  BitmapObj* = object of Image
+    `array`*: ptr cuchar
+    alloc_array*: cint
+  Bitmap* = ptr BitmapObj
+
+proc make_bitmap*(bits: cstring; W, H: cint): Bitmap {.importcpp: "new Fl_Bitmap(@)", header: flh_bitmap.}
+
+proc copy*(self: Bitmap; W, H: cint): Image {.importcpp: "#.copy(@)", header: flh_bitmap.}
+proc copy*(self: Bitmap): Image {.importcpp: "#.copy(@)", header: flh_bitmap.}
+proc draw*(self: Bitmap; X, Y, W, H: cint; cx, cy: cint = 0) {.importcpp: "#.draw(@)", header: flh_bitmap.}
+proc draw*(self: Bitmap; X, Y: cint) {.importcpp: "#.draw(@)", header: flh_bitmap.}
+proc uncache*(self: Bitmap) {.importcpp: "#.uncache(@)", header: flh_bitmap.}
+
