@@ -44,8 +44,8 @@ type
 
 proc make_wizard*(x, y, w, h: cint; text: cstring = nil): Wizard {.importcpp: "new Fl_Wizard(@)", header: flh_wizard.}
 
-proc next*() {.importcpp: "#.next(@)", header: flh_wizard.}
-proc prev*() {.importcpp: "#.prev(@)", header: flh_wizard.}
-proc value*(): Widget {.importcpp: "#.value(@)", header: flh_wizard.}
-proc value*(w: widget) {.importcpp: "#.value(@)", header: flh_wizard.}
+proc next*(self: Wizard) {.importcpp: "#.next(@)", header: flh_wizard.}
+proc prev*(self: Wizard) {.importcpp: "#.prev(@)", header: flh_wizard.}
+proc value*(self: Wizard): Widget {.importcpp: "#.value(@)", header: flh_wizard.}
+proc value*(self: Wizard; w: Widget) {.importcpp: "#.value(@)", header: flh_wizard.}
 

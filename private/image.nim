@@ -89,7 +89,7 @@ type
   BmpImageObj* {.importc: "Fl_BMP_Image", header: flh_bmpimage.} = object of RGB_Image_Obj
   BmpImage* = ptr BmpImageObj
 
-proc make_bmp_image(filename: cstring): BmpImage {.importcpp: "new Fl_BMP_Image(@)", header: flh_bmpimage.}
+proc make_bmp_image*(filename: cstring): BmpImage {.importcpp: "new Fl_BMP_Image(@)", header: flh_bmpimage.}
 
 const
   flh_bitmap = "FL/Fl_Bitmap.H"
@@ -113,7 +113,7 @@ type
   XbmImageObj* {.importc: "Fl_XBM_Image", header: flh_xbmimage.} = object of BitmapObj
   XbmImage* = ptr XbmImageObj
 
-proc make_xbm_image(filename: cstring): XbmImage {.importcpp: "new Fl_XBM_Image(@)", header: flh_xbmimage.}
+proc make_xbm_image*(filename: cstring): XbmImage {.importcpp: "new Fl_XBM_Image(@)", header: flh_xbmimage.}
 
 const
   flh_xpmimage = "FL/Fl_XPM_Image.H"
@@ -121,4 +121,4 @@ type
   XpmImageObj* {.importc: "Fl_XPM_Image", header: flh_xpmimage.} = object of PixmapObj
   XpmImage* = ptr XpmImageObj
 
-proc make_xpm_image(filename: cstring): XbmImage {.importcpp: "new Fl_XPM_Image(@)", header: flh_xpmimage.}
+proc make_xpm_image*(filename: cstring): XbmImage {.importcpp: "new Fl_XPM_Image(@)", header: flh_xpmimage.}
