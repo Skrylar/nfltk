@@ -39,7 +39,7 @@ proc parent*(self: Widget): Group {.importcpp: "#.parent(@)", header: flh.}
 const
   flh_wizard = "FL/Fl_Wizard.H"
 type
-  WizardObj* {.importc: "Fl_Wizard".} = object of Group
+  WizardObj* {.importc: "Fl_Wizard".} = object of GroupObj
   Wizard* = ptr WizardObj
 
 proc make_wizard*(x, y, w, h: cint; text: cstring = nil): Wizard {.importcpp: "new Fl_Wizard(@)", header: flh_wizard.}
