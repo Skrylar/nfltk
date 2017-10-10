@@ -49,3 +49,26 @@ proc prev*(self: Wizard) {.importcpp: "#.prev(@)", header: flh_wizard.}
 proc value*(self: Wizard): Widget {.importcpp: "#.value(@)", header: flh_wizard.}
 proc value*(self: Wizard; w: Widget) {.importcpp: "#.value(@)", header: flh_wizard.}
 
+const
+  flh_tabs = "FL/Fl_Tabs.H"
+
+type
+  TabsObj* {.importc: "Fl_Tabs".} = object of GroupObj
+    tab_pos: ptr cint
+    tab_width: ptr cint
+    tab_count: cint
+  Tabs* = ptr TabsObj
+
+proc make_tabs*(x, y, w, h: cint; text: cstring = nil): Tabs {.importcpp: "new Fl_Wizard(@)", header: flh_tabs.}
+
+proc value*(self: Tabs): Widget {.importcpp: "#.value(@)", header: flh_tabs.}
+proc tab_positions*(self: Tabs): cint {.importcpp: "#.tab_positions(@)", header: flh_tabs.}
+proc clear_tab_positions*(self: Tabs) {.importcpp: "#.clear_tab_positions(@)", header: flh_tabs.}
+proc tab_height*(self: Tabs): cint {.importcpp: "#.tab_height(@)", header: flh_tabs.}
+proc draw_tab*(self: Tabs; x1, x2, W, H: cint; o: Widget; sel: cint = 0) {.importcpp: "#.draw_tab(@)", header: flh_tabs.}
+proc value*(self: Tabs; w: Widget): cint {.importcpp: "#.value(@)", header: flh_tabs.}
+proc push*(self: Tabs): Widget {.importcpp: "#.push(@)", header: flh_tabs.}
+proc push*(self: Tabs; w: Widget): cint {.importcpp: "#.push(@)", header: flh_tabs.}
+proc which*(self: Tabs; event_x, event_y: cint): Widget {.importcpp: "#.which(@)", header: flh_tabs.}
+proc client_area*(self: Tabs; rx, ry, rw, rh: out cint; tabh: cint = 0) {.importcpp: "#.client_area(@)", header: flh_tabs.}
+
