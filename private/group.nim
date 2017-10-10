@@ -12,7 +12,6 @@ proc current*(): Group {.importcpp: "Fl_Group::current(@)".}
 proc `current=`*(g: Group) {.importcpp: "Fl_Group::current(@)".}
 
 proc make_group*(x, y, w, h: cint; text: cstring = nil): Group {.importcpp: "new Fl_Group(@)", header: flh.}
-proc free_group*(self: Group) {.importcpp: "delete @", header: flh.}
 
 proc add*(self: Group; o: Widget) {.importcpp: "#->add(@)", header: flh.}
 proc array*(self: Group): ptr Widget {.importcpp: "#->array(@)", header: flh.}
@@ -35,13 +34,18 @@ proc resizable*(self: Group): Widget {.importcpp: "#->resizable(@)", header: flh
 proc resizable*(self: Group; o: Widget) {.importcpp: "#->resizable(@)", header: flh.}
 proc resize*(self: Group; X, Y, W, H: cint) {.importcpp: "#->resize(@)", header: flh.}
 
-proc parent*(self: Widget): Group {.importcpp: "#.parent(@)".}
+proc parent*(self: Widget): Group {.importcpp: "#.parent(@)", header: flh.}
 
-#add(Fl_Widget&)
-#add_resizable(Fl_Widget& o)
-#insert(Fl_Widget& o, Fl_Widget* before)
-#insert(Fl_Widget&, int i)
-#int find(const Fl_Widget& o)
-#remove(Fl_Widget&)
-#resizable(Fl_Widget& o)
+const
+  flh_wizard = "FL/Fl_Wizard.H"
+type
+  WizardObj* {.importc: "Fl_Wizard".} = object of Group
+  Wizard* = ptr WizardObj
+
+proc make_wizard*(x, y, w, h: cint; text: cstring = nil): Wizard {.importcpp: "new Fl_Wizard(@)", header: flh_wizard.}
+
+proc next*() {.importcpp: "#.next(@)", header: flh_wizard.}
+proc prev*() {.importcpp: "#.prev(@)", header: flh_wizard.}
+proc value*(): Widget {.importcpp: "#.value(@)", header: flh_wizard.}
+proc value*(w: widget) {.importcpp: "#.value(@)", header: flh_wizard.}
 
