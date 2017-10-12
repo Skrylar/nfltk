@@ -5,6 +5,7 @@ const
 import enumerations
 import widget
 import input
+import group
 
 const
   FL_VERTICAL*   = 0
@@ -106,12 +107,56 @@ const
   VERT_NICE_SLIDER* = 4
   HOR_NICE_SLIDER*  = 5
 
-proc make_slider((X, Y, W, H: cint; text: cstring = nil) {.importcpp: "new Fl_Slider(@)", header: flh_slider.}
+proc make_slider*(X, Y, W, H: cint; text: cstring = nil) {.importcpp: "new Fl_Slider(@)", header: flh_slider.}
 
 proc scrollvalue*(self: Slider; pos, size, first, total: cint): cint {.importcpp: "#.scrollvalue(@)", header: flh_slider.}
 proc bounds*(self: Slider; a, b: cdouble) {.importcpp: "#.bounds(@)", header: flh_slider.}
-proc slider_size*(self: Slider; ): cfloat {.importcpp: "#.slider_size(@)", header: flh_slider.}
+proc slider_size*(self: Slider): cfloat {.importcpp: "#.slider_size(@)", header: flh_slider.}
 proc `slider_size=`*(self: Slider; v: cdouble) {.importcpp: "#.slider_size(@)", header: flh_slider.}
-proc slider*(self: Slider; ): Boxtype {.importcpp: "#.slider(@)", header: flh_slider.}
+proc slider*(self: Slider): Boxtype {.importcpp: "#.slider(@)", header: flh_slider.}
 proc `slider=`*(self: Slider; c: Boxtype) {.importcpp: "#.slider(@)", header: flh_slider.}
+
+const
+  flh_scrollbar = "FL/Fl_Scrollbar.H"
+type
+  ScrollbarObj* {.importc: "Fl_Scrollbar", header: flh_scrollbar.} = object of SliderObj
+  Scrollbar* = ptr ScrollbarObj
+
+proc make_scrollbar*(X, Y, W, H: cint; text: cstring = nil) {.importcpp: "new Fl_Scrollbar(@)", header: flh_scrollbar.}
+
+proc value*(self: Scrollbar): cint {.importcpp: "#.value(@)", header: flh_scrollbar.}
+proc `value=`*(self: Scrollbar; p: cint): cint {.importcpp: "#.value(@)", header: flh_scrollbar.}
+proc value*(self: Scrollbar; pos, windowSize, first, total: cint): cint {.importcpp: "#.value(@)", header: flh_scrollbar.}
+proc linesize*(self: Scrollbar): cint {.importcpp: "#.linesize(@)", header: flh_scrollbar.}
+proc `linesize=`*(self: Scrollbar; i: cint) {.importcpp: "#.linesize(@)", header: flh_scrollbar.}
+
+const
+  flh_scroll = "FL/Fl_Scroll.H"
+type
+  ScrollObj* = object of GroupObj
+    scrollbar: ScrollbarObj
+    hscrollbar: ScrollbarObj
+
+  Scroll* = ptr ScrollObj
+
+type
+  ScrollType* = cint
+const
+  SCROLL_HORIZONTAL* = 1
+  SCROLL_VERTICAL* = 2
+  SCROLL_BOTH* = 3
+  SCROLL_ALWAYS_ON* = 4
+  SCROLL_HORIZONTAL_ALWAYS* = 5
+  SCROLL_VERTICAL_ALWAYS* = 6
+  SCROLL_BOTH_ALWAYS* = 7
+
+proc make_scroll*(X, Y, W, H: cint; text: cstring = nil) {.importcpp: "new Fl_Scroll(@)", header: flh_scroll.}
+
+proc resize*(X, Y, W, H: cint) {.importcpp: "#.resize(@)", header: flh_scroll.}
+proc xposition*(): cint {.importcpp: "#.xposition(@)", header: flh_scroll.}
+proc yposition*(): cint {.importcpp: "#.yposition(@)", header: flh_scroll.}
+proc scroll_to*(x, y: cint) {.importcpp: "#.scroll_to(@)", header: flh_scroll.}
+proc clear*() {.importcpp: "#.clear(@)", header: flh_scroll.}
+proc scrollbar_size*(): cint {.importcpp: "#.scrollbar_size(@)", header: flh_scroll.}
+proc `scrollbar_size=`*(newSize: cint) {.importcpp: "#.scrollbar_size(@)", header: flh_scroll.}
 
