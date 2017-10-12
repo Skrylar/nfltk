@@ -70,8 +70,10 @@ const
   FL_Key_Home*           = 0xff50
   FL_Key_Left*           = 0xff51
   FL_Key_Up*             = 0xff52
+  FL_Up*             = 0xff52
   FL_Key_Right*          = 0xff53
   FL_Key_Down*           = 0xff54
+  FL_Down*           = 0xff54
   FL_Key_Page_Up*        = 0xff55
   FL_Key_Page_Down*      = 0xff56
   FL_Key_End*            = 0xff57

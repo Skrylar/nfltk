@@ -33,6 +33,12 @@ export image
 import private/menu
 export menu
 
+import private/tooltip
+export tooltip
+
+import private/tree
+export tree
+
 const
   flh = "FL/Fl.H"
 
