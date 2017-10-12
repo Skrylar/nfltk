@@ -80,134 +80,134 @@ type
 
 proc make_tree*(X, Y, W, H: cint; text: cstring = nil): Tree {.importcpp: "new Fl_Tree(@)", header: flh_tree.}
 
-proc draw*() {.importcpp: "#.draw(@)", header: flh_tree.}
-proc show_self*() {.importcpp: "#.show_self(@)", header: flh_tree.}
-proc resize*(x, y, w, h: cint) {.importcpp: "#.resize(@)", header: flh_tree.}
-proc root_label*(new_label: cstring) {.importcpp: "#.root_label(@)", header: flh_tree.}
-proc root*(): TreeItem {.importcpp: "#.root(@)", header: flh_tree.}
-proc `root=`*(newitem: TreeItem) {.importcpp: "#.root(@)", header: flh_tree.}
-proc add*(path: cstring; newitem: TreeItem = nil): TreeItem {.importcpp: "#.add(@)", header: flh_tree.}
-proc add*(parent_item: TreeItem; name: cstring): TreeItem {.importcpp: "#.add(@)", header: flh_tree.}
-proc insert_above*(above: TreeItem; name: cstring): TreeItem {.importcpp: "#.insert_above(@)", header: flh_tree.}
-proc insert*(item: TreeItem; name: cstring; pos: cint): TreeItem {.importcpp: "#.insert(@)", header: flh_tree.}
-proc remove*(item: TreeItem): cint {.importcpp: "#.remove(@)", header: flh_tree.}
-proc clear*() {.importcpp: "#.clear(@)", header: flh_tree.}
-proc clear_children*(item: TreeItem) {.importcpp: "#.clear_children(@)", header: flh_tree.}
-proc find_item*(path: cstring): TreeItem {.importcpp: "#.find_item(@)", header: flh_tree.}
-proc item_pathname*(pathname: cstring; pathnamelen: cstring; item: TreeItem): cint {.importcpp: "#.item_pathname(@)", header: flh_tree.}
-proc find_clicked*(yonly: cint = 0): TreeItem {.importcpp: "#.find_clicked(@)", header: flh_tree.}
-proc item_clicked*(): TreeItem {.importcpp: "#.item_clicked(@)", header: flh_tree.}
-proc first*(): TreeItem {.importcpp: "#.first(@)", header: flh_tree.}
-proc first_visible*(): TreeItem {.importcpp: "#.first_visible(@)", header: flh_tree.}
-proc first_visible_item*(): TreeItem {.importcpp: "#.first_visible_item(@)", header: flh_tree.}
-proc next*(item: TreeItem = nil): TreeItem {.importcpp: "#.next(@)", header: flh_tree.}
-proc prev*(item: TreeItem = nil): TreeItem {.importcpp: "#.prev(@)", header: flh_tree.}
-proc last*(): TreeItem {.importcpp: "#.last(@)", header: flh_tree.}
-proc last_visible*(): TreeItem {.importcpp: "#.last_visible(@)", header: flh_tree.}
-proc last_visible_item*(): TreeItem {.importcpp: "#.last_visible_item(@)", header: flh_tree.}
-proc next_visible_item*(start: TreeItem; dir: cint): TreeItem {.importcpp: "#.next_visible_item(@)", header: flh_tree.}
-proc first_selected_item*(): TreeItem {.importcpp: "#.first_selected_item(@)", header: flh_tree.}
-proc last_selected_item*(): TreeItem {.importcpp: "#.last_selected_item(@)", header: flh_tree.}
-proc next_item*(item: TreeItem; dir: cint = Fl_Down; visible: bool = false): TreeItem {.importcpp: "#.next_item(@)", header: flh_tree.}
-proc next_selected_item*(item: TreeItem = nil; dir: cint = Fl_Down): TreeItem {.importcpp: "#.next_selected_item(@)", header: flh_tree.}
-# TODO get_selected_items(Fl_Tree_Item_Array &ret_items): cint
-proc open*(item: TreeItem; docallback: cint = 1): cint {.importcpp: "#.open(@)", header: flh_tree.}
-proc open*(path: cstring; docallback: cint = 1): cint {.importcpp: "#.open(@)", header: flh_tree.}
-proc open_toggle*(item: TreeItem; docallback: cint = 1) {.importcpp: "#.open_toggle(@)", header: flh_tree.}
-proc close*(item: TreeItem; docallback: cint = 1): cint {.importcpp: "#.close(@)", header: flh_tree.}
-proc close*(path: cstring; docallback: cint = 1): cint {.importcpp: "#.close(@)", header: flh_tree.}
-proc is_open*(item: TreeItem): cint {.importcpp: "#.is_open(@)", header: flh_tree.}
-proc is_open*(path: cstring): cint {.importcpp: "#.is_open(@)", header: flh_tree.}
-proc is_close*(item: TreeItem): cint {.importcpp: "#.is_close(@)", header: flh_tree.}
-proc is_close*(path: cstring): cint {.importcpp: "#.is_close(@)", header: flh_tree.}
-proc select*(item: TreeItem; docallback: cint = 1): cint {.importcpp: "#.select(@)", header: flh_tree.}
-proc select*(path: cstring; docallback: cint = 1): cint {.importcpp: "#.select(@)", header: flh_tree.}
-proc select_toggle*(item: TreeItem; docallback: cint = 1) {.importcpp: "#.select_toggle(@)", header: flh_tree.}
-proc deselect*(item: TreeItem; docallback: cint = 1): cint {.importcpp: "#.deselect(@)", header: flh_tree.}
-proc deselect*(path: cstring; docallback: cint = 1): cint {.importcpp: "#.deselect(@)", header: flh_tree.}
-proc deselect_all*(item: TreeItem = nil; docallback: cint = 1): cint {.importcpp: "#.deselect_all(@)", header: flh_tree.}
-proc select_only*(selitem: TreeItem; docallback: cint = 1): cint {.importcpp: "#.select_only(@)", header: flh_tree.}
-proc select_all*(item: TreeItem = nil; docallback: cint = 1): cint {.importcpp: "#.select_all(@)", header: flh_tree.}
-proc extend_selection_dir*(`from`, to: TreeItem; dir, val: cint; visible: bool): cint {.importcpp: "#.extend_selection_dir(@)", header: flh_tree.}
-proc extend_selection*(`from`, to: TreeItem; val: cint = 1; visible: bool = false): cint {.importcpp: "#.extend_selection(@)", header: flh_tree.}
-proc `item_focus=`*(item: TreeItem) {.importcpp: "#.set_item_focus(@)", header: flh_tree.}
-proc item_focus*(): TreeItem {.importcpp: "#.get_item_focus(@)", header: flh_tree.}
-proc is_selected*(item: TreeItem): cint {.importcpp: "#.is_selected(@)", header: flh_tree.}
-proc is_selected*(path: cstring): cint {.importcpp: "#.is_selected(@)", header: flh_tree.}
-proc item_labelfont*(): Font {.importcpp: "#.item_labelfont(@)", header: flh_tree.}
-proc `item_labelfont=`*(val: Font) {.importcpp: "#.item_labelfont(@)", header: flh_tree.}
-proc item_labelsize*(): Fontsize {.importcpp: "#.item_labelsize(@)", header: flh_tree.}
-proc `item_labelsize=`*(val: Fontsize) {.importcpp: "#.item_labelsize(@)", header: flh_tree.}
-proc item_labelfgcolor*(): Color {.importcpp: "#.item_labelfgcolor(@)", header: flh_tree.}
-proc `item_labelfgcolor=`*(val: Color) {.importcpp: "#.item_labelfgcolor(@)", header: flh_tree.}
-proc item_labelbgcolor*(): Color {.importcpp: "#.item_labelbgcolor(@)", header: flh_tree.}
-proc `item_labelbgcolor=`*(val: Color) {.importcpp: "#.item_labelbgcolor(@)", header: flh_tree.}
-proc connectorcolor*(): Color {.importcpp: "#.connectorcolor(@)", header: flh_tree.}
-proc `connectorcolor=`*(val: Color) {.importcpp: "#.connectorcolor(@)", header: flh_tree.}
-proc marginleft*(): cint {.importcpp: "#.marginleft(@)", header: flh_tree.}
-proc `marginleft=`*(val: cint) {.importcpp: "#.marginleft(@)", header: flh_tree.}
-proc margintop*(): cint {.importcpp: "#.margintop(@)", header: flh_tree.}
-proc `margintop=`*(val: cint) {.importcpp: "#.margintop(@)", header: flh_tree.}
-proc marginbottom*(): cint {.importcpp: "#.marginbottom(@)", header: flh_tree.}
-proc `marginbottom=`*(val: cint) {.importcpp: "#.marginbottom(@)", header: flh_tree.}
-proc linespacing*(): cint {.importcpp: "#.linespacing(@)", header: flh_tree.}
-proc `linespacing=`*(val: cint) {.importcpp: "#.linespacing(@)", header: flh_tree.}
-proc openchild_marginbottom*(): cint {.importcpp: "#.openchild_marginbottom(@)", header: flh_tree.}
-proc `openchild_marginbottom=`*(val: cint) {.importcpp: "#.openchild_marginbottom(@)", header: flh_tree.}
-proc usericonmarginleft*(): cint {.importcpp: "#.usericonmarginleft(@)", header: flh_tree.}
-proc `usericonmarginleft=`*(val: cint) {.importcpp: "#.usericonmarginleft(@)", header: flh_tree.}
-proc labelmarginleft*(): cint {.importcpp: "#.labelmarginleft(@)", header: flh_tree.}
-proc `labelmarginleft=`*(val: cint) {.importcpp: "#.labelmarginleft(@)", header: flh_tree.}
-proc widgetmarginleft*(): cint {.importcpp: "#.widgetmarginleft(@)", header: flh_tree.}
-proc `widgetmarginleft=`*(val: cint) {.importcpp: "#.widgetmarginleft(@)", header: flh_tree.}
-proc connectorwidth*(): cint {.importcpp: "#.connectorwidth(@)", header: flh_tree.}
-proc `connectorwidth=`*(val: cint) {.importcpp: "#.connectorwidth(@)", header: flh_tree.}
-proc usericon*(): Image {.importcpp: "#.usericon(@)", header: flh_tree.}
-proc `usericon=`*(val: Image) {.importcpp: "#.usericon(@)", header: flh_tree.}
-proc openicon*(): Image {.importcpp: "#.openicon(@)", header: flh_tree.}
-proc `openicon=`*(val: Image) {.importcpp: "#.openicon(@)", header: flh_tree.}
-proc closeicon*(): Image {.importcpp: "#.closeicon(@)", header: flh_tree.}
-proc `closeicon=`*(val: Image) {.importcpp: "#.closeicon(@)", header: flh_tree.}
-proc showcollapse*(): cint {.importcpp: "#.showcollapse(@)", header: flh_tree.}
-proc `showcollapse=`*(val: cint) {.importcpp: "#.showcollapse(@)", header: flh_tree.}
-proc showroot*(): cint {.importcpp: "#.showroot(@)", header: flh_tree.}
-proc `showroot=`*(val: cint) {.importcpp: "#.showroot(@)", header: flh_tree.}
-proc connectorstyle*(): TreeConnector {.importcpp: "#.connectorstyle(@)", header: flh_tree.}
-proc `connectorstyle=`*(val: TreeConnector) {.importcpp: "#.connectorstyle(@)", header: flh_tree.}
-proc sortorder*(): TreeSort {.importcpp: "#.sortorder(@)", header: flh_tree.}
-proc `sortorder=`*(val: TreeSort) {.importcpp: "#.sortorder(@)", header: flh_tree.}
-proc selectbox*(): Boxtype {.importcpp: "#.selectbox(@)", header: flh_tree.}
-proc `selectbox=`*(val: Boxtype) {.importcpp: "#.selectbox(@)", header: flh_tree.}
-proc selectmode*(): TreeSelect {.importcpp: "#.selectmode(@)", header: flh_tree.}
-proc `selectmode=`*(val: TreeSelect) {.importcpp: "#.selectmode(@)", header: flh_tree.}
-proc item_reselect_mode*(): TreeItemReselectMode {.importcpp: "#.item_reselect_mode(@)", header: flh_tree.}
-proc `item_reselect_mode=`*(mode: TreeItemReselectMode) {.importcpp: "#.item_reselect_mode(@)", header: flh_tree.}
-proc item_draw_mode*(): TreeItemDrawMode {.importcpp: "#.item_draw_mode(@)", header: flh_tree.}
-proc `item_draw_mode=`*(mode: cint) {.importcpp: "#.item_draw_mode(@)", header: flh_tree.}
-proc calc_dimensions*() {.importcpp: "#.calc_dimensions(@)", header: flh_tree.}
-proc calc_tree*() {.importcpp: "#.calc_tree(@)", header: flh_tree.}
-proc recalc_tree*() {.importcpp: "#.recalc_tree(@)", header: flh_tree.}
-proc displayed*(item: TreeItem): cint {.importcpp: "#.displayed(@)", header: flh_tree.}
-proc show_item*(item: TreeItem; yoff: cint) {.importcpp: "#.show_item(@)", header: flh_tree.}
-proc show_item*(item: TreeItem) {.importcpp: "#.show_item(@)", header: flh_tree.}
-proc show_item_top*(item: TreeItem) {.importcpp: "#.show_item_top(@)", header: flh_tree.}
-proc show_item_middle*(item: TreeItem) {.importcpp: "#.show_item_middle(@)", header: flh_tree.}
-proc show_item_bottom*(item: TreeItem) {.importcpp: "#.show_item_bottom(@)", header: flh_tree.}
-proc display*(item: TreeItem) {.importcpp: "#.display(@)", header: flh_tree.}
-proc vposition*(): cint {.importcpp: "#.vposition(@)", header: flh_tree.}
-proc `vposition=`*(pos: cint) {.importcpp: "#.vposition(@)", header: flh_tree.}
-proc hposition*(): cint {.importcpp: "#.hposition(@)", header: flh_tree.}
-proc `hposition=`*(pos: cint) {.importcpp: "#.hposition(@)", header: flh_tree.}
-proc is_scrollbar*(w: Widget): cint {.importcpp: "#.is_scrollbar(@)", header: flh_tree.}
-proc scrollbar_size*(): cint {.importcpp: "#.scrollbar_size(@)", header: flh_tree.}
-proc `scrollbar_size=`*(size: cint) {.importcpp: "#.scrollbar_size(@)", header: flh_tree.}
-proc is_vscroll_visible*(): cint {.importcpp: "#.is_vscroll_visible(@)", header: flh_tree.}
-proc is_hscroll_visible*(): cint {.importcpp: "#.is_hscroll_visible(@)", header: flh_tree.}
-proc `callback_item=`*(item: TreeItem) {.importcpp: "#.callback_item(@)", header: flh_tree.}
-proc callback_item*(): TreeItem {.importcpp: "#.callback_item(@)", header: flh_tree.}
-proc `callback_reason=`*(reason: TreeReason) {.importcpp: "#.callback_reason(@)", header: flh_tree.}
-proc callback_reason*(): TreeReason {.importcpp: "#.callback_reason(@)", header: flh_tree.}
-proc prefs*(): TreePrefs {.importcpp: "reinterpret_cast<Fl_Tree_Prefs*>(#.prefs(@))", header: flh_treeitem.}
+proc draw*(self: Tree) {.importcpp: "#.draw(@)", header: flh_tree.}
+proc show_self*(self: Tree) {.importcpp: "#.show_self(@)", header: flh_tree.}
+proc resize*(self: Tree; x, y, w, h: cint) {.importcpp: "#.resize(@)", header: flh_tree.}
+proc root_label*(self: Tree; new_label: cstring) {.importcpp: "#.root_label(@)", header: flh_tree.}
+proc root*(self: Tree): TreeItem {.importcpp: "#.root(@)", header: flh_tree.}
+proc `root=`*(self: Tree; newitem: TreeItem) {.importcpp: "#.root(@)", header: flh_tree.}
+proc add*(self: Tree; path: cstring; newitem: TreeItem = nil): TreeItem {.importcpp: "#.add(@)", header: flh_tree.}
+proc add*(self: Tree; parent_item: TreeItem; name: cstring): TreeItem {.importcpp: "#.add(@)", header: flh_tree.}
+proc insert_above*(self: Tree; above: TreeItem; name: cstring): TreeItem {.importcpp: "#.insert_above(@)", header: flh_tree.}
+proc insert*(self: Tree; item: TreeItem; name: cstring; pos: cint): TreeItem {.importcpp: "#.insert(@)", header: flh_tree.}
+proc remove*(self: Tree; item: TreeItem): cint {.importcpp: "#.remove(@)", header: flh_tree.}
+proc clear*(self: Tree) {.importcpp: "#.clear(@)", header: flh_tree.}
+proc clear_children*(self: Tree; item: TreeItem) {.importcpp: "#.clear_children(@)", header: flh_tree.}
+proc find_item*(self: Tree; path: cstring): TreeItem {.importcpp: "#.find_item(@)", header: flh_tree.}
+proc item_pathname*(self: Tree; pathname: cstring; pathnamelen: cstring; item: TreeItem): cint {.importcpp: "#.item_pathname(@)", header: flh_tree.}
+proc find_clicked*(self: Tree; yonly: cint = 0): TreeItem {.importcpp: "#.find_clicked(@)", header: flh_tree.}
+proc item_clicked*(self: Tree): TreeItem {.importcpp: "#.item_clicked(@)", header: flh_tree.}
+proc first*(self: Tree): TreeItem {.importcpp: "#.first(@)", header: flh_tree.}
+proc first_visible*(self: Tree): TreeItem {.importcpp: "#.first_visible(@)", header: flh_tree.}
+proc first_visible_item*(self: Tree): TreeItem {.importcpp: "#.first_visible_item(@)", header: flh_tree.}
+proc next*(self: Tree; item: TreeItem = nil): TreeItem {.importcpp: "#.next(@)", header: flh_tree.}
+proc prev*(self: Tree; item: TreeItem = nil): TreeItem {.importcpp: "#.prev(@)", header: flh_tree.}
+proc last*(self: Tree): TreeItem {.importcpp: "#.last(@)", header: flh_tree.}
+proc last_visible*(self: Tree): TreeItem {.importcpp: "#.last_visible(@)", header: flh_tree.}
+proc last_visible_item*(self: Tree): TreeItem {.importcpp: "#.last_visible_item(@)", header: flh_tree.}
+proc next_visible_item*(self: Tree; start: TreeItem; dir: cint): TreeItem {.importcpp: "#.next_visible_item(@)", header: flh_tree.}
+proc first_selected_item*(self: Tree): TreeItem {.importcpp: "#.first_selected_item(@)", header: flh_tree.}
+proc last_selected_item*(self: Tree): TreeItem {.importcpp: "#.last_selected_item(@)", header: flh_tree.}
+proc next_item*(self: Tree; item: TreeItem; dir: cint = Fl_Down; visible: bool = false): TreeItem {.importcpp: "#.next_item(@)", header: flh_tree.}
+proc next_selected_item*(self: Tree; item: TreeItem = nil; dir: cint = Fl_Down): TreeItem {.importcpp: "#.next_selected_item(@)", header: flh_tree.}
+# TODO get_selected_items(self: Tree; Fl_Tree_Item_Array &ret_items): cint
+proc open*(self: Tree; item: TreeItem; docallback: cint = 1): cint {.importcpp: "#.open(@)", header: flh_tree.}
+proc open*(self: Tree; path: cstring; docallback: cint = 1): cint {.importcpp: "#.open(@)", header: flh_tree.}
+proc open_toggle*(self: Tree; item: TreeItem; docallback: cint = 1) {.importcpp: "#.open_toggle(@)", header: flh_tree.}
+proc close*(self: Tree; item: TreeItem; docallback: cint = 1): cint {.importcpp: "#.close(@)", header: flh_tree.}
+proc close*(self: Tree; path: cstring; docallback: cint = 1): cint {.importcpp: "#.close(@)", header: flh_tree.}
+proc is_open*(self: Tree; item: TreeItem): cint {.importcpp: "#.is_open(@)", header: flh_tree.}
+proc is_open*(self: Tree; path: cstring): cint {.importcpp: "#.is_open(@)", header: flh_tree.}
+proc is_close*(self: Tree; item: TreeItem): cint {.importcpp: "#.is_close(@)", header: flh_tree.}
+proc is_close*(self: Tree; path: cstring): cint {.importcpp: "#.is_close(@)", header: flh_tree.}
+proc select*(self: Tree; item: TreeItem; docallback: cint = 1): cint {.importcpp: "#.select(@)", header: flh_tree.}
+proc select*(self: Tree; path: cstring; docallback: cint = 1): cint {.importcpp: "#.select(@)", header: flh_tree.}
+proc select_toggle*(self: Tree; item: TreeItem; docallback: cint = 1) {.importcpp: "#.select_toggle(@)", header: flh_tree.}
+proc deselect*(self: Tree; item: TreeItem; docallback: cint = 1): cint {.importcpp: "#.deselect(@)", header: flh_tree.}
+proc deselect*(self: Tree; path: cstring; docallback: cint = 1): cint {.importcpp: "#.deselect(@)", header: flh_tree.}
+proc deselect_all*(self: Tree; item: TreeItem = nil; docallback: cint = 1): cint {.importcpp: "#.deselect_all(@)", header: flh_tree.}
+proc select_only*(self: Tree; selitem: TreeItem; docallback: cint = 1): cint {.importcpp: "#.select_only(@)", header: flh_tree.}
+proc select_all*(self: Tree; item: TreeItem = nil; docallback: cint = 1): cint {.importcpp: "#.select_all(@)", header: flh_tree.}
+proc extend_selection_dir*(self: Tree; `from`, to: TreeItem; dir, val: cint; visible: bool): cint {.importcpp: "#.extend_selection_dir(@)", header: flh_tree.}
+proc extend_selection*(self: Tree; `from`, to: TreeItem; val: cint = 1; visible: bool = false): cint {.importcpp: "#.extend_selection(@)", header: flh_tree.}
+proc `item_focus=`*(self: Tree; item: TreeItem) {.importcpp: "#.set_item_focus(@)", header: flh_tree.}
+proc item_focus*(self: Tree): TreeItem {.importcpp: "#.get_item_focus(@)", header: flh_tree.}
+proc is_selected*(self: Tree; item: TreeItem): cint {.importcpp: "#.is_selected(@)", header: flh_tree.}
+proc is_selected*(self: Tree; path: cstring): cint {.importcpp: "#.is_selected(@)", header: flh_tree.}
+proc item_labelfont*(self: Tree): Font {.importcpp: "#.item_labelfont(@)", header: flh_tree.}
+proc `item_labelfont=`*(self: Tree; val: Font) {.importcpp: "#.item_labelfont(@)", header: flh_tree.}
+proc item_labelsize*(self: Tree): Fontsize {.importcpp: "#.item_labelsize(@)", header: flh_tree.}
+proc `item_labelsize=`*(self: Tree; val: Fontsize) {.importcpp: "#.item_labelsize(@)", header: flh_tree.}
+proc item_labelfgcolor*(self: Tree): Color {.importcpp: "#.item_labelfgcolor(@)", header: flh_tree.}
+proc `item_labelfgcolor=`*(self: Tree; val: Color) {.importcpp: "#.item_labelfgcolor(@)", header: flh_tree.}
+proc item_labelbgcolor*(self: Tree): Color {.importcpp: "#.item_labelbgcolor(@)", header: flh_tree.}
+proc `item_labelbgcolor=`*(self: Tree; val: Color) {.importcpp: "#.item_labelbgcolor(@)", header: flh_tree.}
+proc connectorcolor*(self: Tree): Color {.importcpp: "#.connectorcolor(@)", header: flh_tree.}
+proc `connectorcolor=`*(self: Tree; val: Color) {.importcpp: "#.connectorcolor(@)", header: flh_tree.}
+proc marginleft*(self: Tree): cint {.importcpp: "#.marginleft(@)", header: flh_tree.}
+proc `marginleft=`*(self: Tree; val: cint) {.importcpp: "#.marginleft(@)", header: flh_tree.}
+proc margintop*(self: Tree): cint {.importcpp: "#.margintop(@)", header: flh_tree.}
+proc `margintop=`*(self: Tree; val: cint) {.importcpp: "#.margintop(@)", header: flh_tree.}
+proc marginbottom*(self: Tree): cint {.importcpp: "#.marginbottom(@)", header: flh_tree.}
+proc `marginbottom=`*(self: Tree; val: cint) {.importcpp: "#.marginbottom(@)", header: flh_tree.}
+proc linespacing*(self: Tree): cint {.importcpp: "#.linespacing(@)", header: flh_tree.}
+proc `linespacing=`*(self: Tree; val: cint) {.importcpp: "#.linespacing(@)", header: flh_tree.}
+proc openchild_marginbottom*(self: Tree): cint {.importcpp: "#.openchild_marginbottom(@)", header: flh_tree.}
+proc `openchild_marginbottom=`*(self: Tree; val: cint) {.importcpp: "#.openchild_marginbottom(@)", header: flh_tree.}
+proc usericonmarginleft*(self: Tree): cint {.importcpp: "#.usericonmarginleft(@)", header: flh_tree.}
+proc `usericonmarginleft=`*(self: Tree; val: cint) {.importcpp: "#.usericonmarginleft(@)", header: flh_tree.}
+proc labelmarginleft*(self: Tree): cint {.importcpp: "#.labelmarginleft(@)", header: flh_tree.}
+proc `labelmarginleft=`*(self: Tree; val: cint) {.importcpp: "#.labelmarginleft(@)", header: flh_tree.}
+proc widgetmarginleft*(self: Tree): cint {.importcpp: "#.widgetmarginleft(@)", header: flh_tree.}
+proc `widgetmarginleft=`*(self: Tree; val: cint) {.importcpp: "#.widgetmarginleft(@)", header: flh_tree.}
+proc connectorwidth*(self: Tree): cint {.importcpp: "#.connectorwidth(@)", header: flh_tree.}
+proc `connectorwidth=`*(self: Tree; val: cint) {.importcpp: "#.connectorwidth(@)", header: flh_tree.}
+proc usericon*(self: Tree): Image {.importcpp: "#.usericon(@)", header: flh_tree.}
+proc `usericon=`*(self: Tree; val: Image) {.importcpp: "#.usericon(@)", header: flh_tree.}
+proc openicon*(self: Tree): Image {.importcpp: "#.openicon(@)", header: flh_tree.}
+proc `openicon=`*(self: Tree; val: Image) {.importcpp: "#.openicon(@)", header: flh_tree.}
+proc closeicon*(self: Tree): Image {.importcpp: "#.closeicon(@)", header: flh_tree.}
+proc `closeicon=`*(self: Tree; val: Image) {.importcpp: "#.closeicon(@)", header: flh_tree.}
+proc showcollapse*(self: Tree): cint {.importcpp: "#.showcollapse(@)", header: flh_tree.}
+proc `showcollapse=`*(self: Tree; val: cint) {.importcpp: "#.showcollapse(@)", header: flh_tree.}
+proc showroot*(self: Tree): cint {.importcpp: "#.showroot(@)", header: flh_tree.}
+proc `showroot=`*(self: Tree; val: cint) {.importcpp: "#.showroot(@)", header: flh_tree.}
+proc connectorstyle*(self: Tree): TreeConnector {.importcpp: "#.connectorstyle(@)", header: flh_tree.}
+proc `connectorstyle=`*(self: Tree; val: TreeConnector) {.importcpp: "#.connectorstyle(@)", header: flh_tree.}
+proc sortorder*(self: Tree): TreeSort {.importcpp: "#.sortorder(@)", header: flh_tree.}
+proc `sortorder=`*(self: Tree; val: TreeSort) {.importcpp: "#.sortorder(@)", header: flh_tree.}
+proc selectbox*(self: Tree): Boxtype {.importcpp: "#.selectbox(@)", header: flh_tree.}
+proc `selectbox=`*(self: Tree; val: Boxtype) {.importcpp: "#.selectbox(@)", header: flh_tree.}
+proc selectmode*(self: Tree): TreeSelect {.importcpp: "#.selectmode(@)", header: flh_tree.}
+proc `selectmode=`*(self: Tree; val: TreeSelect) {.importcpp: "#.selectmode(@)", header: flh_tree.}
+proc item_reselect_mode*(self: Tree): TreeItemReselectMode {.importcpp: "#.item_reselect_mode(@)", header: flh_tree.}
+proc `item_reselect_mode=`*(self: Tree; mode: TreeItemReselectMode) {.importcpp: "#.item_reselect_mode(@)", header: flh_tree.}
+proc item_draw_mode*(self: Tree): TreeItemDrawMode {.importcpp: "#.item_draw_mode(@)", header: flh_tree.}
+proc `item_draw_mode=`*(self: Tree; mode: cint) {.importcpp: "#.item_draw_mode(@)", header: flh_tree.}
+proc calc_dimensions*(self: Tree) {.importcpp: "#.calc_dimensions(@)", header: flh_tree.}
+proc calc_tree*(self: Tree) {.importcpp: "#.calc_tree(@)", header: flh_tree.}
+proc recalc_tree*(self: Tree) {.importcpp: "#.recalc_tree(@)", header: flh_tree.}
+proc displayed*(self: Tree; item: TreeItem): cint {.importcpp: "#.displayed(@)", header: flh_tree.}
+proc show_item*(self: Tree; item: TreeItem; yoff: cint) {.importcpp: "#.show_item(@)", header: flh_tree.}
+proc show_item*(self: Tree; item: TreeItem) {.importcpp: "#.show_item(@)", header: flh_tree.}
+proc show_item_top*(self: Tree; item: TreeItem) {.importcpp: "#.show_item_top(@)", header: flh_tree.}
+proc show_item_middle*(self: Tree; item: TreeItem) {.importcpp: "#.show_item_middle(@)", header: flh_tree.}
+proc show_item_bottom*(self: Tree; item: TreeItem) {.importcpp: "#.show_item_bottom(@)", header: flh_tree.}
+proc display*(self: Tree; item: TreeItem) {.importcpp: "#.display(@)", header: flh_tree.}
+proc vposition*(self: Tree): cint {.importcpp: "#.vposition(@)", header: flh_tree.}
+proc `vposition=`*(self: Tree; pos: cint) {.importcpp: "#.vposition(@)", header: flh_tree.}
+proc hposition*(self: Tree): cint {.importcpp: "#.hposition(@)", header: flh_tree.}
+proc `hposition=`*(self: Tree; pos: cint) {.importcpp: "#.hposition(@)", header: flh_tree.}
+proc is_scrollbar*(self: Tree; w: Widget): cint {.importcpp: "#.is_scrollbar(@)", header: flh_tree.}
+proc scrollbar_size*(self: Tree): cint {.importcpp: "#.scrollbar_size(@)", header: flh_tree.}
+proc `scrollbar_size=`*(self: Tree; size: cint) {.importcpp: "#.scrollbar_size(@)", header: flh_tree.}
+proc is_vscroll_visible*(self: Tree): cint {.importcpp: "#.is_vscroll_visible(@)", header: flh_tree.}
+proc is_hscroll_visible*(self: Tree): cint {.importcpp: "#.is_hscroll_visible(@)", header: flh_tree.}
+proc `callback_item=`*(self: Tree; item: TreeItem) {.importcpp: "#.callback_item(@)", header: flh_tree.}
+proc callback_item*(self: Tree): TreeItem {.importcpp: "#.callback_item(@)", header: flh_tree.}
+proc `callback_reason=`*(self: Tree; reason: TreeReason) {.importcpp: "#.callback_reason(@)", header: flh_tree.}
+proc callback_reason*(self: Tree): TreeReason {.importcpp: "#.callback_reason(@)", header: flh_tree.}
+proc prefs*(self: Tree; ): TreePrefs {.importcpp: "reinterpret_cast<Fl_Tree_Prefs*>(#.prefs(@))", header: flh_treeitem.}
 # TODO load(class Fl_Preferences&)
 
 # tree item procs
