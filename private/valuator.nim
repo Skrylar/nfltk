@@ -90,3 +90,28 @@ proc `textcolor=`*(s: Color) {.importcpp: "#.textcolor(@)", header: flh_valueinp
 proc cursor_color*(): Color {.importcpp: "#.cursor_color(@)", header: flh_valueinput.}
 proc `cursor_color=`*(n: Color) {.importcpp: "#.cursor_color(@)", header: flh_valueinput.}
 
+const
+  flh_slider = "FL/Fl_Slider.H"
+type
+  SliderObj* = object of ValuatorObj
+  Slider* = ptr SliderObj
+
+type
+  SliderType* = cint
+const
+  VERT_SLIDER*      = 0
+  HOR_SLIDER*       = 1
+  VERT_FILL_SLIDER* = 2
+  HOR_FILL_SLIDER*  = 3
+  VERT_NICE_SLIDER* = 4
+  HOR_NICE_SLIDER*  = 5
+
+proc make_slider((X, Y, W, H: cint; text: cstring = nil) {.importcpp: "new Fl_Slider(@)", header: flh_slider.}
+
+proc scrollvalue*(self: Slider; pos, size, first, total: cint): cint {.importcpp: "#.scrollvalue(@)", header: flh_slider.}
+proc bounds*(self: Slider; a, b: cdouble) {.importcpp: "#.bounds(@)", header: flh_slider.}
+proc slider_size*(self: Slider; ): cfloat {.importcpp: "#.slider_size(@)", header: flh_slider.}
+proc `slider_size=`*(self: Slider; v: cdouble) {.importcpp: "#.slider_size(@)", header: flh_slider.}
+proc slider*(self: Slider; ): Boxtype {.importcpp: "#.slider(@)", header: flh_slider.}
+proc `slider=`*(self: Slider; c: Boxtype) {.importcpp: "#.slider(@)", header: flh_slider.}
+
