@@ -93,7 +93,7 @@ proc `cursor_color=`*(self: ValueInput; n: Color) {.importcpp: "#.cursor_color(@
 const
   flh_slider = "FL/Fl_Slider.H"
 type
-  SliderObj* = object of ValuatorObj
+  SliderObj* {.importc: "Fl_Slider", header: flh_slider.} = object of ValuatorObj
   Slider* = ptr SliderObj
 
 type
@@ -106,7 +106,7 @@ const
   SLIDER_VERT_NICE_SLIDER* = 4
   SLIDER_HOR_NICE_SLIDER*  = 5
 
-proc make_slider((X, Y, W, H: cint; text: cstring = nil) {.importcpp: "new Fl_Slider(@)", header: flh_slider.}
+proc make_slider(X, Y, W, H: cint; text: cstring = nil): Slider {.importcpp: "new Fl_Slider(@)", header: flh_slider.}
 
 proc scrollvalue*(self: Slider; pos, size, first, total: cint): cint {.importcpp: "#.scrollvalue(@)", header: flh_slider.}
 proc bounds*(self: Slider; a, b: cdouble) {.importcpp: "#.bounds(@)", header: flh_slider.}

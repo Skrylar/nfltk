@@ -10,6 +10,7 @@ const
   flh_radio = "FL/Fl_Radio_Button.H"
   flh_radioround = "FL/Fl_Radio_Round_Button.H"
   flh_radiolight = "FL/Fl_Radio_Light_Button.H"
+  flh_toggle = "FL/Fl_Toggle_Button.H"
 
 const
   FL_NORMAL_BUTTON* = 0
@@ -21,26 +22,29 @@ const
 #extern FL_EXPORT Fl_Shortcut fl_old_shortcut(s: cstring)
 
 type
-  ButtonObj* {.importc: "Fl_Button".} = object of WidgetObj
+  ButtonObj* {.importc: "Fl_Button", header: flh.} = object of WidgetObj
   Button* = ptr ButtonObj
 
-  LightButtonObj* {.importc: "Fl_Check_Button".} = object of ButtonObj
+  LightButtonObj* {.importc: "Fl_Check_Button", header: flh_light.} = object of ButtonObj
   LightButton* = ptr LightButtonObj
 
-  CheckButtonObj* {.importc: "Fl_Check_Button".} = object of LightButtonObj
+  CheckButtonObj* {.importc: "Fl_Check_Button", header: flh_check.} = object of LightButtonObj
   CheckButton* = ptr CheckButtonObj
 
-  RoundButtonObj* {.importc: "Fl_Round_Button".} = object of LightButtonObj
+  RoundButtonObj* {.importc: "Fl_Round_Button", header: flh_round.} = object of LightButtonObj
   RoundButton* = ptr RoundButtonObj
 
-  RadioButtonObj* {.importc: "Fl_Radio_Button".} = object of ButtonObj
+  RadioButtonObj* {.importc: "Fl_Radio_Button", header: flh_radio.} = object of ButtonObj
   RadioButton* = ptr RadioButtonObj
 
-  RadioRoundButtonObj* {.importc: "Fl_Radio_Round_Button".} = object of RoundButtonObj
+  RadioRoundButtonObj* {.importc: "Fl_Radio_Round_Button", header: flh_radioround.} = object of RoundButtonObj
   RadioRoundButton* = ptr RadioRoundButtonObj
 
-  RadioLightButtonObj* {.importc: "Fl_Radio_LightButton".} = object of LightButtonObj
+  RadioLightButtonObj* {.importc: "Fl_Radio_LightButton", header: flh_radiolight.} = object of LightButtonObj
   RadioLightButton* = ptr RadioLightButtonObj
+
+  ToggleButtonObj {.importc: "Fl_Toggle_Button", header: flh_toggle.} = object
+  ToggleButton* = ptr ButtonObj
 
 proc make_button*(x, y, w, h: cint; text: cstring): Button {.importcpp: "new Fl_Button(@)", header: flh.}
 proc make_light_button*(x, y, w, h: cint; text: cstring): LightButton {.importcpp: "new Fl_Light_Button(@)", header: flh_light.}
@@ -49,8 +53,7 @@ proc make_round_button*(x, y, w, h: cint; text: cstring): RoundButton {.importcp
 proc make_radio_button*(x, y, w, h: cint; text: cstring): RadioButton {.importcpp: "new Fl_Radio_Button(@)", header: flh_radio.}
 proc make_radio_round_button*(x, y, w, h: cint; text: cstring): RadioRoundButton {.importcpp: "new Fl_Radio_Round_Button(@)", header: flh_radioround.}
 proc make_radio_light_button*(x, y, w, h: cint; text: cstring): RadioLightButton {.importcpp: "new Fl_Radio_Light_Button(@)", header: flh_radiolight.}
-
-proc handle*(self: Button; a: cint): cint {.importcpp: "#.handle(@)", header: flh.}
+proc make_toggle_button(x, y, w, h: cint; text: cstring): ToggleButton {.importcpp: "new ToggleButton(@)", header: flh_toggle.}
 
 proc value*(self: Button): uint8 {.importcpp: "#.value(@)", header: flh.}
 proc `value=`*(self: Button; v: cint): cint {.importcpp: "#.value(@)", header: flh.}
