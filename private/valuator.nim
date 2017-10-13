@@ -106,7 +106,7 @@ const
   SLIDER_VERT_NICE_SLIDER* = 4
   SLIDER_HOR_NICE_SLIDER*  = 5
 
-proc make_slider(X, Y, W, H: cint; text: cstring = nil): Slider {.importcpp: "new Fl_Slider(@)", header: flh_slider.}
+proc make_slider*(X, Y, W, H: cint; text: cstring = nil): Slider {.importcpp: "new Fl_Slider(@)", header: flh_slider.}
 
 proc scrollvalue*(self: Slider; pos, size, first, total: cint): cint {.importcpp: "#.scrollvalue(@)", header: flh_slider.}
 proc bounds*(self: Slider; a, b: cdouble) {.importcpp: "#.bounds(@)", header: flh_slider.}
@@ -114,4 +114,34 @@ proc slider_size*(self: Slider): cfloat {.importcpp: "#.slider_size(@)", header:
 proc `slider_size=`*(self: Slider; v: cdouble) {.importcpp: "#.slider_size(@)", header: flh_slider.}
 proc slider*(self: Slider): Boxtype {.importcpp: "#.slider(@)", header: flh_slider.}
 proc `slider=`*(self: Slider; c: Boxtype) {.importcpp: "#.slider(@)", header: flh_slider.}
+
+const
+  flh_counter = "FL/Fl_Counter.H"
+  flh_simplecounter = "FL/Fl_Simple_Counter.H"
+type
+  CounterObj* {.importc: "Fl_Counter", header: flh_counter.} = object of ValuatorObj
+  Counter* = ptr CounterObj
+
+  SimpleCounterObj* {.importc: "Fl_Simple_Counter", header: flh_counter.} = object of CounterObj
+  SimpleCounter* = ptr SimpleCounterObj
+
+type
+  ValuatorType* = cint
+const
+  VALUATOR_NORMAL_COUNTER* = 0
+  VALUATOR_SIMPLE_COUNTER* = 1
+
+proc make_counter*(x, y, w, h: cint; text: cstring = nil): Counter {.importcpp: "new Fl_Counter(@)", header: flh_counter.}
+proc make_simple_counter*(x, y, w, h: cint; text: cstring = nil): SimpleCounter {.importcpp: "new Fl_Simple_Counter(@)", header: flh_simplecounter.}
+
+proc `lstep=`*(self: Counter; a: cdouble) {.importcpp: "#.lstep(@)", header: flh_counter.}
+proc step*(self: Counter; a, b: cdouble) {.importcpp: "#.step(@)", header: flh_counter.}
+proc `step=`*(self: Counter; a: cdouble) {.importcpp: "#.step(@)", header: flh_counter.}
+proc step*(self: Counter): cdouble {.importcpp: "#.step(@)", header: flh_counter.}
+proc textfont*(self: Counter): Font {.importcpp: "#.textfont(@)", header: flh_counter.}
+proc `textfont=`*(self: Counter; s: Font) {.importcpp: "#.textfont(@)", header: flh_counter.}
+proc textsize*(self: Counter): Fontsize {.importcpp: "#.textsize(@)", header: flh_counter.}
+proc `textsize=`*(self: Counter; s: Fontsize) {.importcpp: "#.textsize(@)", header: flh_counter.}
+proc textcolor*(self: Counter): Color {.importcpp: "#.textcolor(@)", header: flh_counter.}
+proc `textcolor=`*(self: Counter; s: Color) {.importcpp: "#.textcolor(@)", header: flh_counter.}
 

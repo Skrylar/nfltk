@@ -43,7 +43,7 @@ type
   RadioLightButtonObj* {.importc: "Fl_Radio_LightButton", header: flh_radiolight.} = object of LightButtonObj
   RadioLightButton* = ptr RadioLightButtonObj
 
-  ToggleButtonObj {.importc: "Fl_Toggle_Button", header: flh_toggle.} = object
+  ToggleButtonObj* {.importc: "Fl_Toggle_Button", header: flh_toggle.} = object
   ToggleButton* = ptr ButtonObj
 
 proc make_button*(x, y, w, h: cint; text: cstring): Button {.importcpp: "new Fl_Button(@)", header: flh.}
@@ -53,7 +53,7 @@ proc make_round_button*(x, y, w, h: cint; text: cstring): RoundButton {.importcp
 proc make_radio_button*(x, y, w, h: cint; text: cstring): RadioButton {.importcpp: "new Fl_Radio_Button(@)", header: flh_radio.}
 proc make_radio_round_button*(x, y, w, h: cint; text: cstring): RadioRoundButton {.importcpp: "new Fl_Radio_Round_Button(@)", header: flh_radioround.}
 proc make_radio_light_button*(x, y, w, h: cint; text: cstring): RadioLightButton {.importcpp: "new Fl_Radio_Light_Button(@)", header: flh_radiolight.}
-proc make_toggle_button(x, y, w, h: cint; text: cstring): ToggleButton {.importcpp: "new ToggleButton(@)", header: flh_toggle.}
+proc make_toggle_button*(x, y, w, h: cint; text: cstring): ToggleButton {.importcpp: "new ToggleButton(@)", header: flh_toggle.}
 
 proc value*(self: Button): uint8 {.importcpp: "#.value(@)", header: flh.}
 proc `value=`*(self: Button; v: cint): cint {.importcpp: "#.value(@)", header: flh.}
