@@ -99,19 +99,19 @@ type
 type
   SliderType* = cint
 const
-  VERT_SLIDER*      = 0
-  HOR_SLIDER*       = 1
-  VERT_FILL_SLIDER* = 2
-  HOR_FILL_SLIDER*  = 3
-  VERT_NICE_SLIDER* = 4
-  HOR_NICE_SLIDER*  = 5
+  SLIDER_VERT_SLIDER*      = 0
+  SLIDER_HOR_SLIDER*       = 1
+  SLIDER_VERT_FILL_SLIDER* = 2
+  SLIDER_HOR_FILL_SLIDER*  = 3
+  SLIDER_VERT_NICE_SLIDER* = 4
+  SLIDER_HOR_NICE_SLIDER*  = 5
 
 proc make_slider((X, Y, W, H: cint; text: cstring = nil) {.importcpp: "new Fl_Slider(@)", header: flh_slider.}
 
 proc scrollvalue*(self: Slider; pos, size, first, total: cint): cint {.importcpp: "#.scrollvalue(@)", header: flh_slider.}
 proc bounds*(self: Slider; a, b: cdouble) {.importcpp: "#.bounds(@)", header: flh_slider.}
-proc slider_size*(self: Slider; ): cfloat {.importcpp: "#.slider_size(@)", header: flh_slider.}
+proc slider_size*(self: Slider): cfloat {.importcpp: "#.slider_size(@)", header: flh_slider.}
 proc `slider_size=`*(self: Slider; v: cdouble) {.importcpp: "#.slider_size(@)", header: flh_slider.}
-proc slider*(self: Slider; ): Boxtype {.importcpp: "#.slider(@)", header: flh_slider.}
+proc slider*(self: Slider): Boxtype {.importcpp: "#.slider(@)", header: flh_slider.}
 proc `slider=`*(self: Slider; c: Boxtype) {.importcpp: "#.slider(@)", header: flh_slider.}
 
