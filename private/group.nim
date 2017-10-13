@@ -47,7 +47,7 @@ proc make_wizard*(x, y, w, h: cint; text: cstring = nil): Wizard {.importcpp: "n
 proc next*(self: Wizard) {.importcpp: "#.next(@)", header: flh_wizard.}
 proc prev*(self: Wizard) {.importcpp: "#.prev(@)", header: flh_wizard.}
 proc value*(self: Wizard): Widget {.importcpp: "#.value(@)", header: flh_wizard.}
-proc value*(self: Wizard; w: Widget) {.importcpp: "#.value(@)", header: flh_wizard.}
+proc `value=`*(self: Wizard; w: Widget) {.importcpp: "#.value(@)", header: flh_wizard.}
 
 const
   flh_tabs = "FL/Fl_Tabs.H"
