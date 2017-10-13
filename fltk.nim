@@ -39,6 +39,9 @@ export tooltip
 import private/tree
 export tree
 
+import private/spinner
+export spinner
+
 const
   flh = "FL/Fl.H"
 
