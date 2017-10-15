@@ -145,3 +145,17 @@ proc `textsize=`*(self: Counter; s: Fontsize) {.importcpp: "#.textsize(@)", head
 proc textcolor*(self: Counter): Color {.importcpp: "#.textcolor(@)", header: flh_counter.}
 proc `textcolor=`*(self: Counter; s: Color) {.importcpp: "#.textcolor(@)", header: flh_counter.}
 
+const
+  flh_scrollbar = "FL/Fl_Scrollbar.H"
+type
+  ScrollbarObj* {.importc: "Fl_Scrollbar", header: flh_scrollbar.} = object of SliderObj
+  Scrollbar* = ptr ScrollbarObj
+
+proc make_scrollbar*(x, y, w, h: cint; text: cstring = nil): Scrollbar {.importcpp: "new Fl_Scrollbar(@)", header: flh_scrollbar.}
+
+proc value*(self: Scrollbar): cint {.importcpp: "#.value(@)", header: flh_scrollbar.}
+proc `value=`*(self: Scrollbar; p: cint): cint {.importcpp: "#.value(@)", header: flh_scrollbar.}
+proc value*(self: Scrollbar; pos, windowSize, first, total: cint): cint {.importcpp: "#.value(@)", header: flh_scrollbar.}
+proc linesize*(self: Scrollbar): cint {.importcpp: "#.linesize(@)", header: flh_scrollbar.}
+proc `linesize=`*(self: Scrollbar; i: cint) {.importcpp: "#.linesize(@)", header: flh_scrollbar.}
+

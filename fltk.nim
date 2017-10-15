@@ -42,6 +42,9 @@ export tree
 import private/spinner
 export spinner
 
+import private/browser
+export browser
+
 const
   flh = "FL/Fl.H"
 

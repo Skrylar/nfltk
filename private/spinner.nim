@@ -26,8 +26,8 @@ proc textfont*(self: Spinner): Font {.importcpp: "#.textfont(@)", header: flh_sp
 proc `textfont=`*(self: Spinner; f: Font) {.importcpp: "#.textfont(@)", header: flh_spinner.}
 proc textsize*(self: Spinner): Fontsize {.importcpp: "#.textsize(@)", header: flh_spinner.}
 proc `textsize=`*(self: Spinner; s: Fontsize) {.importcpp: "#.textsize(@)", header: flh_spinner.}
-proc type*(self: Spinner): cuchar {.importcpp: "#.type(@)", header: flh_spinner.}
-proc `type=`*(self: Spinner; v: cuchar) {.importcpp: "#.type(@)", header: flh_spinner.}
+proc typee*(self: Spinner): cuchar {.importcpp: "#.type(@)", header: flh_spinner.}
+proc `typee=`*(self: Spinner; v: cuchar) {.importcpp: "#.type(@)", header: flh_spinner.}
 proc value*(self: Spinner): cdouble {.importcpp: "#.value(@)", header: flh_spinner.}
 proc `value=`*(self: Spinner; v: cdouble) {.importcpp: "#.value(@)", header: flh_spinner.}
 proc `color=`*(self: Spinner; v: Color) {.importcpp: "#.color(@)", header: flh_spinner.}
