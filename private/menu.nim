@@ -185,3 +185,15 @@ proc label*(self: Pixmap; m: Menu_Item) {.importcpp: "#.label(@)", header: "FL/F
 proc label*(self: RGB_Image; m: Menu_Item) {.importcpp: "#.label(@)", header: "FL/Fl_RGB_Image.H".}
 proc label*(self: Bitmap; m: Menu_Item) {.importcpp: "#.label(@)", header: "FL/Fl_Bitmap.H".}
 
+const
+  flh_choice = "FL/Fl_Choice.H"
+type
+  ChoiceObj* {. importc: "Fl_Choice", header: flh_choice.} = object of Menu
+  Choice* = ptr ChoiceObj
+
+proc make_choice*(X, Y, W, H: cint; text: cstring = nil): Choice {.importcpp: "new Fl_Choice(@)", header: flh_choice.}
+
+proc value*(self: Choice): cint {.importcpp: "#.value(@)", header: flh_choice.}
+proc value*(self: Choice; v: cint): cint {.importcpp: "#.value(@)", header: flh_choice.}
+proc value*(self: Choice; v: MenuItem): cint {.importcpp: "#.value(@)", header: flh_choice.}
+
