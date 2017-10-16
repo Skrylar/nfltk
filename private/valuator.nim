@@ -159,3 +159,30 @@ proc value*(self: Scrollbar; pos, windowSize, first, total: cint): cint {.import
 proc linesize*(self: Scrollbar): cint {.importcpp: "#.linesize(@)", header: flh_scrollbar.}
 proc `linesize=`*(self: Scrollbar; i: cint) {.importcpp: "#.linesize(@)", header: flh_scrollbar.}
 
+const
+  flh_clock = "FL/Fl_Clock.H"
+type
+  ClockOutputObj* {.importc: "Fl_Clock_Output", header: flh_clock.} = object of Widget
+  ClockOutput* = ptr ClockOutputObj
+
+  ClockObj* {.importc: "Fl_Clock", header: flh_clock.} = object of ClockOutputObj
+  Clock* = ptr ClockObj
+
+const
+  SQUARE_CLOCK*  = 0
+  ROUND_CLOCK*   = 1
+  ANALOG_CLOCK*  = SQUARE_CLOCK
+  DIGITAL_CLOCK* = SQUARE_CLOCK
+
+proc make_clock_output*(x, y, w, h: cint; text: cstring = nil): ClockOutput {.importcpp: "new Fl_Clock_Output(@)", header: flh_clock.}
+
+proc value*(self: ClockOutput; v: culong) {.importcpp: "#.value(@)", header: flh_clock.}
+proc value*(self: ClockOutput; H, m, s: cint) {.importcpp: "#.value(@)", header: flh_clock.}
+proc value*(self: ClockOutput): culong {.importcpp: "#.value(@)", header: flh_clock.}
+proc hour*(self: ClockOutput): cint {.importcpp: "#.hour(@)", header: flh_clock.}
+proc minute*(self: ClockOutput): cint {.importcpp: "#.minute(@)", header: flh_clock.}
+proc second*(self: ClockOutput): cint {.importcpp: "#.second(@)", header: flh_clock.}
+
+proc make_clock*(x, y, w, h: cint; text: cstring = nil): Clock{.importcpp: "new Fl_Clock_Output(@)", header: flh_clock.}
+proc make_clock*(t: cuchar; x, y, w, h: cint; text: cstring = nil): Clock{.importcpp: "new Fl_Clock_Output(@)", header: flh_clock.}
+
