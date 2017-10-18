@@ -144,5 +144,3 @@ type
 proc make_double_window*(W, H: cint; text: cstring = nil): DoubleWindow {.importcpp: "new Fl_Double_Window(@)", header: flh_doublewindow.}
 proc make_double_window*(X, Y, W, H: cint; text: cstring = nil): DoubleWindow {.importcpp: "new Fl_Double_Window(@)", header: flh_doublewindow.}
 
-
-

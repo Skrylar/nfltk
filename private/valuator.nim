@@ -145,3 +145,22 @@ proc `textsize=`*(self: Counter; s: Fontsize) {.importcpp: "#.textsize(@)", head
 proc textcolor*(self: Counter): Color {.importcpp: "#.textcolor(@)", header: flh_counter.}
 proc `textcolor=`*(self: Counter; s: Color) {.importcpp: "#.textcolor(@)", header: flh_counter.}
 
+const
+  flh_dial = "FL/Fl_Dial.H"
+type
+  DialObj* {.importc: "Fl_Dial", header: flh_dial.} = object of ValuatorObj
+  Dial* = ptr DialObj
+
+const
+  NORMAL_DIAL* = 0
+  LINE_DIAL* = 1
+  FILL_DIAL* = 2
+
+proc make_dial*(x, y, w, h: cint; text: cstring = nil): Dial {.importcpp: "new Fl_Dial(@)", header: flh_dial.}
+ 
+proc angle1*(self: Dial): cshort {.importcpp: "#.angle1(@)", header: flh_dial.}
+proc angle1*(self: Dial; a: cshort) {.importcpp: "#.angle1(@)", header: flh_dial.}
+proc angle2*(self: Dial): cshort {.importcpp: "#.angle2(@)", header: flh_dial.}
+proc angle2*(self: Dial; a: cshort) {.importcpp: "#.angle2(@)", header: flh_dial.}
+proc angles*(self: Dial; a, b: cshort) {.importcpp: "#.angles(@)", header: flh_dial.}
+
