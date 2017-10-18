@@ -108,7 +108,7 @@ proc `default_icon=`*(img: RGB_Image) {.importcpp: "Fl_Window::default_icon(@)",
 proc default_icons*(img: ptr RGB_Image, count: cint) {.importcpp: "Fl_Window::default_icons(@)", header: flh.}
 
 type
-  SingleWindowObj* {.importc: "Fl_Single_Window".} = object of WidgetObj
+  SingleWindowObj* {.importc: "Fl_Single_Window".} = object of WindowObj
   SingleWindow* = ptr SingleWindowObj
 
 proc make_single_window*(W, H: cint; text: cstring = nil): SingleWindow {.importcpp: "new Fl_Single_Window(@)", header: flh_singlewin.}
@@ -133,4 +133,16 @@ proc hide*(self: MenuWindow) {.importcpp: "#.hide(@)", header: flh_menuwin.}
 proc overlay*(self: MenuWindow): cuint {.importcpp: "#.overlay(@)", header: flh_menuwin.}
 proc set_overlay*(self: MenuWindow) {.importcpp: "#.set_overlay(@)", header: flh_menuwin.}
 proc clear_overlay*(self: MenuWindow) {.importcpp: "#.clear_overlay(@)", header: flh_menuwin.}
+
+const
+  flh_doublewindow = "FL/Fl_Double_Window.H"
+
+type
+  DoubleWindowObj* {.importc: "Fl_Double_Window", header: flh_doublewindow.} = object of WindowObj
+  DoubleWindow* = ptr DoubleWindowObj
+
+proc make_double_window*(W, H: cint; text: cstring = nil): DoubleWindow {.importcpp: "new Fl_Double_Window(@)", header: flh_doublewindow.}
+proc make_double_window*(X, Y, W, H: cint; text: cstring = nil): DoubleWindow {.importcpp: "new Fl_Double_Window(@)", header: flh_doublewindow.}
+
+
 
