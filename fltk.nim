@@ -42,6 +42,9 @@ export tree
 import private/spinner
 export spinner
 
+import private/colorchooser
+export colorchooser
+
 const
   flh = "FL/Fl.H"
 
