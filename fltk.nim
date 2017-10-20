@@ -45,6 +45,12 @@ export spinner
 import private/colorchooser
 export colorchooser
 
+import private/browser
+export browser
+
+import private/scroll
+export scroll
+
 const
   flh = "FL/Fl.H"
 

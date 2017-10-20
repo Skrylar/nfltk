@@ -164,3 +164,44 @@ proc angle2*(self: Dial): cshort {.importcpp: "#.angle2(@)", header: flh_dial.}
 proc angle2*(self: Dial; a: cshort) {.importcpp: "#.angle2(@)", header: flh_dial.}
 proc angles*(self: Dial; a, b: cshort) {.importcpp: "#.angles(@)", header: flh_dial.}
 
+const
+  flh_scrollbar = "FL/Fl_Scrollbar.H"
+type
+  ScrollbarObj* {.importc: "Fl_Scrollbar", header: flh_scrollbar.} = object of SliderObj
+  Scrollbar* = ptr ScrollbarObj
+
+proc make_scrollbar*(x, y, w, h: cint; text: cstring = nil): Scrollbar {.importcpp: "new Fl_Scrollbar(@)", header: flh_scrollbar.}
+
+proc value*(self: Scrollbar): cint {.importcpp: "#.value(@)", header: flh_scrollbar.}
+proc `value=`*(self: Scrollbar; p: cint): cint {.importcpp: "#.value(@)", header: flh_scrollbar.}
+proc value*(self: Scrollbar; pos, windowSize, first, total: cint): cint {.importcpp: "#.value(@)", header: flh_scrollbar.}
+proc linesize*(self: Scrollbar): cint {.importcpp: "#.linesize(@)", header: flh_scrollbar.}
+proc `linesize=`*(self: Scrollbar; i: cint) {.importcpp: "#.linesize(@)", header: flh_scrollbar.}
+
+const
+  flh_clock = "FL/Fl_Clock.H"
+type
+  ClockOutputObj* {.importc: "Fl_Clock_Output", header: flh_clock.} = object of Widget
+  ClockOutput* = ptr ClockOutputObj
+
+  ClockObj* {.importc: "Fl_Clock", header: flh_clock.} = object of ClockOutputObj
+  Clock* = ptr ClockObj
+
+const
+  SQUARE_CLOCK*  = 0
+  ROUND_CLOCK*   = 1
+  ANALOG_CLOCK*  = SQUARE_CLOCK
+  DIGITAL_CLOCK* = SQUARE_CLOCK
+
+proc make_clock_output*(x, y, w, h: cint; text: cstring = nil): ClockOutput {.importcpp: "new Fl_Clock_Output(@)", header: flh_clock.}
+
+proc value*(self: ClockOutput; v: culong) {.importcpp: "#.value(@)", header: flh_clock.}
+proc value*(self: ClockOutput; H, m, s: cint) {.importcpp: "#.value(@)", header: flh_clock.}
+proc value*(self: ClockOutput): culong {.importcpp: "#.value(@)", header: flh_clock.}
+proc hour*(self: ClockOutput): cint {.importcpp: "#.hour(@)", header: flh_clock.}
+proc minute*(self: ClockOutput): cint {.importcpp: "#.minute(@)", header: flh_clock.}
+proc second*(self: ClockOutput): cint {.importcpp: "#.second(@)", header: flh_clock.}
+
+proc make_clock*(x, y, w, h: cint; text: cstring = nil): Clock{.importcpp: "new Fl_Clock_Output(@)", header: flh_clock.}
+proc make_clock*(t: cuchar; x, y, w, h: cint; text: cstring = nil): Clock{.importcpp: "new Fl_Clock_Output(@)", header: flh_clock.}
+
