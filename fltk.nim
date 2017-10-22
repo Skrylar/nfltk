@@ -51,6 +51,9 @@ export browser
 import private/scroll
 export scroll
 
+import private/fileicon
+export fileicon
+
 const
   flh = "FL/Fl.H"
 
