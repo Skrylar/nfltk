@@ -1,8 +1,10 @@
 
+import widget
 import enumerations
 import image
 import group
 import valuator
+import button
 
 const
   flh_browser2 = "FL/Fl_Browser_.H"
@@ -118,4 +120,103 @@ proc icon*(self: Browser; line: cint): Image {.importcpp: "#.icon(@)", header: f
 proc remove_icon*(self: Browser; line: cint) {.importcpp: "#.remove_icon(@)", header: flh_browser.}
 proc replace*(self: Browser; a: cint; b: cstring) {.importcpp: "#.replace(@)", header: flh_browser.}
 proc display*(self: Browser; line: cint; val: cint = 1) {.importcpp: "#.display(@)", header: flh_browser.}
+
+const
+  flh_filebrowser = "FL/Fl_File_Browser.H"
+type
+  FileBrowserObj* {.importc: "Fl_File_Browser", header: flh_filebrowser.} = object of BrowserObj
+  FileBrowser* = ptr FileBrowserObj
+
+const
+  FILEBROWSER_FILES* = 0
+  FILEBROWSER_DIRECTORIES* = 1
+
+proc make_file_browser*(X, Y, W, H: cint; text: cstring = nil): FileBrowser {.importcpp: "new Fl_File_Browser(@)", header: flh_filebrowser.}
+
+proc iconsize*(): cuchar {.importcpp: "#.iconsize(@)", header: flh_filebrowser.}
+proc `iconsize=`*(s: cuchar) {.importcpp: "#.iconsize(@)", header: flh_filebrowser.}
+proc `filter=`*(pattern: cstring) {.importcpp: "#.filter(@)", header: flh_filebrowser.}
+proc filter*(): cstring {.importcpp: "#.filter(@)", header: flh_filebrowser.}
+proc load*(directory: cstring): cint {.importcpp: "#.load(@)", header: flh_filebrowser.}
+#TODO proc load*(directory: cstring; sort: FileSortF = fl_numericsort): cint {.importcpp: "#.load(@)", header: flh_filebrowser.}
+proc textsize*(): Fontsize {.importcpp: "#.textsize(@)", header: flh_filebrowser.}
+proc `textsize=`*(s: Fontsize) {.importcpp: "#.textsize(@)", header: flh_filebrowser.}
+proc filetype*(): cint {.importcpp: "#.filetype(@)", header: flh_filebrowser.}
+proc `filetype=`*(t: cint) {.importcpp: "#.filetype(@)", header: flh_filebrowser.}
+
+const
+  flh_filechooser = "FL/Fl_File_Chooser.H"
+type
+  FileChooserObj* {.importc: "Fl_File_Chooser", header: flh_filechooser.} = object {.inheritable.}
+    newButton*: Button
+    previewButton*, showHiddenButton*: CheckButton
+  FileChooser* = ptr FileChooserObj
+  
+const
+  FILECHOOSER_SINGLE* = 0
+  FILECHOOSER_MULTI* = 1
+  FILECHOOSER_CREATE* = 2
+  FILECHOOSER_DIRECTORY* = 4
+
+proc make_file_chooser*(d, p: cstring; t: cint; title: cstring): FileChooser {.importcpp: "new Fl_File_Chooser(@)", header: flh_filechooser.}
+proc free*(self: FileChooser) {.importcpp: "delete @", header: flh_filechooser.}
+
+proc callback*(self: FileChooser; cb: proc(fc: FileChooser; d: pointer); d: pointer = nil) {.importcpp: "#.callback(@)", header: flh_filechooser.}
+proc `color=`*(self: FileChooser; c: Color) {.importcpp: "#.color(@)", header: flh_filechooser.}
+proc color*(self: FileChooser): Color {.importcpp: "#.color(@)", header: flh_filechooser.}
+proc count*(self: FileChooser): cint {.importcpp: "#.count(@)", header: flh_filechooser.}
+proc `directory=`*(self: FileChooser; dir: cstring) {.importcpp: "#.directory(@)", header: flh_filechooser.}
+proc directory*(self: FileChooser): cstring {.importcpp: "#.directory(@)", header: flh_filechooser.}
+proc `filter=`*(self: FileChooser; text: cstring) {.importcpp: "#.filter(@)", header: flh_filechooser.}
+proc filter*(self: FileChooser): cstring {.importcpp: "#.filter(@)", header: flh_filechooser.}
+proc filter_value*(self: FileChooser): cint {.importcpp: "#.filter_value(@)", header: flh_filechooser.}
+proc `filter_value=`*(self: FileChooser; f: cint) {.importcpp: "#.filter_value(@)", header: flh_filechooser.}
+proc hide*(self: FileChooser) {.importcpp: "#.hide(@)", header: flh_filechooser.}
+proc `iconsize=`*(self: FileChooser; s: cuchar) {.importcpp: "#.iconsize(@)", header: flh_filechooser.}
+proc iconsize*(self: FileChooser): cuchar {.importcpp: "#.iconsize(@)", header: flh_filechooser.}
+proc `label=`*(self: FileChooser; text: cstring) {.importcpp: "#.label(@)", header: flh_filechooser.}
+proc label*(self: FileChooser): cstring {.importcpp: "#.label(@)", header: flh_filechooser.}
+proc `ok_label=`*(self: FileChooser; text: cstring) {.importcpp: "#.ok_label(@)", header: flh_filechooser.}
+proc ok_label*(self: FileChooser): cstring {.importcpp: "#.ok_label(@)", header: flh_filechooser.}
+proc `preview=`*(self: FileChooser; e: cint) {.importcpp: "#.preview(@)", header: flh_filechooser.}
+proc preview*(self: FileChooser): cint {.importcpp: "#.preview(@)", header: flh_filechooser.}
+proc rescan*(self: FileChooser) {.importcpp: "#.rescan(@)", header: flh_filechooser.}
+proc rescan_keep_filename*(self: FileChooser) {.importcpp: "#.rescan_keep_filename(@)", header: flh_filechooser.}
+proc show*(self: FileChooser) {.importcpp: "#.show(@)", header: flh_filechooser.}
+proc shown*(self: FileChooser): cint {.importcpp: "#.shown(@)", header: flh_filechooser.}
+proc `textcolor=`*(self: FileChooser; c: Color) {.importcpp: "#.textcolor(@)", header: flh_filechooser.}
+proc textcolor*(self: FileChooser): Color {.importcpp: "#.textcolor(@)", header: flh_filechooser.}
+proc `textfont=`*(self: FileChooser; f: Font) {.importcpp: "#.textfont(@)", header: flh_filechooser.}
+proc textfont*(self: FileChooser): Font {.importcpp: "#.textfont(@)", header: flh_filechooser.}
+proc `textsize=`*(self: FileChooser; s: Fontsize) {.importcpp: "#.textsize(@)", header: flh_filechooser.}
+proc textsize*(self: FileChooser): Fontsize {.importcpp: "#.textsize(@)", header: flh_filechooser.}
+proc `type=`*(self: FileChooser; t: cint) {.importcpp: "#.type(@)", header: flh_filechooser.}
+proc `type`*(self: FileChooser): cint {.importcpp: "#.type(@)", header: flh_filechooser.}
+proc user_data*(self: FileChooser): pointer {.importcpp: "#.user_data(@)", header: flh_filechooser.}
+proc `user_data=`*(self: FileChooser; d: pointer) {.importcpp: "#.user_data(@)", header: flh_filechooser.}
+proc value*(self: FileChooser; f: cint = 1): cstring {.importcpp: "#.value(@)", header: flh_filechooser.}
+proc `value=`*(self: FileChooser; filename: cstring) {.importcpp: "#.value(@)", header: flh_filechooser.}
+proc visible*(self: FileChooser): cint {.importcpp: "#.visible(@)", header: flh_filechooser.}
+proc add_extra*(self: FileChooser; gr: Widget): Widget {.importcpp: "#.add_extra(@)", header: flh_filechooser.}
+
+var filechooser_add_favorites_label* {.importcpp: "Fl_File_Chooser::add_favorites_label", header: flh_filechooser.}: cstring 
+var filechooser_all_files_label* {.importcpp: "Fl_File_Chooser::all_files_label", header: flh_filechooser.}: cstring 
+var filechooser_custom_filter_label* {.importcpp: "Fl_File_Chooser::custom_filter_label", header: flh_filechooser.}: cstring 
+var filechooser_existing_file_label* {.importcpp: "Fl_File_Chooser::existing_file_label", header: flh_filechooser.}: cstring 
+var filechooser_favorites_label* {.importcpp: "Fl_File_Chooser::favorites_label", header: flh_filechooser.}: cstring 
+var filechooser_filename_label* {.importcpp: "Fl_File_Chooser::filename_label", header: flh_filechooser.}: cstring 
+var filechooser_filesystems_label* {.importcpp: "Fl_File_Chooser::filesystems_label", header: flh_filechooser.}: cstring 
+var filechooser_manage_favorites_label* {.importcpp: "Fl_File_Chooser::manage_favorites_label", header: flh_filechooser.}: cstring 
+var filechooser_new_directory_label* {.importcpp: "Fl_File_Chooser::new_directory_label", header: flh_filechooser.}: cstring 
+var filechooser_new_directory_tooltip* {.importcpp: "Fl_File_Chooser::new_directory_tooltip", header: flh_filechooser.}: cstring 
+var filechooser_preview_label* {.importcpp: "Fl_File_Chooser::preview_label", header: flh_filechooser.}: cstring 
+var filechooser_save_label* {.importcpp: "Fl_File_Chooser::save_label", header: flh_filechooser.}: cstring 
+var filechooser_show_label* {.importcpp: "Fl_File_Chooser::show_label", header: flh_filechooser.}: cstring 
+var filechooser_hidden_label* {.importcpp: "Fl_File_Chooser::hidden_label", header: flh_filechooser.}: cstring 
+#TODO var filechooser_sort* {.importcpp: "Fl_File_Chooser::sort", header: flh_filechooser.}: FileSortF 
+
+proc fl_dir_chooser*(message, fname: cstring; relative: cint = 0): cstring {.importcpp: "fl_dir_chooser(@)", header: flh_filechooser.}
+proc fl_file_chooser*(message, pat, fname: cstring; relative: cint = 0): cstring {.importcpp: "fl_file_chooser(@)", header: flh_filechooser.}
+proc fl_file_chooser_callback*(cb: proc(c: cstring)) {.importcpp: "fl_file_chooser_callback(@)", header: flh_filechooser.}
+proc fl_file_chooser_ok_label*(text: cstring) {.importcpp: "fl_file_chooser_ok_label(@)", header: flh_filechooser.}
 
