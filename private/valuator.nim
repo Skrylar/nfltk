@@ -205,3 +205,19 @@ proc second*(self: ClockOutput): cint {.importcpp: "#.second(@)", header: flh_cl
 proc make_clock*(x, y, w, h: cint; text: cstring = nil): Clock{.importcpp: "new Fl_Clock_Output(@)", header: flh_clock.}
 proc make_clock*(t: cuchar; x, y, w, h: cint; text: cstring = nil): Clock{.importcpp: "new Fl_Clock_Output(@)", header: flh_clock.}
 
+const
+  flh_filldial = "FL/Fl_Fill_Dial.H"
+type
+  FillDialObj* {.importc: "Fl_Fill_Dial", header: flh_filldial.} = object of DialObj
+  FillDial* = ptr FillDialObj
+
+proc make_filldial*(x, y, w, h: cint; text: cstring = nil): FillDial {.importcpp: "new Fl_Fill_Dial(@)", header: flh_filldial.}
+
+const
+  flh_fillslider = "FL/Fl_Fill_Slider.H"
+type
+  FillSliderObj* {.importc: "Fl_Slider", header: flh_fillslider.} = object of SliderObj
+  FillSlider* = ptr FillSliderObj
+
+proc make_fillslider*(x, y, w, h: cint; text: cstring = nil): FillSlider {.importcpp: "new Fl_Fill_Slider(@)", header: flh_fillslider.}
+
