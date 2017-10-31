@@ -10,10 +10,10 @@ const
   flh_browser2 = "FL/Fl_Browser_.H"
 
 const
-  NORMAL_BROWSER* = 0
-  SELECT_BROWSER* = 1
-  HOLD_BROWSER*   = 2
-  MULTI_BROWSER*  = 3
+  NORMAL_BROWSER_TYPE* = 0
+  SELECT_BROWSER_TYPE* = 1
+  HOLD_BROWSER_TYPE*   = 2
+  MULTI_BROWSER_TYPE*  = 3
 
 const
   SORT_ASCENDING*  = 0
@@ -151,7 +151,7 @@ type
     newButton*: Button
     previewButton*, showHiddenButton*: CheckButton
   FileChooser* = ptr FileChooserObj
-  
+
 const
   FILECHOOSER_SINGLE* = 0
   FILECHOOSER_MULTI* = 1
@@ -199,24 +199,31 @@ proc `value=`*(self: FileChooser; filename: cstring) {.importcpp: "#.value(@)", 
 proc visible*(self: FileChooser): cint {.importcpp: "#.visible(@)", header: flh_filechooser.}
 proc add_extra*(self: FileChooser; gr: Widget): Widget {.importcpp: "#.add_extra(@)", header: flh_filechooser.}
 
-var filechooser_add_favorites_label* {.importcpp: "Fl_File_Chooser::add_favorites_label", header: flh_filechooser.}: cstring 
-var filechooser_all_files_label* {.importcpp: "Fl_File_Chooser::all_files_label", header: flh_filechooser.}: cstring 
-var filechooser_custom_filter_label* {.importcpp: "Fl_File_Chooser::custom_filter_label", header: flh_filechooser.}: cstring 
-var filechooser_existing_file_label* {.importcpp: "Fl_File_Chooser::existing_file_label", header: flh_filechooser.}: cstring 
-var filechooser_favorites_label* {.importcpp: "Fl_File_Chooser::favorites_label", header: flh_filechooser.}: cstring 
-var filechooser_filename_label* {.importcpp: "Fl_File_Chooser::filename_label", header: flh_filechooser.}: cstring 
-var filechooser_filesystems_label* {.importcpp: "Fl_File_Chooser::filesystems_label", header: flh_filechooser.}: cstring 
-var filechooser_manage_favorites_label* {.importcpp: "Fl_File_Chooser::manage_favorites_label", header: flh_filechooser.}: cstring 
-var filechooser_new_directory_label* {.importcpp: "Fl_File_Chooser::new_directory_label", header: flh_filechooser.}: cstring 
-var filechooser_new_directory_tooltip* {.importcpp: "Fl_File_Chooser::new_directory_tooltip", header: flh_filechooser.}: cstring 
-var filechooser_preview_label* {.importcpp: "Fl_File_Chooser::preview_label", header: flh_filechooser.}: cstring 
-var filechooser_save_label* {.importcpp: "Fl_File_Chooser::save_label", header: flh_filechooser.}: cstring 
-var filechooser_show_label* {.importcpp: "Fl_File_Chooser::show_label", header: flh_filechooser.}: cstring 
-var filechooser_hidden_label* {.importcpp: "Fl_File_Chooser::hidden_label", header: flh_filechooser.}: cstring 
-#TODO var filechooser_sort* {.importcpp: "Fl_File_Chooser::sort", header: flh_filechooser.}: FileSortF 
+var filechooser_add_favorites_label* {.importcpp: "Fl_File_Chooser::add_favorites_label", header: flh_filechooser.}: cstring
+var filechooser_all_files_label* {.importcpp: "Fl_File_Chooser::all_files_label", header: flh_filechooser.}: cstring
+var filechooser_custom_filter_label* {.importcpp: "Fl_File_Chooser::custom_filter_label", header: flh_filechooser.}: cstring
+var filechooser_existing_file_label* {.importcpp: "Fl_File_Chooser::existing_file_label", header: flh_filechooser.}: cstring
+var filechooser_favorites_label* {.importcpp: "Fl_File_Chooser::favorites_label", header: flh_filechooser.}: cstring
+var filechooser_filename_label* {.importcpp: "Fl_File_Chooser::filename_label", header: flh_filechooser.}: cstring
+var filechooser_filesystems_label* {.importcpp: "Fl_File_Chooser::filesystems_label", header: flh_filechooser.}: cstring
+var filechooser_manage_favorites_label* {.importcpp: "Fl_File_Chooser::manage_favorites_label", header: flh_filechooser.}: cstring
+var filechooser_new_directory_label* {.importcpp: "Fl_File_Chooser::new_directory_label", header: flh_filechooser.}: cstring
+var filechooser_new_directory_tooltip* {.importcpp: "Fl_File_Chooser::new_directory_tooltip", header: flh_filechooser.}: cstring
+var filechooser_preview_label* {.importcpp: "Fl_File_Chooser::preview_label", header: flh_filechooser.}: cstring
+var filechooser_save_label* {.importcpp: "Fl_File_Chooser::save_label", header: flh_filechooser.}: cstring
+var filechooser_show_label* {.importcpp: "Fl_File_Chooser::show_label", header: flh_filechooser.}: cstring
+var filechooser_hidden_label* {.importcpp: "Fl_File_Chooser::hidden_label", header: flh_filechooser.}: cstring
+#TODO var filechooser_sort* {.importcpp: "Fl_File_Chooser::sort", header: flh_filechooser.}: FileSortF
 
 proc fl_dir_chooser*(message, fname: cstring; relative: cint = 0): cstring {.importcpp: "fl_dir_chooser(@)", header: flh_filechooser.}
 proc fl_file_chooser*(message, pat, fname: cstring; relative: cint = 0): cstring {.importcpp: "fl_file_chooser(@)", header: flh_filechooser.}
 proc fl_file_chooser_callback*(cb: proc(c: cstring)) {.importcpp: "fl_file_chooser_callback(@)", header: flh_filechooser.}
 proc fl_file_chooser_ok_label*(text: cstring) {.importcpp: "fl_file_chooser_ok_label(@)", header: flh_filechooser.}
 
+const
+  flh_holdbrowser = "FL/Fl_Hold_Browser.H"
+type
+  HoldBrowserObj* {.importc: "Fl_Hold_Browser", header: flh_holdbrowser.} = object of BrowserObj
+  HoldBrowser* = ptr HoldBrowserObj
+
+proc make_HoldBrowser*(x, y, w, h: cint; text: cstring = nil): HoldBrowser {.importcpp: "new Fl_Hold_Browser(@)", header: flh_holdbrowser.}

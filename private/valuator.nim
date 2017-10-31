@@ -152,12 +152,12 @@ type
   Dial* = ptr DialObj
 
 const
-  NORMAL_DIAL* = 0
-  LINE_DIAL* = 1
-  FILL_DIAL* = 2
+  NORMAL_DIAL_TYPE* = 0
+  LINE_DIAL_TYPE* = 1
+  FILL_DIAL_TYPE* = 2
 
 proc make_dial*(x, y, w, h: cint; text: cstring = nil): Dial {.importcpp: "new Fl_Dial(@)", header: flh_dial.}
- 
+
 proc angle1*(self: Dial): cshort {.importcpp: "#.angle1(@)", header: flh_dial.}
 proc angle1*(self: Dial; a: cshort) {.importcpp: "#.angle1(@)", header: flh_dial.}
 proc angle2*(self: Dial): cshort {.importcpp: "#.angle2(@)", header: flh_dial.}
@@ -221,3 +221,34 @@ type
 
 proc make_fillslider*(x, y, w, h: cint; text: cstring = nil): FillSlider {.importcpp: "new Fl_Fill_Slider(@)", header: flh_fillslider.}
 
+const
+  flh_horfillslider = "FL/Fl_Hor_Fill_Slider.H"
+type
+  HorFillSliderObj* {.importc: "Fl_Hor_Fill_Slider", header: flh_horfillslider.} = object of SliderObj
+  HorFillSlider* = ptr HorFillSliderObj
+
+proc make_hor_fill_slider*(x, y, w, h: cint; text: cstring = nil): HorFillSlider {.importcpp: "new Fl_Hor_Fill_Slider(@)", header: flh_horfillslider.}
+
+const
+  flh_niceslider = "FL/Fl_Hor_Nice_Slider.H"
+type
+  HorNiceSliderObj* {.importc: "Fl_Hor_Nice_Slider", header: flh_niceslider.} = object of SliderObj
+  HorNiceSlider* = ptr HorNiceSliderObj
+
+proc make_HorNiceSlider*(x, y, w, h: cint; text: cstring = nil): HorNiceSlider {.importcpp: "new Fl_Hor_Nice_Slider(@)", header: flh_niceslider.}
+
+const
+  flh_horslider = "FL/Fl_Hor_Slider.H"
+type
+  HorSliderObj* {.importc: "Fl_Hor_Slider", header: flh_horslider.} = object of SliderObj
+  HorSlider* = ptr HorSliderObj
+
+proc make_HorSlider*(x, y, w, h: cint; text: cstring = nil): HorSlider {.importcpp: "new Fl_Hor_Slider(@)", header: flh_horslider.}
+
+const
+  flh_horvalueslider = "FL/Fl_Hor_Value_Slider.H"
+type
+  HorValueSliderObj* {.importc: "Fl_Hor_Value_Slider", header: flh_horvalueslider.} = object of ValueSliderObj
+  HorValueSlider* = ptr HorValueSliderObj
+
+proc make_HorValueSlider*(x, y, w, h: cint; text: cstring = nil): HorValueSlider {.importcpp: "new Fl_Hor_Value_Slider(@)", header: flh_horvalueslider.}

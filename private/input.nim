@@ -92,7 +92,7 @@ type
   InputChoice* = ptr InputChoiceObj
 
 proc make_inputchoice*(x, y, w, h: cint; text: cstring = nil): Input {.importcpp: "new Fl_Input_Choice(@)", header: flh_inputchoice.}
-  
+
 proc add*(self: InputChoice; text: cstring) {.importcpp: "#.add(@)", header: flh_inputchoice.}
 proc changed*(self: InputChoice): cint {.importcpp: "#.changed(@)", header: flh_inputchoice.}
 proc clear_changed*(self: InputChoice) {.importcpp: "#.clear_changed(@)", header: flh_inputchoice.}
@@ -114,4 +114,3 @@ proc `value=`*(self: InputChoice; val: csize) {.importcpp: "#.value(@)", header:
 proc `value=`*(self: InputChoice; val: cint) {.importcpp: "#.value(@)", header: flh_inputchoice.}
 proc menubutton*(self: InputChoice): MenuButton {.importcpp: "#.menubutton(@)", header: flh_inputchoice.}
 proc input*(self: InputChoice): Input {.importcpp: "#.input(@)", header: flh_inputchoice.}
-

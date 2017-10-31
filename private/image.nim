@@ -122,3 +122,11 @@ type
   XpmImage* = ptr XpmImageObj
 
 proc make_xpm_image*(filename: cstring): XbmImage {.importcpp: "new Fl_XPM_Image(@)", header: flh_xpmimage.}
+
+const
+  flh_gif = "FL/Fl_GIF_Image.H"
+type
+  GifImageObj* {.importc: "Fl_GIF_Image", header: flh_gif.} = object of PixmapObj
+  GifImage* = ptr GifImageObj
+
+proc make_gif_image*(filename: cstring): GifImage {.importcpp: "new Fl_GIF_Image(@)", header: flh_gif.}
