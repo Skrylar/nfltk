@@ -227,3 +227,11 @@ type
   HoldBrowser* = ptr HoldBrowserObj
 
 proc make_HoldBrowser*(x, y, w, h: cint; text: cstring = nil): HoldBrowser {.importcpp: "new Fl_Hold_Browser(@)", header: flh_holdbrowser.}
+
+const
+  flh_multibrowser = "FL/Fl_Multi_Browser.H"
+type
+  MultiBrowserObj* {.importc: "Fl_Multi_Browser", header: flh_multibrowser.} = object of BrowserObj
+  MultiBrowser* = ptr MultiBrowserObj
+
+proc make_MultiBrowser*(x, y, w, h: cint; text: cstring = nil): MultiBrowser {.importcpp: "new Fl_Multi_Browser(@)", header: flh_multibrowser.}

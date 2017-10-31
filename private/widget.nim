@@ -163,3 +163,13 @@ proc label*(self: Pixmap; w: Widget) {.importcpp: "#.label(@)", header: "FL/Fl_P
 proc label*(self: RGB_Image; w: Widget) {.importcpp: "#.label(@)", header: "FL/Fl_RGB_Image.H".}
 proc label*(self: Bitmap; w: Widget) {.importcpp: "#.label(@)", header: "FL/Fl_Bitmap.H".}
 
+const
+  flh_multilabel = "FL/Fl_Multi_Label.H"
+type
+  MultiLabel* {.importcpp: "Fl_Multi_Label", header: flh_multilabel.} = object
+    labela*, labelb*: cstring
+    typea*, typeb*: cuchar
+
+# TODO
+#label(self: MultiLabel; w: Widget)
+#label(self: MultiLabel; menu: MenuItem)

@@ -230,12 +230,12 @@ type
 proc make_hor_fill_slider*(x, y, w, h: cint; text: cstring = nil): HorFillSlider {.importcpp: "new Fl_Hor_Fill_Slider(@)", header: flh_horfillslider.}
 
 const
-  flh_niceslider = "FL/Fl_Hor_Nice_Slider.H"
+  flh_horniceslider = "FL/Fl_Hor_Nice_Slider.H"
 type
-  HorNiceSliderObj* {.importc: "Fl_Hor_Nice_Slider", header: flh_niceslider.} = object of SliderObj
+  HorNiceSliderObj* {.importc: "Fl_Hor_Nice_Slider", header: flh_horniceslider.} = object of SliderObj
   HorNiceSlider* = ptr HorNiceSliderObj
 
-proc make_HorNiceSlider*(x, y, w, h: cint; text: cstring = nil): HorNiceSlider {.importcpp: "new Fl_Hor_Nice_Slider(@)", header: flh_niceslider.}
+proc make_HorNiceSlider*(x, y, w, h: cint; text: cstring = nil): HorNiceSlider {.importcpp: "new Fl_Hor_Nice_Slider(@)", header: flh_horniceslider.}
 
 const
   flh_horslider = "FL/Fl_Hor_Slider.H"
@@ -252,3 +252,19 @@ type
   HorValueSlider* = ptr HorValueSliderObj
 
 proc make_HorValueSlider*(x, y, w, h: cint; text: cstring = nil): HorValueSlider {.importcpp: "new Fl_Hor_Value_Slider(@)", header: flh_horvalueslider.}
+
+const
+  flh_linedial = "FL/Fl_Line_Dial.H"
+type
+  LineDialObj* {.importc: "Fl_Line_Dial", header: flh_linedial.} = object of DialObj
+  LineDial* = ptr LineDialObj
+
+proc make_LineDial*(x, y, w, h: cint; text: cstring = nil): LineDial {.importcpp: "new Fl_Line_Dial(@)", header: flh_linedial.}
+
+const
+  flh_niceslider = "FL/Fl_Nice_Slider.H"
+type
+  NiceSliderObj* {.importc: "Fl_Nice_Slider", header: flh_niceslider.} = object of SliderObj
+  NiceSlider* = ptr NiceSliderObj
+
+proc make_NiceSlider*(x, y, w, h: cint; text: cstring = nil): NiceSlider {.importcpp: "new Fl_Nice_Slider(@)", header: flh_niceslider.}

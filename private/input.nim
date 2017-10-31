@@ -6,19 +6,19 @@ import widget
 # Input
 
 const
-  NORMAL_INPUT*          = 0
-  FLOAT_INPUT*           = 1
-  INT_INPUT*             = 2
-  HIDDEN_INPUT*          = 3
-  MULTILINE_INPUT*       = 4
-  SECRET_INPUT*          = 5
-  INPUT_TYPE*            = 7
-  INPUT_READONLY*        = 8
-  NORMAL_OUTPUT*         = (NORMAL_INPUT or INPUT_READONLY)
-  MULTILINE_OUTPUT*      = (MULTILINE_INPUT or INPUT_READONLY)
-  INPUT_WRAP*            = 16
-  MULTILINE_INPUT_WRAP*  = (MULTILINE_INPUT or INPUT_WRAP)
-  MULTILINE_OUTPUT_WRAP* = (MULTILINE_INPUT or INPUT_READONLY or INPUT_WRAP)
+  NORMAL_INPUT_TYPE*          = 0
+  FLOAT_INPUT_TYPE*           = 1
+  INT_INPUT_TYPE*             = 2
+  HIDDEN_INPUT_TYPE*          = 3
+  MULTILINE_INPUT_TYPE*       = 4
+  SECRET_INPUT_TYPE*          = 5
+  INPUT_TYPE_TYPE*            = 7
+  INPUT_READONLY_TYPE*        = 8
+  NORMAL_OUTPUT_TYPE*         = (NORMAL_INPUT_TYPE or INPUT_READONLY_TYPE)
+  MULTILINE_OUTPUT_TYPE*      = (MULTILINE_INPUT_TYPE or INPUT_READONLY_TYPE)
+  INPUT_WRAP_TYPE*            = 16
+  MULTILINE_INPUT_WRAP_TYPE*  = (MULTILINE_INPUT_TYPE or INPUT_WRAP_TYPE)
+  MULTILINE_OUTPUT_WRAP_TYPE* = (MULTILINE_INPUT_TYPE or INPUT_READONLY_TYPE or INPUT_WRAP_TYPE)
 
 const
   flh = "FL/Fl_Input_.H"
@@ -114,3 +114,35 @@ proc `value=`*(self: InputChoice; val: csize) {.importcpp: "#.value(@)", header:
 proc `value=`*(self: InputChoice; val: cint) {.importcpp: "#.value(@)", header: flh_inputchoice.}
 proc menubutton*(self: InputChoice): MenuButton {.importcpp: "#.menubutton(@)", header: flh_inputchoice.}
 proc input*(self: InputChoice): Input {.importcpp: "#.input(@)", header: flh_inputchoice.}
+
+const
+  flh_intinput = "FL/Fl_Int_Input.H"
+type
+  IntInputObj* {.importc: "Fl_Int_Input", header: flh_intinput.} = object of InputObj
+  IntInput* = ptr IntInputObj
+
+proc make_IntInput*(x, y, w, h: cint; text: cstring = nil): IntInput {.importcpp: "new Fl_Int_Input(@)", header: flh_intinput.}
+
+const
+  flh_multilineinput = "FL/Fl_Multiline_Input.H"
+type
+  MultilineInputObj* {.importc: "Fl_Multiline_Input", header: flh_multilineinput.} = object of InputObj
+  MultilineInput* = ptr MultilineInputObj
+
+proc make_MultilineInput*(x, y, w, h: cint; text: cstring = nil): MultilineInput {.importcpp: "new Fl_Multiline_Input(@)", header: flh_multilineinput.}
+
+const
+  flh_output = "FL/Fl_Output.H"
+type
+  OutputObj* {.importc: "Fl_Output", header: flh_output.} = object of InputObj
+  Output* = ptr OutputObj
+
+proc make_Output*(x, y, w, h: cint; text: cstring = nil): Output {.importcpp: "new Fl_Output(@)", header: flh_output.}
+
+const
+  flh_multilineoutput = "FL/Fl_Multiline_Output.H"
+type
+  MultilineOutputObj* {.importc: "Fl_Multiline_Output", header: flh_multilineoutput.} = object of OutputObj
+  MultilineOutput* = ptr MultilineOutputObj
+
+proc make_MultilineOutput*(x, y, w, h: cint; text: cstring = nil): MultilineOutput {.importcpp: "new Fl_Multiline_Output(@)", header: flh_multilineoutput.}

@@ -144,3 +144,16 @@ type
 proc make_double_window*(W, H: cint; text: cstring = nil): DoubleWindow {.importcpp: "new Fl_Double_Window(@)", header: flh_doublewindow.}
 proc make_double_window*(X, Y, W, H: cint; text: cstring = nil): DoubleWindow {.importcpp: "new Fl_Double_Window(@)", header: flh_doublewindow.}
 
+const
+  flh_overlaywindow = "FL/Fl_Overlay_Window.H"
+type
+  OverlayWindowObj* {.importc: "Fl_Overlay_Window", header: flh_overlaywindow.} = object of DoubleWindowObj
+  OverlayWindow* = ptr OverlayWindowObj
+
+proc show*(self: OverlayWindow) {.importcpp: "#.show(@)", header: flh_overlaywindow.}
+proc flush*(self: OverlayWindow) {.importcpp: "#.flush(@)", header: flh_overlaywindow.}
+proc hide*(self: OverlayWindow) {.importcpp: "#.hide(@)", header: flh_overlaywindow.}
+proc resize*(self: OverlayWindow; x, y, w, h: cint) {.importcpp: "#.resize(@)", header: flh_overlaywindow.}
+proc can_do_overlay*(self: OverlayWindow): cint {.importcpp: "#.can_do_overlay(@)", header: flh_overlaywindow.}
+proc redraw_overlay*(self: OverlayWindow) {.importcpp: "#.redraw_overlay(@)", header: flh_overlaywindow.}
+proc show*(self: OverlayWindow; a: cint; b: ptr cstring) {.importcpp: "#.show(@)", header: flh_overlaywindow.}

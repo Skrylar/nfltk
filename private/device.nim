@@ -142,27 +142,26 @@ else:
   public:
     static const char *class_id;
 
-    void color(Fl_Color c);
-    void color(uchar r, uchar g, uchar b);
-    void draw(const char* str, int n, int x, int y);
-    void draw(int angle, const char *str, int n, int x, int y);
-    void rtl_draw(const char* str, int n, int x, int y);
-    void font(Fl_Font face, Fl_Fontsize size);
-    void draw(Fl_Pixmap *pxm, int XP, int YP, int WP, int HP, int cx, int cy);
-    void draw(Fl_Bitmap *pxm, int XP, int YP, int WP, int HP, int cx, int cy);
-    void draw(Fl_RGB_Image *img, int XP, int YP, int WP, int HP, int cx, int cy);
-    void draw_image(const uchar* buf, int X,int Y,int W,int H, int D=3, int L=0);
-    void draw_image(Fl_Draw_Image_Cb cb, void* data, int X,int Y,int W,int H, int D=3);
-    void draw_image_mono(const uchar* buf, int X,int Y,int W,int H, int D=1, int L=0);
-    void draw_image_mono(Fl_Draw_Image_Cb cb, void* data, int X,int Y,int W,int H, int D=1);
-    double width(const char *str, int n);
-    double width(unsigned int c);
-    void text_extents(const char*, int n, int& dx, int& dy, int& w, int& h);
-    int height();
-    int descent();
-    void copy_offscreen(int x, int y, int w, int h, Fl_Offscreen pixmap, int srcx, int srcy);
-    void copy_offscreen_with_alpha(int x, int y, int w, int h, Fl_Offscreen pixmap, int srcx, int srcy);
-  };
+    color(c: Color)
+    color(r, g, b: cuchar)
+    draw(str: cstring; n, x, y: cint)
+    draw(angle: cint; str: cstring; n, x, y: cint)
+    rtl_draw(str: cstring; n, x, y: cint)
+    font(face: Font; size: Fontsize)
+    draw(pxm: Pixmap; XP, YP, WP, HP, cx, cy: cint)
+    draw(pxm: Bitmap; XP, YP, WP, HP, cx, cy: cint)
+    draw(img: RgbImage; XP, YP, WP, HP, cx, cy: cint)
+    draw_image(buf: ptr cuchar; X, Y, W, H: cint; D: cint = 3; L: cint = 0)
+    draw_image(cb: DrawImageCb; data: pointer; X, Y, W, H: cint; D: cint=3)
+    draw_image_mono(buf: ptr cuchar; X, Y, W, H: cint; D: cint = 1; L: cint = 0)
+    draw_image_mono(cb: DrawImageCb; data: pointer; X, Y, W, H: cint; D: cint=1)
+    width(str: cstring; n: cint): cdouble
+    width(c: cuint): cdouble
+    text_extents(text: cstring; n: cint; dx, dy, w, h: out cint)
+    height(): cint
+    descent(): cint
+    copy_offscreen(x, y, w, h: cint; pixmap: Offscreen; srcx, srcy: cint)
+    copy_offscreen_with_alpha(x, y, w, h: cint; pixmap: Offscreen; srcx, srcy: cint)
 
 # ______________________________________________________________________
 
@@ -205,3 +204,34 @@ proc name*(self: DevicePlugin): cstring {.importcpp: "@.name(@)", header: flh_de
 proc print*(self: DevicePlugin; w: Widget; x, y, height: cint): cint {.importcpp: "@.print(@)", header: flh_device.}
 proc rectangle_capture*(self: DevicePlugin; widget: Widget; x, y, w, h: cint): RgbImage {.importcpp: "@.rectangle_capture(@)", header: flh_device.}
 
+const
+  flh_imagesurface = "FL/Fl_Image_Surface.H"
+type
+  ImageSurfaceObj* {.importc: "Fl_Image_Surface", header: flh_imagesurface.} = object of SurfaceDeviceObj
+  ImageSurface* = ptr ImageSurfaceObj
+
+var image_surface_class_id {.importcpp: "Fl_Image_Surface::class_id", header: flh_imagesurface.}: cstring
+
+proc make_image_surface*(w, h, highres: cint = 0): ImageSurface {.importcpp: "new Fl_Image_Surface(@)", header: flh_imagesurface.}
+proc free*(self: ImageSurface) {.importcpp: "delete @", header: flh_imagesurface.}
+
+proc class_name*(self: ImageSurface): cstring {.importcpp: "#.class_name(@)", header: flh_imagesurface.}
+proc set_current*(self: ImageSurface) {.importcpp: "#.set_current(@)", header: flh_imagesurface.}
+proc draw*(self: ImageSurface; w: Widget; delta_x, delta_y: cint = 0) {.importcpp: "#.draw(@)", header: flh_imagesurface.}
+proc draw_decorated_window*(self: ImageSurface; win: Window; delta_x, delta_y: cint = 0) {.importcpp: "#.draw_decorated_window(@)", header: flh_imagesurface.}
+proc image*(self: ImageSurface): RgbImage {.importcpp: "#.image(@)", header: flh_imagesurface.}
+proc highres_image*(self: ImageSurface): SharedImage {.importcpp: "#.highres_image(@)", header: flh_imagesurface.}
+
+when defined(apple):
+  type
+    QuartzFlippedSurfaceObj* {.importc: "Fl_Quartz_Flipped_Surface_", header: flh_imagesurface.} = object of QuartzSurfaceObj
+    QuartzFlippedSurface* = ptr QuartzFlippedSurfaceObj
+
+  var quartz_flipped_surface_class_id {.importcpp: "Fl_Quartz_Surface_::class_id", header: flh_imagesurface.}: cstring
+
+  proc make_quartz_flipped_surface*(w, h: cint): QuartzFlippedImageSurface {.importcpp: "new Fl_Quartz_Flipped_Surface_(@)", header: flh_imagesurface.}
+  proc free*(self: QuartzFlippedImageSurface) {.importcpp: "delete @", header: flh_imagesurface.}
+
+  proc class_name*(self: QuartzFlippedImageSurface): cstring {.importcpp: "#.class_name(@)", header: flh_imagesurface.}
+  proc translate*(self: QuartzFlippedImageSurface; x, y: cint) {.importcpp: "#.translate(@)", header: flh_imagesurface.}
+  proc untranslate*(self: QuartzFlippedImageSurface) {.importcpp: "#.untranslate(@)", header: flh_imagesurface.}

@@ -130,3 +130,12 @@ type
   GifImage* = ptr GifImageObj
 
 proc make_gif_image*(filename: cstring): GifImage {.importcpp: "new Fl_GIF_Image(@)", header: flh_gif.}
+
+const
+  flh_jpeg = "FL/Fl_JPEG_Image.H"
+type
+  JpegImageObj* {.importc: "Fl_JPEG_Image", header: flh_jpeg.} = object of RgbImage
+  JpegImage* = ptr JpegImageObj
+
+proc make_jpeg_image*(filename: cstring): JpegImage {.importcpp: "new Fl_JPEG_Image(@)", header: flh_jpeg.}
+proc make_jpeg_image*(name: cstring; data: cuchar): JpegImage {.importcpp: "new Fl_JPEG_Image(@)", header: flh_jpeg.}
