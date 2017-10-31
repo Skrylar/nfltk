@@ -72,3 +72,18 @@ proc push*(self: Tabs; w: Widget): cint {.importcpp: "#.push(@)", header: flh_ta
 proc which*(self: Tabs; event_x, event_y: cint): Widget {.importcpp: "#.which(@)", header: flh_tabs.}
 proc client_area*(self: Tabs; rx, ry, rw, rh: out cint; tabh: cint = 0) {.importcpp: "#.client_area(@)", header: flh_tabs.}
 
+const
+  flh_pack = "FL/Fl_Pack.H"
+
+  PACK_VERTICAL* = 0
+  PACK_HORIZONTAL* = 1
+
+type
+  PackObj* {.importc: "Fl_Pack", header: flh_pack.} = object of GroupObj
+  Pack* = ptr PackObj
+
+proc make_Pack*(x, y, w, h: cint; text: cstring = nil): Pack {.importcpp: "new Fl_Pack(@)", header: flh_pack.}
+
+proc spacing*(self: Pack): cint {.importcpp: "#.spacing(@)", header: flh_pack.}
+proc spacing*(self: Pack; i: cint) {.importcpp: "#.spacing(@)", header: flh_pack.}
+proc horizontal*(self: Pack): cuchar {.importcpp: "#.horizontal(@)", header: flh_pack.}

@@ -134,8 +134,25 @@ proc make_gif_image*(filename: cstring): GifImage {.importcpp: "new Fl_GIF_Image
 const
   flh_jpeg = "FL/Fl_JPEG_Image.H"
 type
-  JpegImageObj* {.importc: "Fl_JPEG_Image", header: flh_jpeg.} = object of RgbImage
+  JpegImageObj* {.importc: "Fl_JPEG_Image", header: flh_jpeg.} = object of RgbImageObj
   JpegImage* = ptr JpegImageObj
 
 proc make_jpeg_image*(filename: cstring): JpegImage {.importcpp: "new Fl_JPEG_Image(@)", header: flh_jpeg.}
 proc make_jpeg_image*(name: cstring; data: cuchar): JpegImage {.importcpp: "new Fl_JPEG_Image(@)", header: flh_jpeg.}
+
+const
+  flh_pngimage = "FL/Fl_PNG_Image.H"
+type
+  PngImageObj* {.importc: "Fl_PNG_Image", header: flh_pngimage.} = object of RgbImageObj
+  PngImage* = ptr PngImageObj
+
+proc make_png_image*(filename: cstring): PngImage {.importcpp: "new Fl_PNG_Image(@)", header: flh_pngimage.}
+proc make_png_image*(name: cstring; data: cuchar; datasize: cint): PngImage {.importcpp: "new Fl_PNG_Image(@)", header: flh_pngimage.}
+
+const
+  flh_pnmimage = "FL/Fl_PNM_Image.H"
+type
+  PnmImageObj* {.importc: "Fl_PNM_Image", header: flh_pnmimage.} = object of RgbImageObj
+  PnmImage* = ptr PnmImageObj
+
+proc make_pnm_image*(filename: cstring): PnmImage {.importcpp: "new Fl_PNM_Image(@)", header: flh_pnmimage.}
