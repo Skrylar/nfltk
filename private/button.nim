@@ -73,3 +73,11 @@ proc shortcut*(self: Button; s: cstring) {.importcpp: "#.shortcut(@)", header: f
 proc down_color*(self: Button): Color {.importcpp: "#.down_color(@)", header: flh.}
 proc `down_color=`*(self: Button; c: cuint) {.importcpp: "#.down_color(@)", header: flh.}
 
+const
+  flh_repeat_button = "FL/Fl_Repeat_Button.H"
+type
+  RepeatButtonObj* {.importc: "Fl_Repeat_Button", header: flh_repeat_button.} = object of ButtonObj
+  RepeatButton* = ptr RepeatButtonObj
+
+proc make_RepeatButton*(x, y, w, h: cint; text: cstring = nil): RepeatButton {.importcpp: "new Fl_Repeat_Button(@)", header: flh_repeat_button.}
+proc deactivate*(self: RepeatButton) {.importcpp: "#.deactivate(@)", header: flh_repeat_button.}

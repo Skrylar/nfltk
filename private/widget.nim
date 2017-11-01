@@ -173,3 +173,5 @@ type
 # TODO
 #label(self: MultiLabel; w: Widget)
 #label(self: MultiLabel; menu: MenuItem)
+
+proc show_colormap(old: Color): Color {.importcpp: "fl_show_colormap(@)", header: "FL/fl_show_colormap.H".}
