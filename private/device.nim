@@ -235,3 +235,77 @@ when defined(apple):
   proc class_name*(self: QuartzFlippedImageSurface): cstring {.importcpp: "#.class_name(@)", header: flh_imagesurface.}
   proc translate*(self: QuartzFlippedImageSurface; x, y: cint) {.importcpp: "#.translate(@)", header: flh_imagesurface.}
   proc untranslate*(self: QuartzFlippedImageSurface) {.importcpp: "#.untranslate(@)", header: flh_imagesurface.}
+
+const
+  flh_pageddevice = "FL/Fl_Paged_Device.H"
+  NO_PAGE_FORMATS* = 30
+
+const
+  #enum Page_Format {
+  PAGE_A0* = 0
+  PAGE_A1* = 1
+  PAGE_A2* = 2
+  PAGE_A3* = 3
+  PAGE_A4* = 4
+  PAGE_A5* = 5
+  PAGE_A6* = 6
+  PAGE_A7* = 7
+  PAGE_A8* = 8
+  PAGE_A9* = 9
+  PAGE_B0* = 10
+  PAGE_B1* = 11
+  PAGE_B2* = 12
+  PAGE_B3* = 13
+  PAGE_B4* = 14
+  PAGE_B5* = 15
+  PAGE_B6* = 16
+  PAGE_B7* = 17
+  PAGE_B8* = 18
+  PAGE_B9* = 19
+  PAGE_B10* = 20
+  PAGE_C5E* = 21
+  PAGE_DLE* = 22
+  PAGE_EXECUTIVE* = 23
+  PAGE_FOLIO* = 24
+  PAGE_LEDGER* = 25
+  PAGE_LEGAL* = 26
+  PAGE_LETTER* = 27
+  PAGE_TABLOID* = 28
+  PAGE_ENVELOPE* = 29
+  PAGE_MEDIA* = 0x1000
+
+const
+  #enum Page_Layout {
+  LAYOUT_PORTRAIT* = 0
+  LAYOUT_LANDSCAPE* = 0x100
+  LAYOUT_REVERSED* = 0x200
+  LAYOUT_ORIENTATION* = 0x300
+
+#class FL_EXPORT Fl_Paged_Device : public Fl_Surface_Device {
+
+type
+  PageFormat* {.importcpp: "Fl_Paged_Device::page_format", header: flh_pageddevice.} = object
+    width*, height*: cint
+    name*: cstring
+
+var paged_device_page_formats {.importcpp: "Fl_Paged_Device::page_formats", header: flh_pageddevice.}: array[0..(NO_PAGE_FORMATS-1), PageFormat]
+var paged_device_class_id* {.importcpp: "Fl_Paged_Device::class_id", header: flh_pageddevice.}: cstring
+
+proc free*(self: PagedDevice) {.importcpp: "delete @", header: flh_pageddevice.}
+
+proc class_name*(self: PagedDevice; ): cstring {.importcpp: "#.class_name(@)", header: flh_pageddevice.}
+proc start_job*(self: PagedDevice; pagecount: cint; frompage, topage: ptr cint = nil): cint {.importcpp: "#.start_job(@)", header: flh_pageddevice.}
+proc start_page*(self: PagedDevice; ): cint {.importcpp: "#.start_page(@)", header: flh_pageddevice.}
+proc printable_rect*(self: PagedDevice; w, h: ptr cint): cint {.importcpp: "#.printable_rect(@)", header: flh_pageddevice.}
+proc margins*(self: PagedDevice; left, top, right, bottom: ptr cint) {.importcpp: "#.margins(@)", header: flh_pageddevice.}
+proc origin*(self: PagedDevice; x, y: cint) {.importcpp: "#.origin(@)", header: flh_pageddevice.}
+proc origin*(self: PagedDevice; x, y: out cint) {.importcpp: "#.origin(@)", header: flh_pageddevice.}
+proc scale*(self: PagedDevice; scale_x, scale_y: cfloat = 0.0) {.importcpp: "#.scale(@)", header: flh_pageddevice.}
+proc rotate*(self: PagedDevice; angle: cfloat) {.importcpp: "#.rotate(@)", header: flh_pageddevice.}
+proc translate*(self: PagedDevice; x, y: cint) {.importcpp: "#.translate(@)", header: flh_pageddevice.}
+proc untranslate*(self: PagedDevice; ) {.importcpp: "#.untranslate(@)", header: flh_pageddevice.}
+proc print_widget*(self: PagedDevice; widget: Widget; delta_x, delta_y: cint = 0) {.importcpp: "#.print_widget(@)", header: flh_pageddevice.}
+proc print_window*(self: PagedDevice; win: Window; x_offset, y_offset: cint = 0) {.importcpp: "#.print_window(@)", header: flh_pageddevice.}
+proc print_window_part*(self: PagedDevice; win: Window; x, y, w, h: cint; delta_x, delta_y: cint = 0) {.importcpp: "#.print_window_part(@)", header: flh_pageddevice.}
+proc end_page*(self: PagedDevice; ): cint {.importcpp: "#.end_page(@)", header: flh_pageddevice.}
+proc end_job*(self: PagedDevice; ) {.importcpp: "#.end_job(@)", header: flh_pageddevice.}
