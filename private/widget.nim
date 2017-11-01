@@ -174,4 +174,156 @@ type
 #label(self: MultiLabel; w: Widget)
 #label(self: MultiLabel; menu: MenuItem)
 
+# ________________________________________________________________________
+
 proc show_colormap(old: Color): Color {.importcpp: "fl_show_colormap(@)", header: "FL/fl_show_colormap.H".}
+
+# ________________________________________________________________________
+
+const
+  flh_preferences = "FL/Fl_Preferences.H"
+
+  #enum Root {
+  PREFERENCES_SYSTEM* = 0
+  PREFERENCES_USER* = 1
+
+type
+  PreferenceID* = pointer
+
+  PreferencesObj* {.importc: "Fl_Preferences", header: flh_preferences.} = object {.inheritable.}
+  Preferences* = ptr PreferencesObj
+
+  PreferenceEntry* {.importcpp: "Fl_Preferences::Entry", header: flh_preferences.} = object
+    name*, value*: cstring
+
+  PreferenceName* {.importcpp: "Fl_Preferences::Name", header: flh_preferences.} = object
+  PreferenceNode* {.importcpp: "Fl_Preferences::Node", header: flh_preferences.} = object
+  PreferenceRootNode* {.importcpp: "Fl_Preferences::RootNode", header: flh_preferences.} = object
+
+#class FL_EXPORT Fl_Preferences {
+proc preferences_newUUID*() {.importcpp: "Fl_Preferences::newUUID", header: flh_preferences.}
+
+proc make_preferences*(root: cint; vendor, application: cstring): Preferences {.importcpp: "new Fl_Preferences(@)", header: flh_preferences.}
+proc make_preferences*(path, vendor, application: cstring): Preferences {.importcpp: "new Fl_Preferences(@)", header: flh_preferences.}
+proc make_preferences*(parent: Preferences; group: cstring): Preferences {.importcpp: "new Fl_Preferences(@)", header: flh_preferences.}
+proc make_preferences*(parent: Preferences; groupIndex: cint): Preferences {.importcpp: "new Fl_Preferences(@)", header: flh_preferences.}
+proc make_preferences*(id: PreferenceID): Preferences {.importcpp: "new Fl_Preferences(@)", header: flh_preferences.}
+
+# TODO
+#Preferences(const Fl_Preferences&)
+
+proc free*(self: Preferences) {.importcpp: "delete @", header: flh_preferences.}
+
+proc remove*(id: PreferenceID): cchar {.importcpp: "Fl_Preferences::remove(@)", header: flh_preferences.}
+
+proc id*(self: Preferences): PreferenceID {.importcpp: "#.id(@)", header: flh_preferences.}
+proc name*(self: Preferences): cstring {.importcpp: "#.name(@)", header: flh_preferences.}
+proc path*(self: Preferences): cstring {.importcpp: "#.path(@)", header: flh_preferences.}
+proc groups*(self: Preferences): cint {.importcpp: "#.groups(@)", header: flh_preferences.}
+proc group*(self: Preferences; num_group: cint): cstring {.importcpp: "#.group(@)", header: flh_preferences.}
+proc groupExists*(self: Preferences; key: cstring): cchar {.importcpp: "#.groupExists(@)", header: flh_preferences.}
+proc deleteGroup*(self: Preferences; group: cstring): cchar {.importcpp: "#.deleteGroup(@)", header: flh_preferences.}
+proc deleteAllGroups*(self: Preferences): cchar {.importcpp: "#.deleteAllGroups(@)", header: flh_preferences.}
+proc entries*(self: Preferences): cint {.importcpp: "#.entries(@)", header: flh_preferences.}
+proc entry*(self: Preferences; index: cint): cstring {.importcpp: "#.entry(@)", header: flh_preferences.}
+proc entryExists*(self: Preferences; key: cstring): cchar {.importcpp: "#.entryExists(@)", header: flh_preferences.}
+proc deleteEntry*(self: Preferences; entry: cstring): cchar {.importcpp: "#.deleteEntry(@)", header: flh_preferences.}
+proc deleteAllEntries*(self: Preferences): cchar {.importcpp: "#.deleteAllEntries(@)", header: flh_preferences.}
+proc clear*(self: Preferences): cchar {.importcpp: "#.clear(@)", header: flh_preferences.}
+proc set*(self: Preferences; entry: cstring; value: cint): cchar {.importcpp: "#.set(@)", header: flh_preferences.}
+proc set*(self: Preferences; entry: cstring; value: cfloat): cchar {.importcpp: "#.set(@)", header: flh_preferences.}
+proc set*(self: Preferences; entry: cstring; value: cfloat; precision: cint): cchar {.importcpp: "#.set(@)", header: flh_preferences.}
+proc set*(self: Preferences; entry: cstring; value: cdouble): cchar {.importcpp: "#.set(@)", header: flh_preferences.}
+proc set*(self: Preferences; entry: cstring; value: cdouble; precision: cint): cchar {.importcpp: "#.set(@)", header: flh_preferences.}
+proc set*(self: Preferences; entry, value: cstring): cchar {.importcpp: "#.set(@)", header: flh_preferences.}
+proc set*(self: Preferences; entry: cstring; value: pointer; size: cint): cchar {.importcpp: "#.set(@)", header: flh_preferences.}
+proc get*(self: Preferences; entry: cstring; value: ref cint; defaultValue: cint): cchar {.importcpp: "#.get(@)", header: flh_preferences.}
+proc get*(self: Preferences; entry: cstring; value: ref cfloat; defaultValue: float): cchar {.importcpp: "#.get(@)", header: flh_preferences.}
+proc get*(self: Preferences; entry: cstring; value: ref cdouble; defaultValue: cdouble): cchar {.importcpp: "#.get(@)", header: flh_preferences.}
+proc get*(self: Preferences; entry: cstring; value: ref cstring; defaultValue: cstring): cchar {.importcpp: "#.get(@)", header: flh_preferences.}
+proc get*(self: Preferences; entry, value, defaultValue: cstring; maxSize: cint): cchar {.importcpp: "#.get(@)", header: flh_preferences.}
+proc get*(self: Preferences; entry: cstring; value: ref pointer; defaultValue: pointer; defaultSize: cint ): cchar {.importcpp: "#.get(@)", header: flh_preferences.}
+proc get*(self: Preferences; entry: cstring; value, defaultValue: pointer; defaultSize, maxSize: cint): cchar {.importcpp: "#.get(@)", header: flh_preferences.}
+proc size*(self: Preferences; entry: cstring): cint {.importcpp: "#.size(@)", header: flh_preferences.}
+proc getUserdataPath*(self: Preferences; path: cstring; pathlen: cint): cchar {.importcpp: "#.getUserdataPath(@)", header: flh_preferences.}
+proc flush*(self: Preferences) {.importcpp: "#.flush(@)", header: flh_preferences.}
+
+#class FL_EXPORT PreferenceName {
+proc make_preference_name*(n: cuint): PreferenceName {.importcpp: "new Fl_Preferences::Name(@)", header: flh_preferences.}
+proc make_preference_name*(format: cstring): PreferenceName {.importcpp: "new Fl_Preferences::Name(@)", header: flh_preferences, varargs.}
+# XXX in C++ this is the operator()
+proc data*(self: PreferenceName) {.importcpp: "#()", header: flh_preferences}
+proc free*(self: PreferenceName) {.importcpp: "delete @", header: flh_preferences.}
+
+#class FL_EXPORT Node {
+var preference_node_lastEntrySet {.importcpp: "Fl_Preferences::Node::lastEntrySet", header: flh_preferences.}: cint
+
+proc make_node*(path: cstring): PreferenceNode {.importcpp: "new Fl_Preferences::Node(@)", header: flh_preferences.}
+proc free*(self: PreferenceNode) {.importcpp: "delete @", header: flh_preferences.}
+
+# TODO
+#write(FILE *f): cint
+
+proc name*(self: PreferenceNode): cstring {.importcpp: "#.name(@)", header: flh_preferences.}
+proc path*(self: PreferenceNode): cstring {.importcpp: "#.path(@)", header: flh_preferences.}
+proc find*(self: PreferenceNode; path: cstring): ptr PreferenceNode {.importcpp: "#.find(@)", header: flh_preferences.}
+proc search*(self: PreferenceNode; path: cstring; offset: cint = 0): ptr PreferenceNode {.importcpp: "#.search(@)", header: flh_preferences.}
+proc childNode*(self: PreferenceNode; ix: cint): ptr PreferenceNode {.importcpp: "#.childNode(@)", header: flh_preferences.}
+proc addChild*(self: PreferenceNode; path: cstring): ptr PreferenceNode {.importcpp: "#.addChild(@)", header: flh_preferences.}
+proc setParent*(self: PreferenceNode; parent: ptr PreferenceNode) {.importcpp: "#.setParent(@)", header: flh_preferences.}
+proc parent*(self: PreferenceNode): ptr PreferenceNode {.importcpp: "#.parent(@)", header: flh_preferences.}
+proc setRoot*(self: PreferenceNode; r: ptr PreferenceRootNode) {.importcpp: "#.setRoot(@)", header: flh_preferences.}
+proc findRoot*(self: PreferenceNode): ptr PreferenceRootNode {.importcpp: "#.findRoot(@)", header: flh_preferences.}
+proc remove*(self: PreferenceNode): cchar {.importcpp: "#.remove(@)", header: flh_preferences.}
+proc dirty*(self: PreferenceNode): cchar {.importcpp: "#.dirty(@)", header: flh_preferences.}
+proc deleteAllChildren*(self: PreferenceNode) {.importcpp: "#.deleteAllChildren(@)", header: flh_preferences.}
+proc nChildren*(self: PreferenceNode): cint {.importcpp: "#.nChildren(@)", header: flh_preferences.}
+proc child*(self: PreferenceNode; ix: cint): cstring {.importcpp: "#.child(@)", header: flh_preferences.}
+proc set*(self: PreferenceNode; name, value: cstring) {.importcpp: "#.set(@)", header: flh_preferences.}
+proc set*(self: PreferenceNode; line: cstring) {.importcpp: "#.set(@)", header: flh_preferences.}
+proc add*(self: PreferenceNode; line: cstring) {.importcpp: "#.add(@)", header: flh_preferences.}
+proc get*(self: PreferenceNode; name: cstring): cstring {.importcpp: "#.get(@)", header: flh_preferences.}
+proc getEntry*(self: PreferenceNode; name: cstring): cint {.importcpp: "#.getEntry(@)", header: flh_preferences.}
+proc deleteEntry*(self: PreferenceNode; name: cstring): cchar {.importcpp: "#.deleteEntry(@)", header: flh_preferences.}
+proc deleteAllEntries*(self: PreferenceNode) {.importcpp: "#.deleteAllEntries(@)", header: flh_preferences.}
+proc nEntry*(self: PreferenceNode): cint {.importcpp: "#.nEntry(@)", header: flh_preferences.}
+
+# TODO
+#PreferenceEntry &entry(i: cint)
+
+#class FL_EXPORT RootNode {
+proc make_preference_root_node*(p: ptr Preferences; root: cint; vendor, application: cstring): PreferenceRootNode {.importcpp: "new Fl_Preferences::RootNode(@)", header: flh_preferences.}
+proc make_preference_root_node*(p: ptr Preferences; path, vendor, application: cstring): PreferenceRootNode {.importcpp: "new Fl_Preferences::RootNode(@)", header: flh_preferences.}
+proc make_preference_root_node*(p: ptr Preferences): PreferenceRootNode {.importcpp: "new Fl_Preferences::RootNode(@)", header: flh_preferences.}
+
+proc free*(self: PreferenceRootNode) {.importcpp: "delete @", header: flh_preferences.}
+
+proc read*(self: PreferenceRootNode): cint {.importcpp: "#.read(@)", header: flh_preferences.}
+proc write*(self: PreferenceRootNode): cint {.importcpp: "#.write(@)", header: flh_preferences.}
+proc getPath*(self: PreferenceRootNode; path: cstring; pathlen: cint): cchar {.importcpp: "#.getPath(@)", header: flh_preferences.}
+
+# ________________________________________________________________________
+
+const
+  flh_plugin = "FL/Fl_Plugin.H"
+type
+  PluginObj* {.importc: "Fl_Plugin", header: flh_plugin.} = object
+  Plugin* = ptr PluginObj
+
+  PluginManagerObj* {.importc: "Fl_Plugin_Manager", header: flh_plugin.} = object of PreferencesObj
+  PluginManager* = ptr PluginManagerObj
+
+proc make_plugin*(klass, name: cstring): Plugin {.importcpp: "new Fl_Plugin(@)", header: flh_plugin.}
+proc free*(self: Plugin) {.importcpp: "delete @", header: flh_plugin.}
+
+proc make_plugin_manager*(klass: cstring): PluginManager {.importcpp: "new Fl_Plugin_Manager(@)", header: flh_plugin.}
+proc free*(self: PluginManager) {.importcpp: "delete @", header: flh_plugin.}
+
+proc plugins*(self: Plugin): cint {.importcpp: "#.plugins(@)", header: flh_plugin.}
+proc plugin*(self: Plugin; index: cint): Plugin {.importcpp: "#.plugin(@)", header: flh_plugin.}
+proc plugin*(self: Plugin; name: cstring): Plugin {.importcpp: "#.plugin(@)", header: flh_plugin.}
+proc addPlugin*(self: Plugin; name: cstring; plugin: Plugin): PreferenceID {.importcpp: "#.addPlugin(@)", header: flh_plugin.}
+
+proc removePlugin*(self: Plugin): PreferenceID {.importcpp: "Fl_Plugin_Manager::removePlugin(@)", header: flh_plugin.}
+proc load*(self: Plugin; filename: cstring): cint {.importcpp: "Fl_Plugin_Manager::load(@)", header: flh_plugin.}
+proc loadAll*(self: Plugin; filepath: cstring; pattern: cstring = nil): cint {.importcpp: "Fl_Plugin_Manager::loadAll(@)", header: flh_plugin.}
