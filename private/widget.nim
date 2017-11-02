@@ -327,3 +327,31 @@ proc addPlugin*(self: Plugin; name: cstring; plugin: Plugin): PreferenceID {.imp
 proc removePlugin*(self: Plugin): PreferenceID {.importcpp: "Fl_Plugin_Manager::removePlugin(@)", header: flh_plugin.}
 proc load*(self: Plugin; filename: cstring): cint {.importcpp: "Fl_Plugin_Manager::load(@)", header: flh_plugin.}
 proc loadAll*(self: Plugin; filepath: cstring; pattern: cstring = nil): cint {.importcpp: "Fl_Plugin_Manager::loadAll(@)", header: flh_plugin.}
+
+# ________________________________________________________________________
+
+const
+  flh_positioner = "FL/Fl_Positioner.H"
+type
+  PositionerObj* {.importc: "Fl_Positioner", header: flh_positioner.} = object of WidgetObj
+  Positioner* = ptr PositionerObj
+
+proc make_Positioner*(x, y, w, h: cint; text: cstring = nil): Positioner {.importcpp: "new Fl_Positioner(@)", header: flh_positioner.}
+
+proc xvalue*(self: Positioner): cdouble {.importcpp: "#.xvalue(@)", header: flh_positioner.}
+proc yvalue*(self: Positioner): cdouble {.importcpp: "#.yvalue(@)", header: flh_positioner.}
+proc `xvalue=`*(self: Positioner; a: cdouble): cint {.importcpp: "#.xvalue(@)", header: flh_positioner.}
+proc `yvalue=`*(self: Positioner; a: cdouble): cint {.importcpp: "#.yvalue(@)", header: flh_positioner.}
+proc value*(self: Positioner; x, y: cdouble): cint {.importcpp: "#.value(@)", header: flh_positioner.}
+proc xbounds*(self: Positioner; x, y: cdouble) {.importcpp: "#.xbounds(@)", header: flh_positioner.}
+proc xminimum*(self: Positioner): cdouble {.importcpp: "#.xminimum(@)", header: flh_positioner.}
+proc `xminimum=`*(self: Positioner; a: cdouble) {.importcpp: "#.xminimum(@)", header: flh_positioner.}
+proc xmaximum*(self: Positioner): cdouble {.importcpp: "#.xmaximum(@)", header: flh_positioner.}
+proc `xmaximum=`*(self: Positioner; a: cdouble) {.importcpp: "#.xmaximum(@)", header: flh_positioner.}
+proc ybounds*(self: Positioner; a, b: cdouble) {.importcpp: "#.ybounds(@)", header: flh_positioner.}
+proc yminimum*(self: Positioner): cdouble {.importcpp: "#.yminimum(@)", header: flh_positioner.}
+proc `yminimum=`*(self: Positioner; a: cdouble) {.importcpp: "#.yminimum(@)", header: flh_positioner.}
+proc ymaximum*(self: Positioner): cdouble {.importcpp: "#.ymaximum(@)", header: flh_positioner.}
+proc `ymaximum=`*(self: Positioner; a: cdouble) {.importcpp: "#.ymaximum(@)", header: flh_positioner.}
+proc `xstep=`*(self: Positioner; a: cdouble) {.importcpp: "#.xstep(@)", header: flh_positioner.}
+proc `ystep=`*(self: Positioner; a: cdouble) {.importcpp: "#.ystep(@)", header: flh_positioner.}
