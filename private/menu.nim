@@ -179,7 +179,6 @@ proc add*(self: MenuItem; a: cstring; shortcut: cint; cb: Callback; p: pointer =
 proc add*(self: MenuItem; a, b: cstring; cb: Callback; d: pointer = nil; e: cint = 0): cint {.importcpp: "#.add(@)", header: flh_menuitem.}
 proc size*(self: MenuItem): cint {.importcpp: "#.size(@)", header: flh_menuitem.}
 
-
 proc label*(self: Image; m: Menu_Item) {.importcpp: "#.label(@)", header: "FL/Fl_Image.H".}
 proc label*(self: Pixmap; m: Menu_Item) {.importcpp: "#.label(@)", header: "FL/Fl_Menu.H".}
 proc label*(self: RGB_Image; m: Menu_Item) {.importcpp: "#.label(@)", header: "FL/Fl_RGB_Image.H".}
@@ -197,3 +196,31 @@ proc value*(self: Choice): cint {.importcpp: "#.value(@)", header: flh_choice.}
 proc value*(self: Choice; v: cint): cint {.importcpp: "#.value(@)", header: flh_choice.}
 proc value*(self: Choice; v: MenuItem): cint {.importcpp: "#.value(@)", header: flh_choice.}
 
+# ________________________________________________________________________
+
+const
+  flh_sys_menu_bar = "FL/Fl_Sys_Menu_Bar.H"
+type
+  SysMenuBarObj* {.importc: "Fl_Sys_Menu_Bar", header: flh_sys_menu_bar.} = object of MenuBarObj
+  SysMenuBar* = ptr SysMenuBarObj
+
+proc make_SysMenuBar*(x, y, w, h: cint; text: cstring = nil): SysMenuBar {.importcpp: "new Fl_Sys_Menu_Bar(@)", header: flh_sys_menu_bar.}
+
+proc update*(self: SysMenuBar) {.importcpp: "#.update(@)", header: flh_sys_menu_bar.}
+
+when defined(apple):
+  proc menu*(self: SysMenuBar): MenuItem {.importcpp: "#.menu(@)", header: flh_sys_menu_bar.}
+  proc `menu=`*(self: SysMenuBar; m: MenuItem) {.importcpp: "#.menu(@)", header: flh_sys_menu_bar.}
+  proc add*(self: SysMenuBar; label: cstring; shortcut: cint; cb: Callback; user_data: pointer = nil; flags: cint = 0): cint {.importcpp: "#.add(@)", header: flh_sys_menu_bar.}
+  proc add*(self: SysMenuBar; label, shortcut: cstring; cb: Callback; user_data: pointer = nil; flags: cint = 0): cint {.importcpp: "#.add(@)", header: flh_sys_menu_bar.}
+  proc add*(self: SysMenuBar; str: cstring): cint {.importcpp: "#.add(@)", header: flh_sys_menu_bar.}
+  proc insert*(self: SysMenuBar; index: cint; label: cstring; shortcut: cint; cb: Callback; user_data: pointer = nil; flags: cint = 0): cint {.importcpp: "#.insert(@)", header: flh_sys_menu_bar.}
+  proc insert*(self: SysMenuBar; index: cint; label, shortcut: cstring; cb: Callback; user_data: pointer = 0; flags: cint = 0): cint {.importcpp: "#.insert(@)", header: flh_sys_menu_bar.}
+  proc remove*(self: SysMenuBar; n: cint) {.importcpp: "#.remove(@)", header: flh_sys_menu_bar.}
+  proc replace*(self: SysMenuBar; index: cint; name: cstring) {.importcpp: "#.replace(@)", header: flh_sys_menu_bar.}
+  proc clear*(self: SysMenuBar) {.importcpp: "#.clear(@)", header: flh_sys_menu_bar.}
+  proc clear_submenu*(self: SysMenuBar; index: cint): cint {.importcpp: "#.clear_submenu(@)", header: flh_sys_menu_bar.}
+  proc global*(self: SysMenuBar) {.importcpp: "#.global(@)", header: flh_sys_menu_bar.}
+  proc mode*(self: SysMenuBar; i: cint): cint {.importcpp: "#.mode(@)", header: flh_sys_menu_bar.}
+  proc shortcut*(self: SysMenuBar; i, s: cint) {.importcpp: "#.shortcut(@)", header: flh_sys_menu_bar.}
+  proc setonly*(self: SysMenuBar; item: MenuItem) {.importcpp: "#.setonly(@)", header: flh_sys_menu_bar.}
