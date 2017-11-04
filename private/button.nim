@@ -81,3 +81,13 @@ type
 
 proc make_RepeatButton*(x, y, w, h: cint; text: cstring = nil): RepeatButton {.importcpp: "new Fl_Repeat_Button(@)", header: flh_repeat_button.}
 proc deactivate*(self: RepeatButton) {.importcpp: "#.deactivate(@)", header: flh_repeat_button.}
+
+# ________________________________________________________________________
+
+const
+  flh_return_button = "FL/Fl_Return_Button.H"
+type
+  ReturnButtonObj* {.importc: "Fl_Return_Button", header: flh_return_button.} = object of ButtonObj
+  ReturnButton* = ptr ReturnButtonObj
+
+  proc make_ReturnButton*(x, y, w, h: cint; text: cstring = nil): ReturnButton {.importcpp: "new Fl_Return_Button(@)", header: flh_return_button.}

@@ -355,3 +355,21 @@ proc ymaximum*(self: Positioner): cdouble {.importcpp: "#.ymaximum(@)", header: 
 proc `ymaximum=`*(self: Positioner; a: cdouble) {.importcpp: "#.ymaximum(@)", header: flh_positioner.}
 proc `xstep=`*(self: Positioner; a: cdouble) {.importcpp: "#.xstep(@)", header: flh_positioner.}
 proc `ystep=`*(self: Positioner; a: cdouble) {.importcpp: "#.ystep(@)", header: flh_positioner.}
+
+# ________________________________________________________________________
+
+const
+  flh_progress = "FL/Fl_Progress.H"
+
+type
+  ProgressObj* {.importc: "Fl_Progress", header: flh_progress.} = object of WidgetObj
+  Progress* = ptr ProgressObj
+
+proc make_Progress*(x, y, w, h: cint; text: cstring = nil): Progress {.importcpp: "new Fl_Progress(@)", header: flh_progress.}
+
+proc maximum*(self: Progress): cfloat {.importcpp: "#.maximum(@)", header: flh_progress.}
+proc `maximum=`*(self: Progress; value: cfloat) {.importcpp: "#.maximum(@)", header: flh_progress.}
+proc minimum*(self: Progress): cfloat {.importcpp: "#.minimum(@)", header: flh_progress.}
+proc `minimum=`*(self: Progress; value: cfloat) {.importcpp: "#.minimum(@)", header: flh_progress.}
+proc value*(self: Progress): cfloat {.importcpp: "#.value(@)", header: flh_progress.}
+proc `value=`*(self: Progress; value: cfloat) {.importcpp: "#.value(@)", header: flh_progress.}

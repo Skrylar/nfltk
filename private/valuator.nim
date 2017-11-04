@@ -188,10 +188,10 @@ type
   Clock* = ptr ClockObj
 
 const
-  SQUARE_CLOCK*  = 0
-  ROUND_CLOCK*   = 1
-  ANALOG_CLOCK*  = SQUARE_CLOCK
-  DIGITAL_CLOCK* = SQUARE_CLOCK
+  SQUARE_CLOCK_TYPE*  = 0
+  ROUND_CLOCK_TYPE*   = 1
+  ANALOG_CLOCK_TYPE*  = SQUARE_CLOCK
+  DIGITAL_CLOCK_TYPE* = SQUARE_CLOCK
 
 proc make_clock_output*(x, y, w, h: cint; text: cstring = nil): ClockOutput {.importcpp: "new Fl_Clock_Output(@)", header: flh_clock.}
 
@@ -268,3 +268,23 @@ type
   NiceSlider* = ptr NiceSliderObj
 
 proc make_NiceSlider*(x, y, w, h: cint; text: cstring = nil): NiceSlider {.importcpp: "new Fl_Nice_Slider(@)", header: flh_niceslider.}
+
+# ________________________________________________________________________
+
+const
+  flh_roller = "FL/Fl_Roller.H"
+type
+  RollerObj* {.importc: "Fl_Roller", header: flh_roller.} = object of ValuatorObj
+  Roller* = ptr RollerObj
+
+proc make_Roller*(x, y, w, h: cint; text: cstring = nil): Roller {.importcpp: "new Fl_Roller(@)", header: flh_roller.}
+
+# ________________________________________________________________________
+
+const
+  flh_round_clock = "FL/Fl_Round_Clock.H"
+type
+  RoundClockObj* {.importc: "Fl_Round_Clock", header: flh_round_clock.} = object of ClockObj
+  RoundClock* = ptr RoundClockObj
+
+  proc make_RoundClock*(x, y, w, h: cint; text: cstring = nil): RoundClock {.importcpp: "new Fl_Round_Clock(@)", header: flh_round_clock.}
