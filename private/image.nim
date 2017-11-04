@@ -89,7 +89,6 @@ type
   BmpImageObj* {.importc: "Fl_BMP_Image", header: flh_bmpimage.} = object of RGB_Image_Obj
   BmpImage* = ptr BmpImageObj
 
-proc make_bmp_image*(filename: cstring): BmpImage {.importcpp: "new Fl_BMP_Image(@)", header: flh_bmpimage.}
 
 const
   flh_bitmap = "FL/Fl_Bitmap.H"

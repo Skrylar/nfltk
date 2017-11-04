@@ -190,8 +190,8 @@ type
 const
   SQUARE_CLOCK_TYPE*  = 0
   ROUND_CLOCK_TYPE*   = 1
-  ANALOG_CLOCK_TYPE*  = SQUARE_CLOCK
-  DIGITAL_CLOCK_TYPE* = SQUARE_CLOCK
+  ANALOG_CLOCK_TYPE*  = SQUARE_CLOCK_TYPE
+  DIGITAL_CLOCK_TYPE* = SQUARE_CLOCK_TYPE
 
 proc make_clock_output*(x, y, w, h: cint; text: cstring = nil): ClockOutput {.importcpp: "new Fl_Clock_Output(@)", header: flh_clock.}
 
@@ -287,4 +287,4 @@ type
   RoundClockObj* {.importc: "Fl_Round_Clock", header: flh_round_clock.} = object of ClockObj
   RoundClock* = ptr RoundClockObj
 
-  proc make_RoundClock*(x, y, w, h: cint; text: cstring = nil): RoundClock {.importcpp: "new Fl_Round_Clock(@)", header: flh_round_clock.}
+proc make_RoundClock*(x, y, w, h: cint; text: cstring = nil): RoundClock {.importcpp: "new Fl_Round_Clock(@)", header: flh_round_clock.}
