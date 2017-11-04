@@ -146,3 +146,13 @@ type
   MultilineOutput* = ptr MultilineOutputObj
 
 proc make_MultilineOutput*(x, y, w, h: cint; text: cstring = nil): MultilineOutput {.importcpp: "new Fl_Multiline_Output(@)", header: flh_multilineoutput.}
+
+# ________________________________________________________________________
+
+const
+  flh_secret_input = "FL/Fl_Secret_Input.H"
+type
+  SecretInputObj* {.importc: "Fl_Secret_Input", header: flh_secret_input.} = object of InputObj
+  SecretInput* = ptr SecretInputObj
+
+proc make_SecretInput*(x, y, w, h: cint; text: cstring = nil): SecretInput {.importcpp: "new Fl_Secret_Input(@)", header: flh_secret_input.}

@@ -156,3 +156,38 @@ type
   PnmImage* = ptr PnmImageObj
 
 proc make_pnm_image*(filename: cstring): PnmImage {.importcpp: "new Fl_PNM_Image(@)", header: flh_pnmimage.}
+
+# ________________________________________________________________________
+
+const
+  flh_shared_image = "FL/Fl_Shared_Image.H"
+
+type
+  SharedHandler* {.importcpp: "Fl_Shared_Handler", header: flh_shared_image.} = proc(name: cstring; header: ptr cuchar; headerlen: cint): Image
+
+  SharedImageObj* {.importc: "Fl_Shared_Image", header: flh_shared_image.} = object of ImageObj
+  SharedImage* = ptr SharedImageObj
+
+proc name*(self: SharedImage): cstring {.importcpp: "#.name(@)", header: flh_shared_image.}
+proc refcount*(self: SharedImage): cint {.importcpp: "#.refcount(@)", header: flh_shared_image.}
+proc release*(self: SharedImage) {.importcpp: "#.release(@)", header: flh_shared_image.}
+proc reload*(self: SharedImage) {.importcpp: "#.reload(@)", header: flh_shared_image.}
+proc copy*(self: SharedImage; W, H: cint): Image {.importcpp: "#.copy(@)", header: flh_shared_image.}
+proc copy*(self: SharedImage): Image {.importcpp: "#.copy(@)", header: flh_shared_image.}
+proc color_average*(self: SharedImage; c: Color; i: float) {.importcpp: "#.color_average(@)", header: flh_shared_image.}
+proc desaturate*(self: SharedImage) {.importcpp: "#.desaturate(@)", header: flh_shared_image.}
+proc draw*(self: SharedImage; X, Y, W, H, cx, cy: cint) {.importcpp: "#.draw(@)", header: flh_shared_image.}
+proc draw*(self: SharedImage; X, Y: cint) {.importcpp: "#.draw(@)", header: flh_shared_image.}
+proc scale*(self: SharedImage; width, height: cint; proportional: cint = 1; can_expand: cint = 0) {.importcpp: "#.scale(@)", header: flh_shared_image.}
+proc uncache*(self: SharedImage) {.importcpp: "#.uncache(@)", header: flh_shared_image.}
+
+proc sharedimage_find*(name: cstring; W, H: cint = 0): SharedImage {.importcpp: "Fl_Shared_Image::find(@)", header: flh_shared_image.}
+proc sharedimage_get*(name: cstring; W, H: cint = 0): SharedImage {.importcpp: "Fl_Shared_Image::get(@)", header: flh_shared_image.}
+proc sharedimage_get*(rgb: RgbImage; own_it: cint = 1): SharedImage {.importcpp: "Fl_Shared_Image::get(@)", header: flh_shared_image.}
+proc sharedimage_images*(): ptr SharedImage {.importcpp: "Fl_Shared_Image::images(@)", header: flh_shared_image.}
+proc sharedimage_num_images*(): cint {.importcpp: "Fl_Shared_Image::num_images(@)", header: flh_shared_image.}
+proc sharedimage_add_handler*(f: SharedHandler) {.importcpp: "Fl_Shared_Image::add_handler(@)", header: flh_shared_image.}
+proc sharedimage_remove_handler*(f: SharedHandler) {.importcpp: "Fl_Shared_Image::remove_handler(@)", header: flh_shared_image.}
+proc sharedimage_scaling_algorithm*(algorithm: cint) {.importcpp: "Fl_Shared_Image::scaling_algorithm(@)", header: flh_shared_image.}
+
+proc fl_register_images*() {.importcpp: "fl_register_image(@)", header: flh_shared_image.}
