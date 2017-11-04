@@ -293,9 +293,9 @@ var paged_device_class_id* {.importcpp: "Fl_Paged_Device::class_id", header: flh
 
 proc free*(self: PagedDevice) {.importcpp: "delete @", header: flh_pageddevice.}
 
-proc class_name*(self: PagedDevice; ): cstring {.importcpp: "#.class_name(@)", header: flh_pageddevice.}
+proc class_name*(self: PagedDevice): cstring {.importcpp: "#.class_name(@)", header: flh_pageddevice.}
 proc start_job*(self: PagedDevice; pagecount: cint; frompage, topage: ptr cint = nil): cint {.importcpp: "#.start_job(@)", header: flh_pageddevice.}
-proc start_page*(self: PagedDevice; ): cint {.importcpp: "#.start_page(@)", header: flh_pageddevice.}
+proc start_page*(self: PagedDevice): cint {.importcpp: "#.start_page(@)", header: flh_pageddevice.}
 proc printable_rect*(self: PagedDevice; w, h: ptr cint): cint {.importcpp: "#.printable_rect(@)", header: flh_pageddevice.}
 proc margins*(self: PagedDevice; left, top, right, bottom: ptr cint) {.importcpp: "#.margins(@)", header: flh_pageddevice.}
 proc origin*(self: PagedDevice; x, y: cint) {.importcpp: "#.origin(@)", header: flh_pageddevice.}
@@ -303,9 +303,147 @@ proc origin*(self: PagedDevice; x, y: out cint) {.importcpp: "#.origin(@)", head
 proc scale*(self: PagedDevice; scale_x, scale_y: cfloat = 0.0) {.importcpp: "#.scale(@)", header: flh_pageddevice.}
 proc rotate*(self: PagedDevice; angle: cfloat) {.importcpp: "#.rotate(@)", header: flh_pageddevice.}
 proc translate*(self: PagedDevice; x, y: cint) {.importcpp: "#.translate(@)", header: flh_pageddevice.}
-proc untranslate*(self: PagedDevice; ) {.importcpp: "#.untranslate(@)", header: flh_pageddevice.}
+proc untranslate*(self: PagedDevice) {.importcpp: "#.untranslate(@)", header: flh_pageddevice.}
 proc print_widget*(self: PagedDevice; widget: Widget; delta_x, delta_y: cint = 0) {.importcpp: "#.print_widget(@)", header: flh_pageddevice.}
 proc print_window*(self: PagedDevice; win: Window; x_offset, y_offset: cint = 0) {.importcpp: "#.print_window(@)", header: flh_pageddevice.}
 proc print_window_part*(self: PagedDevice; win: Window; x, y, w, h: cint; delta_x, delta_y: cint = 0) {.importcpp: "#.print_window_part(@)", header: flh_pageddevice.}
-proc end_page*(self: PagedDevice; ): cint {.importcpp: "#.end_page(@)", header: flh_pageddevice.}
-proc end_job*(self: PagedDevice; ) {.importcpp: "#.end_job(@)", header: flh_pageddevice.}
+proc end_page*(self: PagedDevice): cint {.importcpp: "#.end_page(@)", header: flh_pageddevice.}
+proc end_job*(self: PagedDevice) {.importcpp: "#.end_job(@)", header: flh_pageddevice.}
+
+# ______________________________________________________________________
+
+const
+  flh_post_script = "FL/Fl_PostScript.H"
+
+#extern "C" {
+#typedef int (Fl_PostScript_Close_Command)(FILE *);
+
+const
+  #enum SHAPE
+  POSTSCRIPT_NONE* = 0
+  POSTSCRIPT_LINE* = 1
+  POSTSCRIPT_LOOP* = 2
+  POSTSCRIPT_POLYGON* = 3
+  POSTSCRIPT_POINTS* = 4
+
+class Clip {
+  public:
+    int x, y, w, h;
+    Clip *prev;
+  };
+
+type
+  PostScriptGraphicsDriverObj* {.importc: "Fl_PostScript_Graphics_Driver", header: flh_post_script.} = object of GraphicsDriverObj
+  PostScriptGraphicsDriver* = ptr PostScriptGraphicsDriverObj
+
+proc make_postscript_graphics_driver(): PostScriptGraphicsDriver {.importcpp: "new Fl_PostScript_Graphics_Driver(@)", header: flh_post_script.}
+
+# TODO
+#FILE * file() {return output;};
+
+proc concat*(self: PostScriptGraphicsDriver) {.importcpp: "#.concat(@)", header: flh_post_script.}
+proc reconcat*(self: PostScriptGraphicsDriver) {.importcpp: "#.reconcat(@)", header: flh_post_script.}
+proc recover*(self: PostScriptGraphicsDriver) {.importcpp: "#.recover(@)", header: flh_post_script.}
+proc reset*(self: PostScriptGraphicsDriver) {.importcpp: "#.reset(@)", header: flh_post_script.}
+proc start_postscript* (self: PostScriptGraphicsDriver; int pagecount, enum Fl_Paged_Device::Page_Format format, enum Fl_Paged_Device::Page_Layout layout): cint {.importcpp: "#.start_postscript (@)", header: flh_post_script.}
+proc transformed_draw*(self: PostScriptGraphicsDriver; s: cstring; n: cint; x, y: cdouble) {.importcpp: "#.transformed_draw(@)", header: flh_post_script.}
+proc transformed_draw*(self: PostScriptGraphicsDriver; s: cstring; x, y: cdouble) {.importcpp: "#.transformed_draw(@)", header: flh_post_script.}
+proc alpha_mask*(self: PostScriptGraphicsDriver; data: ptr cuchar; w, h, D: cint; LD: cint = 0): cint {.importcpp: "#.alpha_mask(@)", header: flh_post_script.}
+proc page_policy*(self: PostScriptGraphicsDriver; p: cint) {.importcpp: "#.page_policy(@)", header: flh_post_script.}
+proc page_policy*(self: PostScriptGraphicsDriver): cint {.importcpp: "#.page_policy(@)", header: flh_post_script.}
+# TODO
+#proc close_command*(self: PostScriptGraphicsDriver; cmd: PostScriptCloseCommand) {.importcpp: "#.close_command(@)", header: flh_post_script.}
+proc interpolate*(self: PostScriptGraphicsDriver; i: cint) {.importcpp: "#.interpolate(@)", header: flh_post_script.}
+proc interpolate*(self: PostScriptGraphicsDriver): cint {.importcpp: "#.interpolate(@)", header: flh_post_script.}
+proc page*(self: PostScriptGraphicsDriver; double pw, double ph, int media = 0) {.importcpp: "#.page(@)", header: flh_post_script.}
+proc page*(self: PostScriptGraphicsDriver; format: cint) {.importcpp: "#.page(@)", header: flh_post_script.}
+proc color*(self: PostScriptGraphicsDriver; c: Color) {.importcpp: "#.color(@)", header: flh_post_script.}
+proc color*(self: PostScriptGraphicsDriver; r, g, b: uchar) {.importcpp: "#.color(@)", header: flh_post_script.}
+proc push_clip*(self: PostScriptGraphicsDriver; x, y, w, h: cint) {.importcpp: "#.push_clip(@)", header: flh_post_script.}
+proc clip_box*(self: PostScriptGraphicsDriver; x, y, w, h: cint; X, Y, W, H: out cint): cint {.importcpp: "#.clip_box(@)", header: flh_post_script.}
+proc not_clipped*(self: PostScriptGraphicsDriver; x, y, w, h: cint): cint {.importcpp: "#.not_clipped(@)", header: flh_post_script.}
+proc push_no_clip*(self: PostScriptGraphicsDriver) {.importcpp: "#.push_no_clip(@)", header: flh_post_script.}
+proc pop_clip*(self: PostScriptGraphicsDriver) {.importcpp: "#.pop_clip(@)", header: flh_post_script.}
+proc line_style*(self: PostScriptGraphicsDriver; style: cint; width: cint = 0; dashes: cstring = nil) {.importcpp: "#.line_style(@)", header: flh_post_script.}
+proc rect*(self: PostScriptGraphicsDriver; x, y, w, h: cint) {.importcpp: "#.rect(@)", header: flh_post_script.}
+proc rectf*(self: PostScriptGraphicsDriver; x, y, w, h: cint) {.importcpp: "#.rectf(@)", header: flh_post_script.}
+proc xyline*(self: PostScriptGraphicsDriver; x, y, x1: cint) {.importcpp: "#.xyline(@)", header: flh_post_script.}
+proc xyline*(self: PostScriptGraphicsDriver; x, y, x1, y2: cint) {.importcpp: "#.xyline(@)", header: flh_post_script.}
+proc xyline*(self: PostScriptGraphicsDriver; x, y, x1, y2, x3: cint) {.importcpp: "#.xyline(@)", header: flh_post_script.}
+proc yxline*(self: PostScriptGraphicsDriver; x, y, y1: cint) {.importcpp: "#.yxline(@)", header: flh_post_script.}
+proc yxline*(self: PostScriptGraphicsDriver; x, y, y1, x2: cint) {.importcpp: "#.yxline(@)", header: flh_post_script.}
+proc yxline*(self: PostScriptGraphicsDriver; x, y, y1, x2, y3: cint) {.importcpp: "#.yxline(@)", header: flh_post_script.}
+proc line*(self: PostScriptGraphicsDriver; x1, y1, x2, y2: cint) {.importcpp: "#.line(@)", header: flh_post_script.}
+proc line*(self: PostScriptGraphicsDriver; x1, y1, x2, y2, x3, y3: cint) {.importcpp: "#.line(@)", header: flh_post_script.}
+proc loop*(self: PostScriptGraphicsDriver; x0, y0, x1, y1, x2, y2: cint) {.importcpp: "#.loop(@)", header: flh_post_script.}
+proc loop*(self: PostScriptGraphicsDriver; x0, y0, x1, y1, x2, y2, x3, y3: cint) {.importcpp: "#.loop(@)", header: flh_post_script.}
+proc polygon*(self: PostScriptGraphicsDriver; x0, y0, x1, y1, x2, y2: cint) {.importcpp: "#.polygon(@)", header: flh_post_script.}
+proc polygon*(self: PostScriptGraphicsDriver; x0, y0, x1, y1, x2, y2, x3, y3: cint) {.importcpp: "#.polygon(@)", header: flh_post_script.}
+proc point*(self: PostScriptGraphicsDriver; x, y: cint) {.importcpp: "#.point(@)", header: flh_post_script.}
+proc begin_points*(self: PostScriptGraphicsDriver) {.importcpp: "#.begin_points(@)", header: flh_post_script.}
+proc begin_line*(self: PostScriptGraphicsDriver) {.importcpp: "#.begin_line(@)", header: flh_post_script.}
+proc begin_loop*(self: PostScriptGraphicsDriver) {.importcpp: "#.begin_loop(@)", header: flh_post_script.}
+proc begin_polygon*(self: PostScriptGraphicsDriver) {.importcpp: "#.begin_polygon(@)", header: flh_post_script.}
+proc vertex*(self: PostScriptGraphicsDriver; x, y: cdouble) {.importcpp: "#.vertex(@)", header: flh_post_script.}
+proc curve*(self: PostScriptGraphicsDriver; x, y, x1, y1, x2, y2, x3, y3: cdouble) {.importcpp: "#.curve(@)", header: flh_post_script.}
+proc circle*(self: PostScriptGraphicsDriver; x, y, r: cdouble) {.importcpp: "#.circle(@)", header: flh_post_script.}
+proc arc*(self: PostScriptGraphicsDriver; x, y, r, start, a: cdouble) {.importcpp: "#.arc(@)", header: flh_post_script.}
+proc arc*(self: PostScriptGraphicsDriver; x, y, w, h: cint; a1, a2: cdouble) {.importcpp: "#.arc(@)", header: flh_post_script.}
+proc pie*(self: PostScriptGraphicsDriver; x, y, w, h: cint; a1, a2: cdouble) {.importcpp: "#.pie(@)", header: flh_post_script.}
+proc end_points*(self: PostScriptGraphicsDriver) {.importcpp: "#.end_points(@)", header: flh_post_script.}
+proc end_line*(self: PostScriptGraphicsDriver) {.importcpp: "#.end_line(@)", header: flh_post_script.}
+proc end_loop*(self: PostScriptGraphicsDriver) {.importcpp: "#.end_loop(@)", header: flh_post_script.}
+proc end_polygon*(self: PostScriptGraphicsDriver) {.importcpp: "#.end_polygon(@)", header: flh_post_script.}
+proc begin_complex_polygon*(self: PostScriptGraphicsDriver) {.importcpp: "#.begin_complex_polygon(@)", header: flh_post_script.}
+proc gap*(self: PostScriptGraphicsDriver) {.importcpp: "#.gap(@)", header: flh_post_script.}
+proc end_complex_polygon*(self: PostScriptGraphicsDriver) {.importcpp: "#.end_complex_polygon(@)", header: flh_post_script.}
+proc transformed_vertex*(self: PostScriptGraphicsDriver; x, y: cdouble) {.importcpp: "#.transformed_vertex(@)", header: flh_post_script.}
+proc draw_image*(self: PostScriptGraphicsDriver; d: ptr cpuchar; x, y, w, h: cint; delta: cint = 3; ldelta: cint = 0) {.importcpp: "#.draw_image(@)", header: flh_post_script.}
+proc draw_image_mono*(self: PostScriptGraphicsDriver; d: ptr cuchar; x, y, w, h: cint; delta: cint = 1; ld: cint = 0) {.importcpp: "#.draw_image_mono(@)", header: flh_post_script.}
+proc draw_image*(self: PostScriptGraphicsDriver; call: DrawImageCb; data: pointer; x, y, w, h: cint; delta: cint = 3) {.importcpp: "#.draw_image(@)", header: flh_post_script.}
+proc draw_image_mono*(self: PostScriptGraphicsDriver; call: DrawImageCb; data: pointer; x, y, w, h: cint; delta: cint=1) {.importcpp: "#.draw_image_mono(@)", header: flh_post_script.}
+proc draw*(self: PostScriptGraphicsDriver; s: cstring; nBytes, x, y: cint) {.importcpp: "#.draw(@)", header: flh_post_script.}
+proc draw*(self: PostScriptGraphicsDriver; angle: cint; str: cstring; n, x, y: cint) {.importcpp: "#.draw(@)", header: flh_post_script.}
+proc rtl_draw*(self: PostScriptGraphicsDriver; s: cstring; n, x, y: cint) {.importcpp: "#.rtl_draw(@)", header: flh_post_script.}
+proc font*(self: PostScriptGraphicsDriver; face, size: cint) {.importcpp: "#.font(@)", header: flh_post_script.}
+proc width*(self: PostScriptGraphicsDriver; a: cstring; b: cint): cdouble {.importcpp: "#.width(@)", header: flh_post_script.}
+proc width*(self: PostScriptGraphicsDriver; u: cuint): cdouble {.importcpp: "#.width(@)", header: flh_post_script.}
+proc text_extents*(self: PostScriptGraphicsDriver; c: cstring; n: cint; dx, dy, w, h: out cint) {.importcpp: "#.text_extents(@)", header: flh_post_script.}
+proc height*(self: PostScriptGraphicsDriver): cint {.importcpp: "#.height(@)", header: flh_post_script.}
+proc descent*(self: PostScriptGraphicsDriver): cint {.importcpp: "#.descent(@)", header: flh_post_script.}
+proc draw*(self: PostScriptGraphicsDriver; pxm: Pixmap; XP, YP, WP, HP, cx, cy: cint) {.importcpp: "#.draw(@)", header: flh_post_script.}
+proc draw*(self: PostScriptGraphicsDriver; bitmap: Bitmap; XP, YP, WP, HP, cx, cy: cint) {.importcpp: "#.draw(@)", header: flh_post_script.}
+proc draw*(self: PostScriptGraphicsDriver; rgb: RgbImage; XP, YP, WP, HP, cx, cy: cint) {.importcpp: "#.draw(@)", header: flh_post_script.}
+proc draw_scaled*(self: PostScriptGraphicsDriver; img: Image; XP, YP, WP, HP: cint): cint {.importcpp: "#.draw_scaled(@)", header: flh_post_script.}
+proc clocale_printf*(self: PostScriptGraphicsDriver; format: cstring): cint {.varargs.} {.importcpp: "#.clocale_printf(@)", header: flh_post_script.}
+
+when defined(apple):
+  proc draw*(self: PostScriptGraphicsDriver; s: cstring; nBytes: cint; x, y: float) {.importcpp: "#.draw(@)", header: flh_post_script.}
+
+type
+  PostScriptFileDeviceObj* {.importc: "Fl_PostScript_File_Device", header: flh_post_script.} = object of PagedDeviceObj
+  PostScriptFileDevice* = ptr PostScriptFileDeviceObj
+
+var postscript_file_device_file_chooser_title {.importcpp: "Fl_PostScript_File_Device::file_chooser_title", header: flh_post_script.}: cstring
+
+proc make_postscript_file_device(): PostScriptFileDevice {.importcpp: "new Fl_PostScript_File_Device(@)", header: flh_post_script.}
+
+proc start_job*(self: PostScriptFileDevice; pagecount: cint; `from`, to: ptr cint): cint {.importcpp: "#.start_job(@)", header: flh_post_script.}
+proc start_job*(self: PostScriptFileDevice; pagecount: cint; format: cint = PAGE_A4; layout: cint = LAYOUT_PORTRAIT): cint {.importcpp: "#.start_job(@)", header: flh_post_script.}
+proc start_page*(self: PostScriptFileDevice): cint {.importcpp: "#.start_page(@)", header: flh_post_script.}
+proc printable_rect*(self: PostScriptFileDevice; w; h: ptr cint): cint {.importcpp: "#.printable_rect(@)", header: flh_post_script.}
+proc margins*(self: PostScriptFileDevice; left, top, right, bottom: ptr cint) {.importcpp: "#.margins(@)", header: flh_post_script.}
+proc origin*(self: PostScriptFileDevice; x, y: ptr cint) {.importcpp: "#.origin(@)", header: flh_post_script.}
+proc origin*(self: PostScriptFileDevice; x, y: cint) {.importcpp: "#.origin(@)", header: flh_post_script.}
+proc scale*(self: PostScriptFileDevice; scale_x: cfloat; scale_y: cfloat = 0.0) {.importcpp: "#.scale(@)", header: flh_post_script.}
+proc rotate*(self: PostScriptFileDevice; angle: float) {.importcpp: "#.rotate(@)", header: flh_post_script.}
+proc translate*(self: PostScriptFileDevice; x, y: cint {.importcpp: "#.translate(@)", header: flh_post_script.}
+proc untranslate*(self: PostScriptFileDevice) {.importcpp: "#.untranslate(@)", header: flh_post_script.}
+proc end_page*(self: PostScriptFileDevice): cint {.importcpp: "#.end_page(@)", header: flh_post_script.}
+proc end_job*(self: PostScriptFileDevice) {.importcpp: "#.end_job(@)", header: flh_post_script.}
+
+# TODO
+#start_job(FILE *ps_output, int pagecount, enum Fl_Paged_Device::Page_Format format = Fl_Paged_Device::A4, enum Fl_Paged_Device::Page_Layout layout = Fl_Paged_Device::PORTRAIT): cint
+
+when defined(apple):
+  proc set_current*(self: PostScriptFileDevice) {.importcpp: "#.set_current(@)", header: flh_post_script.}
