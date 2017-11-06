@@ -54,6 +54,9 @@ export scroll
 import private/fileicon
 export fileicon
 
+import private/table
+export table
+
 const
   flh = "FL/Fl.H"
 
@@ -293,4 +296,3 @@ proc use_high_res_GL*(): cint {.importc: "Fl::use_high_res_GL", header: flh.}
 #  int deleted() {return wp_ == 0;}
 #  int exists()  {return wp_ != 0;}
 #};
-
