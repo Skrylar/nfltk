@@ -57,6 +57,9 @@ export fileicon
 import private/table
 export table
 
+import private/text
+export text
+
 const
   flh = "FL/Fl.H"
 
