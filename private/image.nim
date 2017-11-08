@@ -191,3 +191,21 @@ proc sharedimage_remove_handler*(f: SharedHandler) {.importcpp: "Fl_Shared_Image
 proc sharedimage_scaling_algorithm*(algorithm: cint) {.importcpp: "Fl_Shared_Image::scaling_algorithm(@)", header: flh_shared_image.}
 
 proc fl_register_images*() {.importcpp: "fl_register_image(@)", header: flh_shared_image.}
+
+# ----------------------------------------------------------------------
+
+const
+  flh_tiled_image = "FL/Fl_Tiled_Image.H"
+type
+  TiledImageObj* {.importc: "Fl_Tiled_Image", header: flh_tiled_image.} = object of ImageObj
+  TiledImage* = ptr TiledImageObj
+
+proc make_TiledImage*(i: Image; w, h: cint = 0): TiledImage {.importcpp: "new Fl_Tiled_Image(@)", header: flh_tiled_image.}
+
+proc copy*(self: TiledImage; W, H: cint): Image {.importcpp: "#.copy(@)", header: flh_tiled_image.}
+proc copy*(self: TiledImage): Image {.importcpp: "#.copy(@)", header: flh_tiled_image.}
+proc color_average*(self: TiledImage; c: Color; i: float) {.importcpp: "#.color_average(@)", header: flh_tiled_image.}
+proc desaturate*(self: TiledImage) {.importcpp: "#.desaturate(@)", header: flh_tiled_image.}
+proc draw*(self: TiledImage; X, Y, W, H, cx, cy: cint) {.importcpp: "#.draw(@)", header: flh_tiled_image.}
+proc draw*(self: TiledImage; X, Y: cint) {.importcpp: "#.draw(@)", header: flh_tiled_image.}
+proc image*(self: TiledImage): Image {.importcpp: "#.image(@)", header: flh_tiled_image.}

@@ -87,3 +87,16 @@ proc make_Pack*(x, y, w, h: cint; text: cstring = nil): Pack {.importcpp: "new F
 proc spacing*(self: Pack): cint {.importcpp: "#.spacing(@)", header: flh_pack.}
 proc spacing*(self: Pack; i: cint) {.importcpp: "#.spacing(@)", header: flh_pack.}
 proc horizontal*(self: Pack): cuchar {.importcpp: "#.horizontal(@)", header: flh_pack.}
+
+# ----------------------------------------------------------------------
+
+const
+  flh_tile = "FL/Fl_Tile.H"
+type
+  TileObj* {.importc: "Fl_Tile", header: flh_tile.} = object of GroupObj
+  Tile* = ptr TileObj
+
+proc make_Tile*(x, y, w, h: cint; text: cstring = nil): Tile {.importcpp: "new Fl_Tile(@)", header: flh_tile.}
+
+proc resize*(self: Tile; X, Y, W, H: cint) {.importcpp: "#.resize(@)", header: flh_tile.}
+proc position*(self: Tile; oldx, oldy, newx, newy: cint) {.importcpp: "#.position(@)", header: flh_tile.}
