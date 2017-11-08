@@ -108,7 +108,6 @@ proc next_char*(self: TextBuffer; ix: cint): cint {.importcpp: "#.next_char(@)",
 proc next_char_clipped*(self: TextBuffer; ix: cint): cint {.importcpp: "#.next_char_clipped(@)", header: flh_text_buffer.}
 proc utf8_align*(self: TextBuffer; a: cint): cint {.importcpp: "#.utf8_align(@)", header: flh_text_buffer.}
 
-
 # ----------------------------------------------------------------------
 
 const
@@ -218,3 +217,64 @@ proc linenumber_align*(self: TextDisplay; val: Align) {.importcpp: "#.linenumber
 proc linenumber_align*(self: TextDisplay): Align {.importcpp: "#.linenumber_align(@)", header: flh_text_display.}
 proc linenumber_format*(self: TextDisplay; val: cstring) {.importcpp: "#.linenumber_format(@)", header: flh_text_display.}
 proc linenumber_format*(self: TextDisplay): cstring {.importcpp: "#.linenumber_format(@)", header: flh_text_display.}
+
+# ----------------------------------------------------------------------
+
+const
+  flh_text_editor = "FL/Fl_Text_Editor.H"
+  TEXT_EDITOR_ANY_STATE* = -1
+
+type
+  TextEditorObj* {.importc: "Fl_Text_Editor", header: flh_text_editor.} = object of TextDisplayObj
+  TextEditor* = ptr TextEditorObj
+
+  KeyFunc* = proc(key: cint; editor: TextEditor): cint
+
+  KeyBinding* {.importcpp: "Fl_Text_Editor::Key_Binding", header: flh_text_editor.} = object
+    key*, state*: cint
+    function*: KeyFunc
+    next*: ptr KeyBinding
+
+proc make_TextEditor*(x, y, w, h: cint; text: cstring = nil): TextEditor {.importcpp: "new Fl_Text_Editor(@)", header: flh_text_editor.}
+
+proc handle*(self: TextBuffer; e: cint): cint {.importcpp: "#.handle(@)", header: flh_text_buffer.}
+proc insert_mode*(self: TextBuffer; b: cint) {.importcpp: "#.insert_mode(@)", header: flh_text_buffer.}
+proc insert_mode*(self: TextBuffer): cint {.importcpp: "#.insert_mode(@)", header: flh_text_buffer.}
+proc tab_nav*(self: TextBuffer; val: cint) {.importcpp: "#.tab_nav(@)", header: flh_text_buffer.}
+proc tab_nav*(self: TextBuffer): cint {.importcpp: "#.tab_nav(@)", header: flh_text_buffer.}
+proc add_key_binding*(self: TextBuffer; key, state: cint; f: KeyFunc; list: ptr ptr KeyBinding) {.importcpp: "#.add_key_binding(@)", header: flh_text_buffer.}
+proc add_key_binding*(self: TextBuffer; key, state: cint; f: KeyFunc) {.importcpp: "#.add_key_binding(@)", header: flh_text_buffer.}
+proc remove_key_binding*(self: TextBuffer; key, state: cint; list: ptr ptr KeyBinding) {.importcpp: "#.remove_key_binding(@)", header: flh_text_buffer.}
+proc remove_key_binding*(self: TextBuffer; key, state: cint) {.importcpp: "#.remove_key_binding(@)", header: flh_text_buffer.}
+proc remove_all_key_bindings*(self: TextBuffer; list: ptr ptr KeyBinding) {.importcpp: "#.remove_all_key_bindings(@)", header: flh_text_buffer.}
+proc remove_all_key_bindings*(self: TextBuffer) {.importcpp: "#.remove_all_key_bindings(@)", header: flh_text_buffer.}
+proc add_default_key_bindings*(self: TextBuffer; list: ptr ptr KeyBinding) {.importcpp: "#.add_default_key_bindings(@)", header: flh_text_buffer.}
+proc bound_key_function*(self: TextBuffer; key, state: cint; list: ptr KeyBinding): KeyFunc {.importcpp: "#.bound_key_function(@)", header: flh_text_buffer.}
+proc bound_key_function*(self: TextBuffer; key, state: cint): KeyFunc {.importcpp: "#.bound_key_function(@)", header: flh_text_buffer.}
+proc default_key_function*(self: TextBuffer; f: KeyFunc) {.importcpp: "#.default_key_function(@)", header: flh_text_buffer.}
+
+proc text_editor_kf_default*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_default(@)", header: flh_text_editor.}
+proc text_editor_kf_ignore*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_ignore(@)", header: flh_text_editor.}
+proc text_editor_kf_backspace*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_backspace(@)", header: flh_text_editor.}
+proc text_editor_kf_enter*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_enter(@)", header: flh_text_editor.}
+proc text_editor_kf_move*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_move(@)", header: flh_text_editor.}
+proc text_editor_kf_shift_move*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_shift_move(@)", header: flh_text_editor.}
+proc text_editor_kf_ctrl_move*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_ctrl_move(@)", header: flh_text_editor.}
+proc text_editor_kf_c_s_move*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_c_s_move(@)", header: flh_text_editor.}
+proc text_editor_kf_meta_move*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_meta_move(@)", header: flh_text_editor.}
+proc text_editor_kf_m_s_move*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_m_s_move(@)", header: flh_text_editor.}
+proc text_editor_kf_home*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_home(@)", header: flh_text_editor.}
+proc text_editor_kf_end*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_end(@)", header: flh_text_editor.}
+proc text_editor_kf_left*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_left(@)", header: flh_text_editor.}
+proc text_editor_kf_up*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_up(@)", header: flh_text_editor.}
+proc text_editor_kf_right*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_right(@)", header: flh_text_editor.}
+proc text_editor_kf_down*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_down(@)", header: flh_text_editor.}
+proc text_editor_kf_page_up*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_page_up(@)", header: flh_text_editor.}
+proc text_editor_kf_page_down*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_page_down(@)", header: flh_text_editor.}
+proc text_editor_kf_insert*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_insert(@)", header: flh_text_editor.}
+proc text_editor_kf_delete*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_delete(@)", header: flh_text_editor.}
+proc text_editor_kf_copy*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_copy(@)", header: flh_text_editor.}
+proc text_editor_kf_cut*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_cut(@)", header: flh_text_editor.}
+proc text_editor_kf_paste*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_paste(@)", header: flh_text_editor.}
+proc text_editor_kf_select_all*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_select_all(@)", header: flh_text_editor.}
+proc text_editor_kf_undo*(c: cint; e: TextEditor): cint {.importcpp: "Fl_Text_Editor::kf_undo(@)", header: flh_text_editor.}
