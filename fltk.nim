@@ -63,6 +63,9 @@ export text
 import private/ask
 export ask
 
+import private/draw
+export draw
+
 const
   flh = "FL/Fl.H"
 

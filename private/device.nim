@@ -12,7 +12,6 @@ class Fl_Font_Descriptor;
 
 FL_EXPORT extern Fl_Graphics_Driver *fl_graphics_driver;
 
-typedef void (*Fl_Draw_Image_Cb)(void* data,int x,int y,int w,uchar* buf);
 
 const
   REGION_STACK_SIZE* = 10
