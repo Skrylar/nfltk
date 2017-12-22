@@ -1,6 +1,6 @@
 # Nimized Fast Light Toolkit
 
-A wrapper for the [http://www.fltk.org/index.php](Fast Light Toolkit), for the Nim language. We target FLTK 1.3.
+A wrapper for the [Fast Light Toolkit](http://www.fltk.org/index.php), for the Nim language. We target FLTK 1.3.
 
 # Notes
 
