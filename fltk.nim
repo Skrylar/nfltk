@@ -12,6 +12,9 @@ export widget
 import private/group
 export group
 
+import private/input
+export input
+
 import private/window
 export window
 
@@ -65,6 +68,9 @@ export ask
 
 import private/draw
 export draw
+
+import private/nimwidget
+export nimwidget
 
 const
   flh = "FL/Fl.H"
