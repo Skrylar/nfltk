@@ -3,14 +3,14 @@ import fltk as fl
 
 fl.warning "I have no idea what I am doing."
 
-var btn = make_button(0, 0, 64, 64, "Butt")
+var btn = make_button(0, 0, 64, 64, "Push Me")
 btn.box = fl.Up_box
 btn.labelfont = fl.Helvetica
 btn.labelsize = 12
 btn.labeltype = fl.Normal_label
-btn.label = "cocks".cstring
+btn.label = "PUSHHHH".cstring
 
-var btn2 = make_button(64, 64, 64, 64, "Arse")
+var btn2 = make_button(64, 64, 64, 64, "PUSH ME")
 
 var win = make_window(320, 240, "Test window.")
 win.labelfont = fl.Helvetica
