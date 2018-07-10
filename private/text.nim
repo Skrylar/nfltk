@@ -154,7 +154,7 @@ type
 proc make_TextDisplay*(x, y, w, h: cint; text: cstring = nil): TextDisplay {.importcpp: "new Fl_Text_Display(@)", header: flh_text_display.}
 
 proc handle*(self: TextDisplay; e: cint): cint {.importcpp: "#.handle(@)", header: flh_text_display.}
-proc buffer*(self: TextDisplay; buf: TextBuffer) {.importcpp: "#.buffer(@)", header: flh_text_display.}
+proc `buffer=`*(self: TextDisplay; buf: TextBuffer) {.importcpp: "#.buffer(@)", header: flh_text_display.}
 proc buffer*(self: TextDisplay): TextBuffer {.importcpp: "#.buffer(@)", header: flh_text_display.}
 proc redisplay_range*(self: TextDisplay; start, `end`: cint) {.importcpp: "#.redisplay_range(@)", header: flh_text_display.}
 proc scroll*(self: TextDisplay; topLineNum, horizOffset: cint) {.importcpp: "#.scroll(@)", header: flh_text_display.}
@@ -192,9 +192,9 @@ proc position_style*(self: TextDisplay; lineStartPos, lineLen, lineIndex: cint):
 proc shortcut*(self: TextDisplay): cint {.importcpp: "#.shortcut(@)", header: flh_text_display.}
 proc shortcut*(self: TextDisplay; s: cint) {.importcpp: "#.shortcut(@)", header: flh_text_display.}
 proc textfont*(self: TextDisplay): Font {.importcpp: "#.textfont(@)", header: flh_text_display.}
-proc textfont*(self: TextDisplay; s: Font) {.importcpp: "#.textfont(@)", header: flh_text_display.}
+proc `textfont=`*(self: TextDisplay; s: Font) {.importcpp: "#.textfont(@)", header: flh_text_display.}
 proc textsize*(self: TextDisplay): Fontsize {.importcpp: "#.textsize(@)", header: flh_text_display.}
-proc textsize*(self: TextDisplay; s: Fontsize) {.importcpp: "#.textsize(@)", header: flh_text_display.}
+proc `textsize=`*(self: TextDisplay; s: Fontsize) {.importcpp: "#.textsize(@)", header: flh_text_display.}
 proc textcolor*(self: TextDisplay): Color {.importcpp: "#.textcolor(@)", header: flh_text_display.}
 proc textcolor*(self: TextDisplay; n: Color) {.importcpp: "#.textcolor(@)", header: flh_text_display.}
 proc wrapped_column*(self: TextDisplay; row, column: cint): cint {.importcpp: "#.wrapped_column(@)", header: flh_text_display.}
