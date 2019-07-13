@@ -176,7 +176,7 @@ type
 
 # ________________________________________________________________________
 
-proc show_colormap(old: Color): Color {.importcpp: "fl_show_colormap(@)", header: "FL/fl_show_colormap.H".}
+proc show_colormap*(old: Color): Color {.importcpp: "fl_show_colormap(@)", header: "FL/fl_show_colormap.H".}
 
 # ________________________________________________________________________
 
@@ -256,7 +256,7 @@ proc data*(self: PreferenceName) {.importcpp: "#()", header: flh_preferences}
 proc free*(self: PreferenceName) {.importcpp: "delete @", header: flh_preferences.}
 
 #class FL_EXPORT Node {
-var preference_node_lastEntrySet {.importcpp: "Fl_Preferences::Node::lastEntrySet", header: flh_preferences.}: cint
+var preference_node_lastEntrySet* {.importcpp: "Fl_Preferences::Node::lastEntrySet", header: flh_preferences.}: cint
 
 proc make_node*(path: cstring): PreferenceNode {.importcpp: "new Fl_Preferences::Node(@)", header: flh_preferences.}
 proc free*(self: PreferenceNode) {.importcpp: "delete @", header: flh_preferences.}
