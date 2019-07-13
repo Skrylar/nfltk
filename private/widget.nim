@@ -25,7 +25,7 @@ proc draw*(self: Label; x, y, w, h: cint; a: Align) {.importcpp: "#.draw(@)", he
 proc measure*(self: Label; w, h: var cint) {.importcpp: "#.measure(@)", header: flh.}
 
 type
-  WidgetObj* {.importc: "Fl_Widget", header: flh.} = object {.inheritable.}
+  WidgetObj* {.importc: "Fl_Widget", header: flh, inheritable.} = object
   Widget* = ptr WidgetObj
 
   Callback*  = proc(w: Widget; user: pointer)
@@ -190,7 +190,7 @@ const
 type
   PreferenceID* = pointer
 
-  PreferencesObj* {.importc: "Fl_Preferences", header: flh_preferences.} = object {.inheritable.}
+  PreferencesObj* {.importc: "Fl_Preferences", header: flh_preferences, inheritable.} = object
   Preferences* = ptr PreferencesObj
 
   PreferenceEntry* {.importcpp: "Fl_Preferences::Entry", header: flh_preferences.} = object

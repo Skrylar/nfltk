@@ -5,7 +5,7 @@ import widget
 const
   flh_fileicon = "FL/Fl_File_Icon.H"
 type
-  FileIconObj* {.importc: "Fl_File_Icon", header: flh_fileicon.} = object {.inheritable.}
+  FileIconObj* {.importc: "Fl_File_Icon", header: flh_fileicon, inheritable.} = object
   FileIcon* = ptr FileIconObj
 
 const

@@ -147,7 +147,7 @@ proc `filetype=`*(t: cint) {.importcpp: "#.filetype(@)", header: flh_filebrowser
 const
   flh_filechooser = "FL/Fl_File_Chooser.H"
 type
-  FileChooserObj* {.importc: "Fl_File_Chooser", header: flh_filechooser.} = object {.inheritable.}
+  FileChooserObj* {.importc: "Fl_File_Chooser", header: flh_filechooser, inheritable.} = object 
     newButton*: Button
     previewButton*, showHiddenButton*: CheckButton
   FileChooser* = ptr FileChooserObj
