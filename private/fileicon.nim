@@ -9,7 +9,8 @@ type
   FileIcon* = ptr FileIconObj
 
 const
-  ICON_COLOR* = 0xffffffff.Color
+  # this used to work, but in 0.20 it doesn't
+  ICON_COLOR* = Color.high # Color(0xFFFFFFFF)
 
 const
   FILETYPE_ANY*       = 0

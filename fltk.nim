@@ -93,7 +93,7 @@ type
 
 type
   Label_Draw_F* {.importc: "Fl_Label_Draw_F", header: flh.} = proc(label: Label; x, y, w, h: cint; align: Align)
-  Label_Measure_F* {.importc: "Fl_Label_Measure_F", header: flh.} = proc(label: Label; width, height: varcint)
+  Label_Measure_F* {.importc: "Fl_Label_Measure_F", header: flh.} = proc(label: Label; width, height: var cint)
   Box_Draw_F* {.importc: "Fl_Box_Draw_F", header: flh.} = proc(x, y, w, h: cint; color: Color)
   Timeout_Handler* {.importc: "Fl_Timeout_Handler", header: flh.} = proc(data: pointer)
   Awake_Handler* {.importc: "Fl_Awake_Handler", header: flh.} = proc(data: pointer)
