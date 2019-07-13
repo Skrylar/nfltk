@@ -9,6 +9,12 @@ This library is compatible with the following versions:
 |FLTK|1.3|
 |Nim|0.20|
 
+This is a C++ wrapper and so you must compile in `cpp` mode:
+
+```
+nim cpp test.nim
+```
+
 # Notes
 
 - Reference types have been removed. Anywhere that `Widget&` would have appeared in FLTK code is now a `ptr Widget`.
