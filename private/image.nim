@@ -17,7 +17,7 @@ const
   Image_ERR_FORMAT*      = -3
 
 type
-  ImageObj* {.importc: "Fl_Image", header: flh.} = object {.inheritable.}
+  ImageObj* {.importc: "Fl_Image", header: flh, inheritable.} = object
   Image* = ptr ImageObj
 
 proc make_image*(W, H, D: cint): Image {.importcpp: "new Fl_Image(@)", header: flh.}
