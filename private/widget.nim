@@ -22,7 +22,7 @@ type
     typee* {.importc: "type".}: cuchar
 
 proc draw*(self: Label; x, y, w, h: cint; a: Align) {.importcpp: "#.draw(@)", header: flh.}
-proc measure*(self: Label; w, h: out cint) {.importcpp: "#.measure(@)", header: flh.}
+proc measure*(self: Label; w, h: var cint) {.importcpp: "#.measure(@)", header: flh.}
 
 type
   WidgetObj* {.importc: "Fl_Widget", header: flh.} = object {.inheritable.}
@@ -149,7 +149,7 @@ proc clear_damage*(self: Widget; c: uint8 = 0) {.importcpp: "#.clear_damage(@)",
 proc damage*(self: Widget; c: cuchar) {.importcpp: "#.damage(@)", header: flh.}
 proc damage*(self: Widget; c: cuchar; x, y, w, h: cint) {.importcpp: "#.damage(@)", header: flh.}
 proc draw_label*(self: Widget; x, y, w, h: cint; a: Align) {.importcpp: "#.draw_label(@)", header: flh.}
-proc measure_label*(self: Widget; ww, hh: out cint) {.importcpp: "#.measure_label(@)", header: flh.}
+proc measure_label*(self: Widget; ww, hh: var cint) {.importcpp: "#.measure_label(@)", header: flh.}
 proc use_accents_menu*(self: Widget): cint {.importcpp: "#.use_accents_menu(@)", header: flh.}
 proc color2*(self: Widget): Color {.importcpp: "#.color2(@)", header: flh.}
 proc color2*(self: Widget; a: cuint) {.importcpp: "#.color2(@)", header: flh.}

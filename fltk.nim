@@ -93,7 +93,7 @@ type
 
 type
   Label_Draw_F* {.importc: "Fl_Label_Draw_F", header: flh.} = proc(label: Label; x, y, w, h: cint; align: Align)
-  Label_Measure_F* {.importc: "Fl_Label_Measure_F", header: flh.} = proc(label: Label; width, height: out cint)
+  Label_Measure_F* {.importc: "Fl_Label_Measure_F", header: flh.} = proc(label: Label; width, height: varcint)
   Box_Draw_F* {.importc: "Fl_Box_Draw_F", header: flh.} = proc(x, y, w, h: cint; color: Color)
   Timeout_Handler* {.importc: "Fl_Timeout_Handler", header: flh.} = proc(data: pointer)
   Awake_Handler* {.importc: "Fl_Awake_Handler", header: flh.} = proc(data: pointer)
@@ -104,7 +104,7 @@ type
   System_Handler* {.importc: "Fl_System_Handler", header: flh.} = proc(event, data: pointer): int
   Abort_Handler* {.importc: "Fl_Abort_Handler", header: flh.} = proc(format: cstring) {.varargs.}
   Atclose_Handler* {.importc: "Fl_Atclose_Handler", header: flh.} = proc(window: Window, data: pointer)
-  Args_Handler* {.importc: "Fl_Args_Handler", header: flh.} = proc(argc: cint; argv: ptr cstring; i: out cint): int
+  Args_Handler* {.importc: "Fl_Args_Handler", header: flh.} = proc(argc: cint; argv: ptr cstring; i: var cint): int
   Event_Dispatch* {.importc: "Fl_Event_Dispatch", header: flh.} = proc(event: cint; w: Window): int
   Clipboard_Notify_Handler* {.importc: "Fl_Clipboard_Notify_Handler", header: flh.} = proc(source: cint; data: pointer)
 
@@ -231,15 +231,15 @@ proc y*(): cint {.importc: "Fl::y", header: flh.}
 proc w*(): cint {.importc: "Fl::w", header: flh.}
 proc h*(): cint {.importc: "Fl::h", header: flh.}
 proc screen_count*(): cint {.importc: "Fl::screen_count", header: flh.}
-proc screen_xywh*(X, Y, W, H: out cint) {.importc: "Fl::screen_xywh", header: flh.}
-proc screen_xywh*(X, Y, W, H: out cint; mx, my: cint) {.importc: "Fl::screen_xywh", header: flh.}
-proc screen_xywh*(X, Y, W, H: out cint; n: cint) {.importc: "Fl::screen_xywh", header: flh.}
-proc screen_xywh*(X, Y, W, H: out cint; mx, my, mw, mh: cint) {.importc: "Fl::screen_xywh", header: flh.}
+proc screen_xywh*(X, Y, W, H: var cint) {.importc: "Fl::screen_xywh", header: flh.}
+proc screen_xywh*(X, Y, W, H: var cint; mx, my: cint) {.importc: "Fl::screen_xywh", header: flh.}
+proc screen_xywh*(X, Y, W, H: var cint; n: cint) {.importc: "Fl::screen_xywh", header: flh.}
+proc screen_xywh*(X, Y, W, H: var cint; mx, my, mw, mh: cint) {.importc: "Fl::screen_xywh", header: flh.}
 proc screen_num*(x, y: cint): cint {.importc: "Fl::screen_num", header: flh.}
 proc screen_num*(x, y, w, h: cint): cint {.importc: "Fl::screen_num", header: flh.}
-proc screen_dpi*(h, v: out cfloat; n: cint = 0) {.importc: "Fl::screen_dpi", header: flh.}
-proc screen_work_area*(X, Y, W, H: out cint; mx, my: cint) {.importc: "Fl::screen_work_area", header: flh.}
-proc screen_work_area*(X, Y, W, H: out cint; n: cint): cint {.importc: "Fl::screen_work_area", header: flh.}
+proc screen_dpi*(h, v: var cfloat; n: cint = 0) {.importc: "Fl::screen_dpi", header: flh.}
+proc screen_work_area*(X, Y, W, H: var cint; mx, my: cint) {.importc: "Fl::screen_work_area", header: flh.}
+proc screen_work_area*(X, Y, W, H: var cint; n: cint): cint {.importc: "Fl::screen_work_area", header: flh.}
 proc set_color*(c: Color; r, g, b: cuchar) {.importc: "Fl::set_color", header: flh.}
 proc set_color*(c: Color; ci: cuint) {.importc: "Fl::set_color", header: flh.}
 proc get_color*(c: Color): cuint {.importc: "Fl::get_color", header: flh.}

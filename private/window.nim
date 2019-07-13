@@ -97,7 +97,7 @@ proc decorated_h*(self: Window): cint {.importcpp: "#->decorated_h(@)", header: 
 
 proc window*(self: Widget): Window {.importcpp: "#.window(@)".}
 proc top_window*(self: Widget): Window {.importcpp: "#.top_window(@)".}
-proc top_window_offset*(self: Widget; xoff, yoff: out cint): Window {.importcpp: "#.top_window_offset(@)".}
+proc top_window_offset*(self: Widget; xoff, yoff: var cint): Window {.importcpp: "#.top_window_offset(@)".}
 
 # static values
 proc current*(): Window {.importcpp: "Fl_Window::current(@)", header: flh.}

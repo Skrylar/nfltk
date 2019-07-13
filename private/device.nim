@@ -55,7 +55,7 @@ type
   proc size*(self: GraphicsDriver): Fontsize {.importcpp: "#.size(@)", header: flh_driver.}
   proc width*(self: GraphicsDriver; str: cstring; n: cint): cdouble {.importcpp: "#.width(@)", header: flh_driver.}
   proc width*(self: GraphicsDriver; unsigned int c): cdouble {.importcpp: "#.width(@)", header: flh_driver.}
-  proc text_extents*(self: GraphicsDriver; text: cstring; n: cint; dx, dy, w, h: out cint) {.importcpp: "#.text_extents(@)", header: flh_driver.}
+  proc text_extents*(self: GraphicsDriver; text: cstring; n: cint; dx, dy, w, h: var cint) {.importcpp: "#.text_extents(@)", header: flh_driver.}
   proc height*(self: GraphicsDriver): cint {.importcpp: "#.height(@)", header: flh_driver.}
   proc descent*(self: GraphicsDriver): cint {.importcpp: "#.descent(@)", header: flh_driver.}
   proc color*(self: GraphicsDriver): Color {.importcpp: "#.color(@)", header: flh_driver.}
@@ -87,7 +87,7 @@ when defined(apple):
   proc draw_image_mono*(self: QuartzGraphicsDriver; cb: DrawImageCb; data: pointer; X, Y, W, H: cint; D: cint = 1) {.importcpp: "#.draw_image_mono(@)", header: flh_driver.}
   proc width*(self: QuartzGraphicsDriver; str: cstring; n: cint): cdouble {.importcpp: "#.width(@)", header: flh_driver.}
   proc width*(self: QuartzGraphicsDriver; c: cuint): cdouble {.importcpp: "#.width(@)", header: flh_driver.}
-  proc text_extents*(self: QuartzGraphicsDriver; text: cstring; n: cint; dx, dy, w, h: out cint) {.importcpp: "#.text_extents(@)", header: flh_driver.}
+  proc text_extents*(self: QuartzGraphicsDriver; text: cstring; n: cint; dx, dy, w, h: var cint) {.importcpp: "#.text_extents(@)", header: flh_driver.}
   proc height*(self: QuartzGraphicsDriver): cint {.importcpp: "#.height(@)", header: flh_driver.}
   proc descent*(self: QuartzGraphicsDriver): cint {.importcpp: "#.descent(@)", header: flh_driver.}
   proc copy_offscreen*(self: QuartzGraphicsDriver; x, y, w, h; cint; pixmap: Offscreen; srcx, srcy: cint) {.importcpp: "#.copy_offscreen(@)", header: flh_driver.}
@@ -117,7 +117,7 @@ else defined(windows):
   proc draw_image_mono*(self: GdiGraphicsDriver; cb: DrawImageCb; data: pointer; X, Y, W, H: cint; D: cint = 1) {.importcpp: "#.draw_image_mono(@)", header: flh_driver.}
   proc width*(self: GdiGraphicsDriver; str: cstring; n: cint) {.importcpp: "#.width(@)", header: flh_driver.}
   proc width*(self: GdiGraphicsDriver; c: cuint) {.importcpp: "#.width(@)", header: flh_driver.}
-  proc text_extents*(self: GdiGraphicsDriver; text: cstring; n: cint; dx, dy, w, h: out cint) {.importcpp: "#.text_extents(@)", header: flh_driver.}
+  proc text_extents*(self: GdiGraphicsDriver; text: cstring; n: cint; dx, dy, w, h: var cint) {.importcpp: "#.text_extents(@)", header: flh_driver.}
   proc height*(self: GdiGraphicsDriver) {.importcpp: "#.height(@)", header: flh_driver.}
   proc descent*(self: GdiGraphicsDriver): cint {.importcpp: "#.descent(@)", header: flh_driver.}
   # XXX need a windows unit for the hbitmap
@@ -156,7 +156,7 @@ else:
     draw_image_mono(cb: DrawImageCb; data: pointer; X, Y, W, H: cint; D: cint=1)
     width(str: cstring; n: cint): cdouble
     width(c: cuint): cdouble
-    text_extents(text: cstring; n: cint; dx, dy, w, h: out cint)
+    text_extents(text: cstring; n: cint; dx, dy, w, h: var cint)
     height(): cint
     descent(): cint
     copy_offscreen(x, y, w, h: cint; pixmap: Offscreen; srcx, srcy: cint)
@@ -298,7 +298,7 @@ proc start_page*(self: PagedDevice): cint {.importcpp: "#.start_page(@)", header
 proc printable_rect*(self: PagedDevice; w, h: ptr cint): cint {.importcpp: "#.printable_rect(@)", header: flh_pageddevice.}
 proc margins*(self: PagedDevice; left, top, right, bottom: ptr cint) {.importcpp: "#.margins(@)", header: flh_pageddevice.}
 proc origin*(self: PagedDevice; x, y: cint) {.importcpp: "#.origin(@)", header: flh_pageddevice.}
-proc origin*(self: PagedDevice; x, y: out cint) {.importcpp: "#.origin(@)", header: flh_pageddevice.}
+proc origin*(self: PagedDevice; x, y: var cint) {.importcpp: "#.origin(@)", header: flh_pageddevice.}
 proc scale*(self: PagedDevice; scale_x, scale_y: cfloat = 0.0) {.importcpp: "#.scale(@)", header: flh_pageddevice.}
 proc rotate*(self: PagedDevice; angle: cfloat) {.importcpp: "#.rotate(@)", header: flh_pageddevice.}
 proc translate*(self: PagedDevice; x, y: cint) {.importcpp: "#.translate(@)", header: flh_pageddevice.}
@@ -359,7 +359,7 @@ proc page*(self: PostScriptGraphicsDriver; format: cint) {.importcpp: "#.page(@)
 proc color*(self: PostScriptGraphicsDriver; c: Color) {.importcpp: "#.color(@)", header: flh_post_script.}
 proc color*(self: PostScriptGraphicsDriver; r, g, b: uchar) {.importcpp: "#.color(@)", header: flh_post_script.}
 proc push_clip*(self: PostScriptGraphicsDriver; x, y, w, h: cint) {.importcpp: "#.push_clip(@)", header: flh_post_script.}
-proc clip_box*(self: PostScriptGraphicsDriver; x, y, w, h: cint; X, Y, W, H: out cint): cint {.importcpp: "#.clip_box(@)", header: flh_post_script.}
+proc clip_box*(self: PostScriptGraphicsDriver; x, y, w, h: cint; X, Y, W, H: var cint): cint {.importcpp: "#.clip_box(@)", header: flh_post_script.}
 proc not_clipped*(self: PostScriptGraphicsDriver; x, y, w, h: cint): cint {.importcpp: "#.not_clipped(@)", header: flh_post_script.}
 proc push_no_clip*(self: PostScriptGraphicsDriver) {.importcpp: "#.push_no_clip(@)", header: flh_post_script.}
 proc pop_clip*(self: PostScriptGraphicsDriver) {.importcpp: "#.pop_clip(@)", header: flh_post_script.}
@@ -407,7 +407,7 @@ proc rtl_draw*(self: PostScriptGraphicsDriver; s: cstring; n, x, y: cint) {.impo
 proc font*(self: PostScriptGraphicsDriver; face, size: cint) {.importcpp: "#.font(@)", header: flh_post_script.}
 proc width*(self: PostScriptGraphicsDriver; a: cstring; b: cint): cdouble {.importcpp: "#.width(@)", header: flh_post_script.}
 proc width*(self: PostScriptGraphicsDriver; u: cuint): cdouble {.importcpp: "#.width(@)", header: flh_post_script.}
-proc text_extents*(self: PostScriptGraphicsDriver; c: cstring; n: cint; dx, dy, w, h: out cint) {.importcpp: "#.text_extents(@)", header: flh_post_script.}
+proc text_extents*(self: PostScriptGraphicsDriver; c: cstring; n: cint; dx, dy, w, h: var cint) {.importcpp: "#.text_extents(@)", header: flh_post_script.}
 proc height*(self: PostScriptGraphicsDriver): cint {.importcpp: "#.height(@)", header: flh_post_script.}
 proc descent*(self: PostScriptGraphicsDriver): cint {.importcpp: "#.descent(@)", header: flh_post_script.}
 proc draw*(self: PostScriptGraphicsDriver; pxm: Pixmap; XP, YP, WP, HP, cx, cy: cint) {.importcpp: "#.draw(@)", header: flh_post_script.}

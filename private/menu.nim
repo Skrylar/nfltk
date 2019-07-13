@@ -165,7 +165,7 @@ proc activevisible*(self: MenuItem): cint {.importcpp: "#.activevisible(@)", hea
 proc `image=`*(self: MenuItem; a: Image) {.importcpp: "#.image(@)", header: flh_menuitem.}
 
 #void image(Fl_Image& a)
-proc measure*(self: MenuItem; h: out cint; m: Menu): cint {.importcpp: "#.measure(@)".}
+proc measure*(self: MenuItem; h: var cint; m: Menu): cint {.importcpp: "#.measure(@)".}
 proc draw*(self: MenuItem; x, y, w, h: cint; m: Menu, t: cint = 0) {.importcpp: "#.draw(@)", header: flh_menuitem.}
 proc popup*(self: MenuItem; X, Y: cint; title: cstring = nil; picked: MenuItem = nil; m: Menu = nil): MenuItem {.importcpp: "#.popup(@)", header: flh_menuitem.}
 proc pulldown*(self: MenuItem; X, Y, W, H: cint; picked: MenuItem = nil; m: Menu = nil; title: MenuItem = nil; menubar: cint = 0): MenuItem {.importcpp: "#.pulldown(@)", header: flh_menuitem.}

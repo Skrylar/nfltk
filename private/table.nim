@@ -31,7 +31,7 @@ proc `rows=`*(self: Table; val: cint) {.importcpp: "#.rows(@)", header: flh_tabl
 proc rows*(self: Table): cint {.importcpp: "#.rows(@)", header: flh_table.}
 proc `cols=`*(self: Table; val: cint) {.importcpp: "#.cols(@)", header: flh_table.}
 proc cols*(self: Table): cint {.importcpp: "#.cols(@)", header: flh_table.}
-proc visible_cells*(self: Table; r1, r2, c1, c2: out cint) {.importcpp: "#.visible_cells(@)", header: flh_table.}
+proc visible_cells*(self: Table; r1, r2, c1, c2: var cint) {.importcpp: "#.visible_cells(@)", header: flh_table.}
 proc is_interactive_resize*(self: Table): cint {.importcpp: "#.is_interactive_resize(@)", header: flh_table.}
 proc row_resize*(self: Table): cint {.importcpp: "#.row_resize(@)", header: flh_table.}
 proc `row_resize=`*(self: Table; flag: cint) {.importcpp: "#.row_resize(@)", header: flh_table.}
@@ -66,7 +66,7 @@ proc col_position*(self: Table): cint {.importcpp: "#.col_position(@)", header: 
 proc `top_row=`*(self: Table; row: cint) {.importcpp: "#.top_row(@)", header: flh_table.}
 proc top_row*(self: Table): cint {.importcpp: "#.top_row(@)", header: flh_table.}
 proc is_selected*(self: Table; r, c: cint): cint {.importcpp: "#.is_selected(@)", header: flh_table.}
-proc get_selection*(self: Table; row_top, col_left, row_bot, col_right: out cint) {.importcpp: "#.get_selection(@)", header: flh_table.}
+proc get_selection*(self: Table; row_top, col_left, row_bot, col_right: var cint) {.importcpp: "#.get_selection(@)", header: flh_table.}
 proc set_selection*(self: Table; row_top, col_left, row_bot, col_right: cint) {.importcpp: "#.set_selection(@)", header: flh_table.}
 proc move_cursor*(self: Table; R, C, shiftselect: cint): cint {.importcpp: "#.move_cursor(@)", header: flh_table.}
 proc move_cursor*(self: Table; R, C: cint): cint {.importcpp: "#.move_cursor(@)", header: flh_table.}

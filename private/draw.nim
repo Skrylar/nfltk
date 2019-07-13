@@ -35,7 +35,7 @@ proc fl_push_clip*(x, y, w, h: cint) {.importcpp: "fl_push_clip(@)", header: flh
 proc fl_push_no_clip*() {.importcpp: "fl_push_no_clip(@)", header: flh_draw.}
 proc fl_pop_clip*() {.importcpp: "fl_pop_clip(@)", header: flh_draw.}
 proc fl_not_clipped*(x, y, w, h: cint): cint {.importcpp: "fl_not_clipped(@)", header: flh_draw.}
-proc fl_clip_box*(x, y, w, h: cint; X, Y, W, H: out cint): cint {.importcpp: "fl_clip_box(@)", header: flh_draw.}
+proc fl_clip_box*(x, y, w, h: cint; X, Y, W, H: var cint): cint {.importcpp: "fl_clip_box(@)", header: flh_draw.}
 proc fl_restore_clip*() {.importcpp: "fl_restore_clip(@)", header: flh_draw.}
 #proc fl_clip_region*(r: Region) {.importcpp: "fl_clip_region(@)", header: flh_draw.}
 #proc fl_clip_region*(): Region {.importcpp: "fl_clip_region(@)", header: flh_draw.}
@@ -97,8 +97,8 @@ proc fl_descent*(): cint {.importcpp: "fl_descent(@)", header: flh_draw.}
 proc fl_width*(txt: cstring): cdouble {.importcpp: "fl_width(@)", header: flh_draw.}
 proc fl_width*(txt: cstring; n: cint): cdouble {.importcpp: "fl_width(@)", header: flh_draw.}
 proc fl_width*(c: cuint): cdouble {.importcpp: "fl_width(@)", header: flh_draw.}
-proc fl_text_extents*(t: cstring; dx, dy, w, h: out cint) {.importcpp: "fl_text_extents(@)", header: flh_draw.}
-proc fl_text_extents*(t: cstring; n: cint; dx, dy, w, h: out cint) {.importcpp: "fl_text_extents(@)", header: flh_draw.}
+proc fl_text_extents*(t: cstring; dx, dy, w, h: var cint) {.importcpp: "fl_text_extents(@)", header: flh_draw.}
+proc fl_text_extents*(t: cstring; n: cint; dx, dy, w, h: var cint) {.importcpp: "fl_text_extents(@)", header: flh_draw.}
 proc fl_latin1_to_local*(t: cstring; n: cint = -1): cstring {.importcpp: "fl_latin1_to_local(@)", header: flh_draw.}
 proc fl_local_to_latin1*(t: cstring; n: cint = -1): cstring {.importcpp: "fl_local_to_latin1(@)", header: flh_draw.}
 proc fl_mac_roman_to_local*(t: cstring; n: cint = -1): cstring {.importcpp: "fl_mac_roman_to_local(@)", header: flh_draw.}
@@ -108,7 +108,7 @@ proc fl_draw*(angle: cint; str: cstring; x, y: cint) {.importcpp: "fl_draw(@)", 
 proc fl_draw*(str: cstring; n, x, y: cint) {.importcpp: "fl_draw(@)", header: flh_draw.}
 proc fl_draw*(angle: cint; str: cstring; n, x, y: cint) {.importcpp: "fl_draw(@)", header: flh_draw.}
 proc fl_rtl_draw*(str: cstring; n, x, y: cint) {.importcpp: "fl_rtl_draw(@)", header: flh_draw.}
-proc fl_measure*(str: cstring; x, y: out cint; draw_symbols: cint = 1) {.importcpp: "fl_measure(@)", header: flh_draw.}
+proc fl_measure*(str: cstring; x, y: var cint; draw_symbols: cint = 1) {.importcpp: "fl_measure(@)", header: flh_draw.}
 proc fl_draw*(str: cstring; x, y, w, h: cint; align: Align; img: Image = nil; draw_symbols: cint = 1) {.importcpp: "fl_draw(@)", header: flh_draw.}
 proc fl_frame*(s: cstring; x, y, w, h: cint) {.importcpp: "fl_frame(@)", header: flh_draw.}
 proc fl_frame2*(s: cstring; x, y, w, h: cint) {.importcpp: "fl_frame2(@)", header: flh_draw.}
@@ -121,8 +121,8 @@ proc fl_can_do_alpha_blending*(): char {.importcpp: "fl_can_do_alpha_blending(@)
 proc fl_read_image*(p: ptr uint8; X, Y, W, H: cint; alpha: cint = 0): ptr uint8 {.importcpp: " *fl_read_image(@)", header: flh_draw.}
 proc fl_draw_pixmap*(data: ptr cstring; x, y: cint; c: Color = GRAY): cint {.importcpp: "fl_draw_pixmap(@)", header: flh_draw.}
 proc fl_draw_pixmap*(cdata: ptr cstring; x, y: cint; c: Color = GRAY): cint {.importcpp: "fl_draw_pixmap(@)", header: flh_draw.}
-proc fl_measure_pixmap*(data: ptr cstring; w, h: out cint): cint {.importcpp: "fl_measure_pixmap(@)", header: flh_draw.}
-proc fl_measure_pixmap*(cdata: ptr cstring; w, h: out cint): cint {.importcpp: "fl_measure_pixmap(@)", header: flh_draw.}
+proc fl_measure_pixmap*(data: ptr cstring; w, h: var cint): cint {.importcpp: "fl_measure_pixmap(@)", header: flh_draw.}
+proc fl_measure_pixmap*(cdata: ptr cstring; w, h: var cint): cint {.importcpp: "fl_measure_pixmap(@)", header: flh_draw.}
 proc fl_shortcut_label*(shortcut: cuint): cstring {.importcpp: "fl_shortcut_label(@)", header: flh_draw.}
 proc fl_shortcut_label*(shortcut: cuint; eom: ptr cstring): cstring {.importcpp: "fl_shortcut_label(@)", header: flh_draw.}
 proc fl_old_shortcut*(s: cstring): cuint {.importcpp: "fl_old_shortcut(@)", header: flh_draw.}
@@ -130,7 +130,7 @@ proc fl_overlay_rect*(x, y, w, h: cint) {.importcpp: "fl_overlay_rect(@)", heade
 proc fl_overlay_clear*() {.importcpp: "fl_overlay_clear(@)", header: flh_draw.}
 proc fl_cursor*(c: enumerations.Cursor) {.importcpp: "fl_cursor(@)", header: flh_draw.}
 proc fl_cursor*(c: enumerations.Cursor; fg, bg: Color = WHITE) {.importcpp: "fl_cursor(@)", header: flh_draw.}
-proc fl_expand_text*(`from`, buf: cstring; maxbuf: cint; maxw: cdouble; n: out cint, width: out cdouble; wrap: cint; draw_symbols: cint = 0): cstring {.importcpp: "fl_expand_text(@)", header: flh_draw.}
+proc fl_expand_text*(`from`, buf: cstring; maxbuf: cint; maxw: cdouble; n: var cint, width: var cdouble; wrap: cint; draw_symbols: cint = 0): cstring {.importcpp: "fl_expand_text(@)", header: flh_draw.}
 proc fl_set_status*(X, Y, W, H: cint) {.importcpp: "fl_set_status(@)", header: flh_draw.}
 proc fl_set_spot*(font, size, X, Y, W, H: cint; win: Window = nil) {.importcpp: "fl_set_spot(@)", header: flh_draw.}
 proc fl_reset_spot*() {.importcpp: "fl_reset_spot(@)", header: flh_draw.}

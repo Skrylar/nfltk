@@ -11,11 +11,11 @@ proc fl_utf8bytes*(self: TextBuffer; ucs: cuint): cint {.importcpp: "#.fl_utf8by
 proc fl_utf8len*(self: TextBuffer; c: char): cint {.importcpp: "#.fl_utf8len(@)", header: flh_utf.}
 proc fl_utf8len1*(self: TextBuffer; c: char): cint {.importcpp: "#.fl_utf8len1(@)", header: flh_utf.}
 proc fl_utf_nb_char*(self: TextBuffer; cstring: cuint buf; len: cint): cint {.importcpp: "#.fl_utf_nb_char(@)", header: flh_utf.}
-proc fl_utf8decode*(self: TextBuffer; p, end: cstring; len: out cint): cuint {.importcpp: "#.fl_utf8decode(@)", header: flh_utf.}
+proc fl_utf8decode*(self: TextBuffer; p, end: cstring; len: var cint): cuint {.importcpp: "#.fl_utf8decode(@)", header: flh_utf.}
 proc fl_utf8encode*(self: TextBuffer; ucs: cuint; buf: cstring): cint {.importcpp: "#.fl_utf8encode(@)", header: flh_utf.}
 proc fl_utf8fwd*:self: TextBuffer;  cstring(p, start, end: cstring):  {.importcpp: "#.fl_utf8fwd(@)", header: flh_utf.}
 proc fl_utf8back*:self: TextBuffer;  cstring(p, start, end: cstring):  {.importcpp: "#.fl_utf8back(@)", header: flh_utf.}
-proc fl_ucs_to_Utf16*(self: TextBuffer; ucs: cuint; dst: out cushort; dstlen: cuint): cuint {.importcpp: "#.fl_ucs_to_Utf16(@)", header: flh_utf.}
+proc fl_ucs_to_Utf16*(self: TextBuffer; ucs: cuint; dst: var cushort; dstlen: cuint): cuint {.importcpp: "#.fl_ucs_to_Utf16(@)", header: flh_utf.}
 cuint fl_utf8toUtf16(const cstring src, cuint srclen, cuint short* dst, cuint dstlen)
 proc fl_utf8towc*(self: TextBuffer; src: cstring; srclen: cuint; dst: flwchar; dstlen: cuint): cuint {.importcpp: "#.fl_utf8towc(@)", header: flh_utf.}
 proc fl_utf8fromwc*(self: TextBuffer; dst: cstring; dstlen: cuint; src: flwchar; srclen: cuint): cuint {.importcpp: "#.fl_utf8fromwc(@)", header: flh_utf.}

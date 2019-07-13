@@ -70,7 +70,7 @@ proc value*(self: Tabs; w: Widget): cint {.importcpp: "#.value(@)", header: flh_
 proc push*(self: Tabs): Widget {.importcpp: "#.push(@)", header: flh_tabs.}
 proc push*(self: Tabs; w: Widget): cint {.importcpp: "#.push(@)", header: flh_tabs.}
 proc which*(self: Tabs; event_x, event_y: cint): Widget {.importcpp: "#.which(@)", header: flh_tabs.}
-proc client_area*(self: Tabs; rx, ry, rw, rh: out cint; tabh: cint = 0) {.importcpp: "#.client_area(@)", header: flh_tabs.}
+proc client_area*(self: Tabs; rx, ry, rw, rh: var cint; tabh: cint = 0) {.importcpp: "#.client_area(@)", header: flh_tabs.}
 
 const
   flh_pack = "FL/Fl_Pack.H"

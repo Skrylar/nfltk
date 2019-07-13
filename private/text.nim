@@ -26,7 +26,7 @@ proc `end`*(self: TextSelection): cint {.importcpp: "#.end(@)", header: flh_text
 proc selected*(self: TextSelection): bool {.importcpp: "#.selected(@)", header: flh_text_buffer.}
 proc `selected=`*(self: TextSelection; b: bool) {.importcpp: "#.selected(@)", header: flh_text_buffer.}
 proc includes*(self: TextSelection; pos: cint): cint {.importcpp: "#.includes(@)", header: flh_text_buffer.}
-proc position*(self: TextSelection; start, `end`: out cint): cint {.importcpp: "#.position(@)", header: flh_text_buffer.}
+proc position*(self: TextSelection; start, `end`: var cint): cint {.importcpp: "#.position(@)", header: flh_text_buffer.}
 
 type
   TextBufferObj* {.importc: "Fl_Text_Buffer", header: flh_text_buffer.} = object
@@ -63,21 +63,21 @@ proc tab_distance*(self: TextBuffer; tabDist: cint) {.importcpp: "#.tab_distance
 proc select*(self: TextBuffer; start, `end`: cint) {.importcpp: "#.select(@)", header: flh_text_buffer.}
 proc selected*(self: TextBuffer): cint {.importcpp: "#.selected(@)", header: flh_text_buffer.}
 proc unselect*(self: TextBuffer) {.importcpp: "#.unselect(@)", header: flh_text_buffer.}
-proc selection_position*(self: TextBuffer; start, `end`: out cint): cint {.importcpp: "#.selection_position(@)", header: flh_text_buffer.}
+proc selection_position*(self: TextBuffer; start, `end`: var cint): cint {.importcpp: "#.selection_position(@)", header: flh_text_buffer.}
 proc selection_text*(self: TextBuffer): cstring {.importcpp: "#.*selection_text(@)", header: flh_text_buffer.}
 proc remove_selection*(self: TextBuffer) {.importcpp: "#.remove_selection(@)", header: flh_text_buffer.}
 proc replace_selection*(self: TextBuffer; text: cstring) {.importcpp: "#.replace_selection(@)", header: flh_text_buffer.}
 proc secondary_select*(self: TextBuffer; start, `end`: cint) {.importcpp: "#.secondary_select(@)", header: flh_text_buffer.}
 proc secondary_selected*(self: TextBuffer): cint {.importcpp: "#.secondary_selected(@)", header: flh_text_buffer.}
 proc secondary_unselect*(self: TextBuffer) {.importcpp: "#.secondary_unselect(@)", header: flh_text_buffer.}
-proc secondary_selection_position*(self: TextBuffer; start, `end`: out cint): cint {.importcpp: "#.secondary_selection_position(@)", header: flh_text_buffer.}
+proc secondary_selection_position*(self: TextBuffer; start, `end`: var cint): cint {.importcpp: "#.secondary_selection_position(@)", header: flh_text_buffer.}
 proc secondary_selection_text*(self: TextBuffer): cstring {.importcpp: "#.secondary_selection_text(@)", header: flh_text_buffer.}
 proc remove_secondary_selection*(self: TextBuffer) {.importcpp: "#.remove_secondary_selection(@)", header: flh_text_buffer.}
 proc replace_secondary_selection*(self: TextBuffer; text: cstring) {.importcpp: "#.replace_secondary_selection(@)", header: flh_text_buffer.}
 proc highlight*(self: TextBuffer; start, `end`: cint) {.importcpp: "#.highlight(@)", header: flh_text_buffer.}
 proc highlight*(self: TextBuffer): cint {.importcpp: "#.highlight(@)", header: flh_text_buffer.}
 proc unhighlight*(self: TextBuffer) {.importcpp: "#.unhighlight(@)", header: flh_text_buffer.}
-proc highlight_position*(self: TextBuffer; start, `end`: out cint): cint {.importcpp: "#.highlight_position(@)", header: flh_text_buffer.}
+proc highlight_position*(self: TextBuffer; start, `end`: var cint): cint {.importcpp: "#.highlight_position(@)", header: flh_text_buffer.}
 proc highlight_text*(self: TextBuffer): cstring {.importcpp: "#.highlight_text(@)", header: flh_text_buffer.}
 proc add_modify_callback*(self: TextBuffer; bufModifiedCB: TextModifyCb; cbArg: pointer) {.importcpp: "#.add_modify_callback(@)", header: flh_text_buffer.}
 proc remove_modify_callback*(self: TextBuffer; bufModifiedCB: TextModifyCb; cbArg: pointer) {.importcpp: "#.remove_modify_callback(@)", header: flh_text_buffer.}
@@ -95,10 +95,10 @@ proc skip_displayed_characters*(self: TextBuffer; lineStartPos, nChars: cint): c
 proc count_lines*(self: TextBuffer; startPos, endPos: cint): cint {.importcpp: "#.count_lines(@)", header: flh_text_buffer.}
 proc skip_lines*(self: TextBuffer; startPos, nLines: cint): cint {.importcpp: "#.skip_lines(@)", header: flh_text_buffer.}
 proc rewind_lines*(self: TextBuffer; startPos, nLines: cint): cint {.importcpp: "#.rewind_lines(@)", header: flh_text_buffer.}
-proc findchar_forward*(self: TextBuffer; startPos: cint; searchChar: cuint; foundPos: out cint): cint {.importcpp: "#.findchar_forward(@)", header: flh_text_buffer.}
-proc findchar_backward*(self: TextBuffer; startPos: cint; searchChar: cuint; foundPos: out cint): cint {.importcpp: "#.findchar_backward(@)", header: flh_text_buffer.}
-proc search_forward*(self: TextBuffer; startPos: cint; searchString: cstring; foundPos: out cint; matchCase: cint = 0): cint {.importcpp: "#.search_forward(@)", header: flh_text_buffer.}
-proc search_backward*(self: TextBuffer; startPos: cint; searchString: cstring; foundPos: out cint; matchCase: cint = 0): cint {.importcpp: "#.search_backward(@)", header: flh_text_buffer.}
+proc findchar_forward*(self: TextBuffer; startPos: cint; searchChar: cuint; foundPos: var cint): cint {.importcpp: "#.findchar_forward(@)", header: flh_text_buffer.}
+proc findchar_backward*(self: TextBuffer; startPos: cint; searchChar: cuint; foundPos: var cint): cint {.importcpp: "#.findchar_backward(@)", header: flh_text_buffer.}
+proc search_forward*(self: TextBuffer; startPos: cint; searchString: cstring; foundPos: var cint; matchCase: cint = 0): cint {.importcpp: "#.search_forward(@)", header: flh_text_buffer.}
+proc search_backward*(self: TextBuffer; startPos: cint; searchString: cstring; foundPos: var cint; matchCase: cint = 0): cint {.importcpp: "#.search_backward(@)", header: flh_text_buffer.}
 proc primary_selection*(self: TextBuffer): TextSelection {.importcpp: "#.primary_selection(@)", header: flh_text_buffer.}
 proc secondary_selection*(self: TextBuffer): TextSelection {.importcpp: "#.secondary_selection(@)", header: flh_text_buffer.}
 proc highlight_selection*(self: TextBuffer): TextSelection {.importcpp: "#.highlight_selection(@)", header: flh_text_buffer.}
@@ -162,7 +162,7 @@ proc insert*(self: TextDisplay; text: cstring) {.importcpp: "#.insert(@)", heade
 proc overstrike*(self: TextDisplay; text: cstring) {.importcpp: "#.overstrike(@)", header: flh_text_display.}
 proc insert_position*(self: TextDisplay; newPos: cint) {.importcpp: "#.insert_position(@)", header: flh_text_display.}
 proc insert_position*(self: TextDisplay): cint {.importcpp: "#.insert_position(@)", header: flh_text_display.}
-proc position_to_xy*(self: TextDisplay; pos: cint; x, y: out cint): cint {.importcpp: "#.position_to_xy(@)", header: flh_text_display.}
+proc position_to_xy*(self: TextDisplay; pos: cint; x, y: var cint): cint {.importcpp: "#.position_to_xy(@)", header: flh_text_display.}
 proc in_selection*(self: TextDisplay; x, y: cint): cint {.importcpp: "#.in_selection(@)", header: flh_text_display.}
 proc show_insert_position*(self: TextDisplay) {.importcpp: "#.show_insert_position(@)", header: flh_text_display.}
 proc move_right*(self: TextDisplay): cint {.importcpp: "#.move_right(@)", header: flh_text_display.}
