@@ -355,7 +355,7 @@ const
 type
   Fontsize* {.importc: "Fl_Fontsize", header: flh.} = cint
 
-var FL_NORMAL_SIZE* {.extern: "FL_NORMAL_SIZE".}: Fontsize
+var FL_NORMAL_SIZE* {.importc: "FL_NORMAL_SIZE".}: Fontsize
 
 type
   Color* {.importc: "Fl_Color", header: flh.} = cint
